@@ -1,0 +1,16 @@
+/*  Carousel */
+
+.bgDegrade{
+    background: linear-gradient(rgb(71,6,174), white);
+}
+
+/* NavBar */
+
+nav a{
+    color:yellow !important;
+    font-size: 25px;
+}
+
+nav a:hover{
+    color: violet !important;
+}

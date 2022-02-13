@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-xl navbar-light sticky-top" style="background-color: rgb(71,6,174);">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"></a>
+    <nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{path('home')}}">
+      <img src="{{asset('img/logo.svg')}}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+      
+    </a>
+  </div>
+    </nav>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Comment ça marche</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Lien 2</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Menu déroulant ?
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Choix 1</a></li>
+            <li><a class="dropdown-item" href="#">Choix 2</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Choix 3</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Lien 3 </a>
+        </li>
+      </ul>
+      {# Utilisation d'un formulaire de recherche ? #}
+      {# <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> #}
+      <a class="btn btn-success" href="#" role="button">Login</a>
+    </div>
+  </div>
+</nav>
