@@ -80,7 +80,7 @@ class MovieController extends AbstractController
 
         //Add the new film to BDD
         $movie =new Movie();
-        $movie->setTitle('Seven');
+        $movie->setTitle('seven');
 
         //Save the Movie
         $entityManager->persist($movie);

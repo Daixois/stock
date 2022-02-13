@@ -49,33 +49,6 @@ class AdminController extends AbstractController
 
             return $this->redirect($this->generateUrl('movie_movie'));
         }
-        return $this->render('admin/add.html.twig',
-                        array('my_form'=>$formMovie->createView()));
-    }
-
-      /**
-     *  @Route("/update/{id}", name="update")
-     */
-
-    public function update(Request $request,$id): Response
-    {
-        return $this->render('admin/create.html.twig');
-    }
-
-      /**
-     *  @Route("/delete/{id}", name="delete")
-     */
-
-    public function delete(Request $request, $id)
-    {
-    }
-
-    /**
-     *  @Route("/add/format", name="add_format")
-     */
-
-    public function addFormat(Request $request, ManagerRegistry $doctrine)
-    {
         $format= new Format;
         $formFormat= $this->createForm(AddFormatType::class, $format);
 
@@ -101,6 +74,57 @@ class AdminController extends AbstractController
             return $this->redirect($this->generateUrl('format_format'));
         }
         return $this->render('admin/add.html.twig',
-                        array('my_form'=>$formFormat->createView()));
+                        array('my_form'=>$formMovie->createView()));
     }
+
+      /**
+     *  @Route("/update/{id}", name="update")
+     */
+
+    public function update(Request $request,$id): Response
+    {
+        return $this->render('admin/create.html.twig');
+    }
+
+      /**
+     *  @Route("/delete/{id}", name="delete")
+     */
+
+    public function delete(Request $request, $id)
+    {
+    }
+
+    /**
+     *  @Route("/add/format", name="add_format")
+     */
+
+    // public function addFormat(Request $request, ManagerRegistry $doctrine)
+    // {
+    //     $format= new Format;
+    //     $formFormat= $this->createForm(AddFormatType::class, $format);
+
+    //     $formFormat->add('creer', SubmitType::class,
+    //                 array('label'=>'Ajout d\'un format' ));
+
+    //     $formFormat->handleRequest($request);
+                
+    //     if ($request->isMethod('post') && $formFormat->isValid()) {
+    //         // New getDoctrine->getManager
+    //         //$em=$this->getDoctrine()->getManager
+            
+    //         //$em = $this->doctrine;
+    //         $em = $doctrine->getManager();
+
+    //         //return new JsonResponse($request->request->all());
+
+    //         //return $this->redirect($this->generateUrl('insert'));
+
+    //         $em->persist($format);
+    //         $em->flush();
+
+    //         return $this->redirect($this->generateUrl('format_format'));
+    //     }
+    //     return $this->render('admin/add.html.twig',
+    //                     array('my_form'=>$formFormat->createView()));
+    // }
 }

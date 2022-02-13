@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Movie;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,6 +14,16 @@ class AddMovieType extends AbstractType
     {
         $builder
             ->add('title')
+            ->add('sort', ChoiceType::class, [
+                'choices' => [
+                    'Films' => [
+                        'Blu-Ray' => 'Blu_ray',
+                        'DVD' => 'DVD',
+                        'SVOD' => 'SVOD'
+                    ],
+                    
+                ]
+            ])
         ;
     }
 
