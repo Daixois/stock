@@ -63,7 +63,7 @@ class MovieController extends AbstractController
 
         
         $recherche = $apiTmdb->getMovieByTitle($title);
-        dd($recherche);
+        // dd($recherche);
         
         return $this->render('movie/search.html.twig', [
             'controller_name' => 'MovieController',
@@ -80,6 +80,7 @@ class MovieController extends AbstractController
 
         //Add the new film to BDD
         $movie =new Movie();
+        //  TODO Remplacer 'seven' par la syntaxe correcte car là j'ai un doublon quand j'ajoute un film, seven s'ajoute aussi...
         $movie->setTitle('seven');
 
         //Save the Movie

@@ -21,7 +21,20 @@ class AddMovieType extends AbstractType
                         'DVD' => 'DVD',
                         'SVOD' => 'SVOD'
                     ],
-                    
+                    // 'Livres' => [
+                    //     'Poche' => 'Poche',
+                    //     'Broché' => 'Broché',
+                    //     'Bande Dessinée' => 'BD',
+                    //     'Comics' => 'Comics',
+                    //     'Mangas' => 'Mangas',
+                    //     'Livre Audio' => 'Audio'
+                    // ],
+                    // 'Musique' => [
+                    //     'CD' => 'CD',
+                    //     'Vinyle' => 'Vinyle',
+                    //     'Numérique' => 'Numérique'
+                    // ],
+
                 ]
             ])
         ;

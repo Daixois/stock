@@ -47,7 +47,7 @@ class AdminController extends AbstractController
             $em->persist($movie);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('movie_movie'));
+            return $this->redirect($this->generateUrl('insert'));
         }
         $format= new Format;
         $formFormat= $this->createForm(AddFormatType::class, $format);
