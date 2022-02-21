@@ -57,7 +57,7 @@ class AdminController extends AbstractController
 
         $formFormat->handleRequest($request);
                 
-        if ($request->isMethod('post') && $formFormat->isValid()) {
+        if ($request->isMethod('post') && $formFormat->isValid() && $formFormat->isSubmitted()) {
             // New getDoctrine->getManager
             //$em=$this->getDoctrine()->getManager
             

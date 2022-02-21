@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Movie;
+use App\Repository\MovieRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -80,8 +81,7 @@ class MovieController extends AbstractController
 
         //Add the new film to BDD
         $movie =new Movie();
-        //  TODO Remplacer 'seven' par la syntaxe correcte car là j'ai un doublon quand j'ajoute un film, seven s'ajoute aussi...
-        $movie->setTitle('seven');
+       
 
         //Save the Movie
         $entityManager->persist($movie);
@@ -90,5 +90,15 @@ class MovieController extends AbstractController
         // If succeed this message appears
         return new Response('Nouveau film ajouté'.$movie->getId());
       
+    }
+
+    /**
+    * @Route("/liste", name="liste") 
+    */
+    public function liste(MovieRepository $movieRepository):Response
+    {
+        return $this->render('movie/index.html.twig', [
+            'movie' => $movieRepository->findAll(),
+        ]);
     }
 }
