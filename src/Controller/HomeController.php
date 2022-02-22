@@ -2,10 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Movie;
+use App\Repository\MovieRepository;
 use App\Service\ApiTmdbService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use DateTime;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
@@ -20,16 +24,16 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/search/{search}", name="search")
+     * @Route("/search/{search}", name="search_")
      */
     public function search(ApiTmdbService $apiTmdb, string $search): Response
     {
 
         
         $recherche = $apiTmdb->searchApi($search);
-        // dd($recherche);
+        //dd($recherche);
         
-        return $this->render('home/search.html.twig', [
+        return $this->render('movie/search-movie.html.twig', [
             'data' => $recherche["results"],
         ]);
     }
@@ -40,12 +44,42 @@ class HomeController extends AbstractController
     public function getMovieById(ApiTmdbService $apiTmdb, string $id): Response
     {
 
-        $recherche = $apiTmdb->getMovieById($id);
-        dd($recherche);
-        
-        return $this->render('home/search.html.twig', [
-            'controller_name' => 'HomeController',
+        $recherche = $apiTmdb->getMovieById($id);      
+        // dd($recherche);
+
+        return $this->render('movie/get-movie.html.twig', [
+            'movie' => $recherche,
         ]);
+    }
+
+    /**
+     * @Route("/add/{id}", name="addid")
+     */
+    public function addMovie(ApiTmdbService $apiTmdb, string $id, ManagerRegistry $doctrine, MovieRepository $movieRepo): Response
+    {
+    
+        $movieExist = $movieRepo->findBy(['tmdbId' => $id]);
+
+
+        if (count($movieExist) === 0) {
+            $recherche = $apiTmdb->getMovieById($id);      
+            dd($recherche);
+            $movie = new Movie();
+            $movie
+                ->setTitle($recherche["title"])
+                ->setOriginalTitle($recherche["original_title"])
+                ->setPosterPath($recherche["poster_path"])
+                ->setOverview($recherche["overview"])
+                ->setTmdbId($recherche["id"])
+                ->setImdbId($recherche["imdb_id"])
+                ->setReleaseDate(DateTime::createFromFormat('Y-m-d', $recherche["release_date"]))
+            ;
+
+            $em = $doctrine->getManager();
+            $em->persist($movie);
+            $em->flush();
+          }
+        return $this->redirectToRoute('searchid', ['id' => $id]);
     }
 
     /**

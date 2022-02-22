@@ -27,6 +27,24 @@ class Movie
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $sort;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $poster_path;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $tmdbId;
+
+    #[ORM\Column(type: 'string', length: 20, nullable: true)]
+    private $imdbId;
+
+    #[ORM\Column(type: 'string', length: 100, nullable: true)]
+    private $originalTitle;
+
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $overview;
+
+    #[ORM\Column(type: 'date', nullable: true)]
+    private $release_date;
+
     public function __construct()
     {
         $this->formats = new ArrayCollection();
@@ -96,6 +114,78 @@ class Movie
     public function setSort(?string $sort): self
     {
         $this->sort = $sort;
+
+        return $this;
+    }
+
+    public function getPosterPath(): ?string
+    {
+        return $this->poster_path;
+    }
+
+    public function setPosterPath(?string $poster_path): self
+    {
+        $this->poster_path = $poster_path;
+
+        return $this;
+    }
+
+    public function getTmdbId(): ?int
+    {
+        return $this->tmdbId;
+    }
+
+    public function setTmdbId(?int $tmdbId): self
+    {
+        $this->tmdbId = $tmdbId;
+
+        return $this;
+    }
+
+    public function getImdbId(): ?string
+    {
+        return $this->imdbId;
+    }
+
+    public function setImdbId(?string $imdbId): self
+    {
+        $this->imdbId = $imdbId;
+
+        return $this;
+    }
+
+    public function getOriginalTitle(): ?string
+    {
+        return $this->originalTitle;
+    }
+
+    public function setOriginalTitle(?string $originalTitle): self
+    {
+        $this->originalTitle = $originalTitle;
+
+        return $this;
+    }
+
+    public function getOverview(): ?string
+    {
+        return $this->overview;
+    }
+
+    public function setOverview(?string $overview): self
+    {
+        $this->overview = $overview;
+
+        return $this;
+    }
+
+    public function getReleaseDate(): ?\DateTimeInterface
+    {
+        return $this->release_date;
+    }
+
+    public function setReleaseDate(?\DateTimeInterface $release_date): self
+    {
+        $this->release_date = $release_date;
 
         return $this;
     }

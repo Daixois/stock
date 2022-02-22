@@ -57,7 +57,7 @@ class MovieController extends AbstractController
     }
 
     /**
-     * @Route("/movie/search/title/{title}", name="search")
+     * @Route("/search/title/{title}", name="getbytitle")
      */
     public function getMovieByTitle(ApiTmdbService $apiTmdb, string $title): Response
     {
