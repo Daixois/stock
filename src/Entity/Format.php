@@ -18,11 +18,11 @@ class Format
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $sort;
 
-    #[ORM\ManyToOne(targetEntity: Movie::class, inversedBy: 'formats')]
+    #[ORM\ManyToMany(targetEntity: Movie::class, inversedBy: 'formats')]
     private $movie;
 
-    #[ORM\ManyToMany(targetEntity: Movie::class, inversedBy: 'formats')]
-    private $movies;
+    // #[ORM\ManyToMany(targetEntity: Movie::class, inversedBy: 'formats')]
+    // private $movies;
 
     public function __construct()
     {
