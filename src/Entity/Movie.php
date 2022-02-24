@@ -18,14 +18,14 @@ class Movie
     #[ORM\Column(type: 'string', length: 255)]
     private $title;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $format;
+    // #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    // private $format;
 
-    #[ORM\ManyToMany(targetEntity: Format::class, mappedBy: 'movie')]
-    private $formats;
+    // #[ORM\ManyToMany(targetEntity: Format::class, mappedBy: 'movie')]
+    // private $formats;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $sort;
+    // #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    // private $sort;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $poster_path;
@@ -67,56 +67,56 @@ class Movie
         return $this;
     }
 
-    public function getFormat(): ?string
-    {
-        return $this->format;
-    }
+    // public function getFormat(): ?string
+    // {
+    //     return $this->format;
+    // }
 
-    public function setFormat(?string $format): self
-    {
-        $this->format = $format;
+    // public function setFormat(?string $format): self
+    // {
+    //     $this->format = $format;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    /**
-     * @return Collection|Format[]
-     */
-    public function getFormats(): Collection
-    {
-        return $this->formats;
-    }
+    // /**
+    //  * @return Collection|Format[]
+    //  */
+    // public function getFormats(): Collection
+    // {
+    //     return $this->formats;
+    // }
 
-    public function addFormat(Format $format): self
-    {
-        if (!$this->formats->contains($format)) {
-            $this->formats[] = $format;
-            $format->addMovie($this);
-        }
+    // public function addFormat(Format $format): self
+    // {
+    //     if (!$this->formats->contains($format)) {
+    //         $this->formats[] = $format;
+    //         $format->addMovie($this);
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function removeFormat(Format $format): self
-    {
-        if ($this->formats->removeElement($format)) {
-            $format->removeMovie($this);
-        }
+    // public function removeFormat(Format $format): self
+    // {
+    //     if ($this->formats->removeElement($format)) {
+    //         $format->removeMovie($this);
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function getSort(): ?string
-    {
-        return $this->sort;
-    }
+    // public function getSort(): ?string
+    // {
+    //     return $this->sort;
+    // }
 
-    public function setSort(?string $sort): self
-    {
-        $this->sort = $sort;
+    // public function setSort(?string $sort): self
+    // {
+    //     $this->sort = $sort;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getPosterPath(): ?string
     {

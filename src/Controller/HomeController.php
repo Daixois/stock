@@ -60,10 +60,12 @@ class HomeController extends AbstractController
     
         $movieExist = $movieRepo->findBy(['tmdbId' => $id]);
 
-
+//  If movie doesn't exist in the BDD
+//  Create new movie with following info
+//  Manage, persist and flush the datas
         if (count($movieExist) === 0) {
             $recherche = $apiTmdb->getMovieById($id);      
-            dd($recherche);
+            // dd($recherche);
             $movie = new Movie();
             $movie
                 ->setTitle($recherche["title"])

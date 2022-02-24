@@ -4,6 +4,8 @@
 
 | @route       | name       | function  |
 | ------------ | ---------- | --------- |
+| /admin | admin_ | AdminController |
+| ------  | -----   | ------           |
 | /insert      | insert     | insert    |
 | /update/{id} | update     | update    |
 | /delete/{id} | delete     | delete    |

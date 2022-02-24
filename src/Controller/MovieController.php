@@ -34,7 +34,7 @@ class MovieController extends AbstractController
 
         
         $recherche = $apiTmdb->searchApi('spiderman');
-        dd($recherche);
+        // dd($recherche);
         
         return $this->render('home/search.html.twig', [
             'controller_name' => 'HomeController',
@@ -44,7 +44,7 @@ class MovieController extends AbstractController
     /**
      * @Route("/search/id/{id}", name="getbyid")
      */
-    public function getMovieById(ApiTmdbService $apiTmdb, int $id): Response
+    public function getMovieById(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, int $id): Response
     {
 
         
@@ -53,6 +53,7 @@ class MovieController extends AbstractController
         
         return $this->render('movie/search.html.twig', [
             'data' => $apiTmdb->getMovieById($id),
+            'movie' => $movieRepository->findAll(),
         ]);
     }
 
@@ -95,7 +96,7 @@ class MovieController extends AbstractController
     /**
     * @Route("/liste", name="liste") 
     */
-    public function liste(MovieRepository $movieRepository):Response
+    public function liste(MovieRepository $movieRepository, ApiTmdbService $apiTmdb):Response
     {
         return $this->render('movie/index.html.twig', [
             'movie' => $movieRepository->findAll(),

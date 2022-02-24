@@ -18,12 +18,16 @@
         <div class="row">
          {% for movie in movie %}
             <div class="card col-3" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt={{movie.title}}>
+                <img src="https://image.tmdb.org/t/p/w500/{{ movie.posterPath }}" class="card-img-top" alt={{movie.title}}>
                     <div class="card-body">
                         <h5 class="card-title">{{ movie.title}}</h5>
                         <ul class="list-movie list-movie-flush">
-                            <li class="list-movie-name">Titre : {{movie.title}}</li>
-                            <li class="list-movie-name">Format : {{movie.sort}}</li>
+                            <li class="list-movie-name"><b>Titre : </b>{{movie.title}}</li>
+                            <li class="list-movie-name"><b>Synopsis : </b>{{movie.overview}}</li>
+                            <li class="list-movie-name"><b>id : </b>{{movie.id}}</li>
+                            <li class="list-movie-name"><b>Titre Originel : </b>{{movie.originalTitle}}</li>
+                            {# TODO changer le format de DateTime en string #}
+                            {# <li class="list-movie-name"><b>Date de sortie : {{movie.releaseDate}}</li> #}
                         </ul>
                             {# <a href="#" class="btn btn-primary">Go somewhere</a> #}
         
