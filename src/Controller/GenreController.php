@@ -32,10 +32,10 @@ class GenreController extends AbstractController
 
         
         $recherche = $apiTmdb->searchApi('comedie');
-        dd($recherche);
+        // dd($recherche);
         
-        return $this->render('home/search.html.twig', [
-            'controller_name' => 'HomeController',
+        return $this->render('genre/search.html.twig', [
+            'controller_name' => 'GenreController',
         ]);
     }
 
@@ -56,7 +56,7 @@ class GenreController extends AbstractController
     }
 
     /**
-     * @Route("/search/title/{title}", name="genre_getbytitle")
+     * @Route("/search/name/{name}", name="genre_getbyname")
      */
     public function getGenreByName(ApiTmdbService $apiTmdb, string $name): Response
     {
