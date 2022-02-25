@@ -31,7 +31,16 @@ class ApiTmdbService
 	{
 		return $this->getApi('movie/' . $id . $this->apiKey); 
 	}
-	
+
+	public function getGenreById(int $id) 
+	{
+		return $this->getApi('genre/' . $id . $this->apiKey); 
+	}
+
+	public function getGenrebyName(string $name){
+		return $this->getApi('genres/' . $name. $this->apiKey);
+	}
+
 	public function getMovieByTitle (string $title)
 	{
 		return $this->getApi('movie/' . $title . $this->apiKey);

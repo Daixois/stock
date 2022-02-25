@@ -11,12 +11,12 @@ use App\Repository\MovieRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @Route("/movie", name="movie_")
+ * @Route("/movie")
  */
 class MovieController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="movie_home")
      */
    
     public function index(): Response
@@ -27,7 +27,7 @@ class MovieController extends AbstractController
     }
 
     /**
-     * @Route("/search", name="search")
+     * @Route("/search", name="movie_search")
      */
     public function search(ApiTmdbService $apiTmdb): Response
     {
@@ -42,7 +42,7 @@ class MovieController extends AbstractController
     }
 
     /**
-     * @Route("/search/id/{id}", name="getbyid")
+     * @Route("/search/id/{id}", name="movie_getbyid")
      */
     public function getMovieById(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, int $id): Response
     {
@@ -58,7 +58,7 @@ class MovieController extends AbstractController
     }
 
     /**
-     * @Route("/search/title/{title}", name="getbytitle")
+     * @Route("/search/title/{title}", name="movie_getbytitle")
      */
     public function getMovieByTitle(ApiTmdbService $apiTmdb, string $title): Response
     {
@@ -73,7 +73,7 @@ class MovieController extends AbstractController
     }
 
     /**
-     * @Route("/add", name="movie")
+     * @Route("/add", name="movie_movie")
      */
     public function addMovie(ApiTmdbService $apiTmdb, ManagerRegistry $doctrine): Response
     {
@@ -94,7 +94,7 @@ class MovieController extends AbstractController
     }
 
     /**
-    * @Route("/liste", name="liste") 
+    * @Route("/liste", name="movie_liste") 
     */
     public function liste(MovieRepository $movieRepository, ApiTmdbService $apiTmdb):Response
     {

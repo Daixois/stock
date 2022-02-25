@@ -11,12 +11,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/format", name="format_")
+ * @Route("/format")
  */
 class FormatController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="format_home")
      */
     public function index(): Response
     {
@@ -26,7 +26,7 @@ class FormatController extends AbstractController
     }
 
     /**
-     * @Route("/add", name="format")
+     * @Route("/add", name="format_add_format")
      */
     public function addFormat(ApiTmdbService $apiTmdb, ManagerRegistry $doctrine): Response
     {

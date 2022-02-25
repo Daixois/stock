@@ -1,27 +1,27 @@
-#Routes
+# Routes
 
-##Admincontroller
+## Admincontroller
 
 | @route       | name       | function  |
 | ------------ | ---------- | --------- |
-| /admin | admin_ | AdminController |
+| /admin |  | AdminController |
 | ------  | -----   | ------           |
-| /insert      | insert     | insert    |
-| /update/{id} | update     | update    |
-| /delete/{id} | delete     | delete    |
-| /add/format  | add_format | addFormat |
+| /insert      | admin_insert     | insert    |
+| /update/{id} | admin_update     | update    |
+| /delete/{id} | admin_delete     | delete    |
+| /add/format  | admin_add_format | addFormat |
 
 
-##FormatController
+## FormatController
 
 | @route  | name    | function         |
 | ------- | ------- | ---------------- |
-| /format | format_ | FormatController |
+| /format |  | FormatController |
 | ------  | -----   | ------           |
-| /       | home    | index            |
-| /add    | format  | addFormat        |
+| /       | format_home    | index            |
+| /add    | format_add_format  | addFormat        |
 
-##HomeController
+## HomeController
 
 | @route           | name     | function     |
 | ---------------- | -------- | ------------ |
@@ -30,15 +30,15 @@
 | /search/id/{id}  | searchid | getMovieById |
 | /add/{id}        | addid    | addMovie     |
 
-##MovieController
+## MovieController
 
 | @route                | name       | function        |
 | --------------------- | ---------- | --------------- |
-| /movie                | movie_     | MovieController |
+| /movie                |      | MovieController |
 | ------                | -----      | ------          |
-| /                     | home       | index           |
-| /search               | search     | search          |
-| /search/id/{id}       | getbyid    | getMovieById    |
-| /search/title/{title} | getbytitle | getMovieByTitle |
-| /add                  | movie      | addMovie        |
-| /liste                | liste      | liste           |
+| /                     | movie_home       | index           |
+| /search               | movie_search     | search          |
+| /search/id/{id}       | movie_getbyid    | getMovieById    |
+| /search/title/{title} | movie_getbytitle | getMovieByTitle |
+| /add                  | movie_movie      | addMovie        |
+| /liste                | movie_liste      | liste           |

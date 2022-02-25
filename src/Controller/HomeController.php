@@ -24,7 +24,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/search/{search}", name="search_")
+     * @Route("/search/{search}", name="home_search")
      */
     public function search(ApiTmdbService $apiTmdb, string $search): Response
     {
@@ -39,7 +39,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/search/id/{id}", name="searchid")
+     * @Route("/search/id/{id}", name="home_searchid")
      */
     public function getMovieById(ApiTmdbService $apiTmdb, string $id): Response
     {
@@ -53,7 +53,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/add/{id}", name="addid")
+     * @Route("/add/{id}", name="home_addid")
      */
     public function addMovie(ApiTmdbService $apiTmdb, string $id, ManagerRegistry $doctrine, MovieRepository $movieRepo): Response
     {

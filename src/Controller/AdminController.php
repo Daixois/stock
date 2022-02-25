@@ -17,13 +17,13 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
-*  @Route("/admin", name="admin_")
+*  @Route("/admin")
 */
 
 class AdminController extends AbstractController
 {
     /**
-     *  @Route("/insert", name="insert")
+     *  @Route("/insert", name="admin_insert")
      */
 
     public function insert(Request $request, ManagerRegistry $doctrine)
@@ -81,7 +81,7 @@ class AdminController extends AbstractController
     }
 
       /**
-     *  @Route("/update/{id}", name="update")
+     *  @Route("/update/{id}", name="admin_update")
      */
 
     public function update(Request $request,$id): Response
@@ -90,7 +90,7 @@ class AdminController extends AbstractController
     }
 
       /**
-     *  @Route("/delete/{id}", name="delete")
+     *  @Route("/delete/{id}", name="admin_delete")
      */
 
     public function delete(Request $request, $id)
@@ -98,7 +98,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     *  @Route("/add/format", name="add_format")
+     *  @Route("/add/format", name="admin_add_format")
      */
 
     // public function addFormat(Request $request, ManagerRegistry $doctrine)
