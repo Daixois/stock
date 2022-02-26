@@ -16,11 +16,11 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class GenreController extends AbstractController
 {
-    #[Route('/home', name: 'genre')]
+    #[Route('/', name: 'genre_home')]
     public function index(): Response
     {
         return $this->render('genre/index.html.twig', [
-            'controller_name' => 'GenreController',
+            'genre' => 'GenreController',
         ]);
     }
 
@@ -32,7 +32,8 @@ class GenreController extends AbstractController
 
         
         $recherche = $apiTmdb->searchApi('comedie');
-        // dd($recherche);
+        
+        dd($recherche);
         
         return $this->render('genre/search.html.twig', [
             'data' => $recherche["results"],

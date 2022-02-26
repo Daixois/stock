@@ -18,15 +18,6 @@ class Movie
     #[ORM\Column(type: 'string', length: 255)]
     private $title;
 
-    // #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    // private $format;
-
-    // #[ORM\ManyToMany(targetEntity: Format::class, mappedBy: 'movie')]
-    // private $formats;
-
-    // #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    // private $sort;
-
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $poster_path;
 

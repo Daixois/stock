@@ -5,11 +5,9 @@
 {% block body %}
     <div class="container">
         <div class="row">
-         {% for genre in genre %}
+         {% for data in data %}
             <div class="card col-3" style="width: 18rem;">
-                {# <img src="https://image.tmdb.org/t/p/w500/{{ movie.posterPath }}" class="card-img-top" alt={{movie.title}}> #}
                     <div class="card-body">
-                        {# <h5 class="card-title">{{ genre.name}}</h5> #}
                         <ul class="list-genre list-genre-flush">
                             <li class="list-genre-name"><b>Genres : </b>{{genre.name}}</li>
                             

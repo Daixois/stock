@@ -26,7 +26,7 @@ class ApiTmdbService
 
         return $response->toArray();
     }
-
+// https://api.themoviedb.org/3/genre/movie/list?api_key=1d4e214ae65f6a9e102228f75568179e&language=fr-FR
 	public function getMovieById(int $id) 
 	{
 		return $this->getApi('movie/' . $id . $this->apiKey); 
@@ -34,11 +34,11 @@ class ApiTmdbService
 
 	public function getGenreById(int $id) 
 	{
-		return $this->getApi('genre/' . $id . $this->apiKey); 
+		return $this->getApi('genre/movie' . $id . $this->apiKey); 
 	}
 
 	public function getGenrebyName(string $name){
-		return $this->getApi('genres/' . $name. $this->apiKey);
+		return $this->getApi('genre/' . $name. $this->apiKey);
 	}
 
 	public function getMovieByTitle (string $title)
@@ -52,5 +52,8 @@ class ApiTmdbService
 		return $this->getApi('search/movie'. $this->apiKey . "&query=" . $var); 
 	}
 
-	
+	public function searchGenreApi(string $var) 
+	{
+		return $this->getApi('search/genre'. $this->apiKey . "&query=" . $var); 
+	}
 }
