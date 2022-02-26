@@ -35,7 +35,7 @@ class GenreController extends AbstractController
         // dd($recherche);
         
         return $this->render('genre/search.html.twig', [
-            'controller_name' => 'GenreController',
+            'data' => $recherche["results"],
         ]);
     }
 

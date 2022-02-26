@@ -7,26 +7,50 @@
 <div class="row">
 
 {% for data in data %}
-<div class="card col-3" style="18rem">
-  <img src="https://image.tmdb.org/t/p/w500/{{ data.poster_path }}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{ data.title }}</h5>
-    <p class="card-text">{{ data.overview }}</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">{{ data.title }}</li>
-{# {% for genre in data.genres %}
-    <li class="list-group-item">{{ genre }}</li>
-{% endfor %} #}
-    <li class="list-group-item">{{ data.id }}</li>
-  </ul>
-  <div class="card-body">
-    <a href="https://www.themoviedb.org/movie/{{ data.id }}?language=fr" class="card-link">La Fiche Tmdb</a>
+{# <div class="card col-3" style="18rem">
+    <img src="https://image.tmdb.org/t/p/w500/{{ data.poster_path }}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{ data.title }}</h5>
+      <p class="card-text">{{ data.overview }}</p>
+    </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{ data.title }}</li>
+    {% for genre in data.genres %}
+        <li class="list-group-item">{{ genre }}</li>
+    {% endfor %}
+        <li class="list-group-item">{{ data.id }}</li>
+      </ul>
+    <div class="card-body">
+      <a href="https://www.themoviedb.org/movie/{{ data.id }}?language=fr" class="card-link">La Fiche Tmdb</a>
 
-  </div>
+    </div>
+</div>  #}
+{% endfor %} 
+
+<form 
+
+<form id="searchForm" action="{{ path("home_search", { search : "-url-" }) }}">
+{# <form id="searchForm" action="/search/"> #}
+	<input type="search" name="search" placeholder="Recherche">
+	<input type="submit" value="Go">
+</form>
+
+<script>
+	form = document.getElementById('searchForm');
+	form.addEventListener('submit', function(e) {
+		e.preventDefault();
+		var url = form.action.replace('-url-', form.search.value);
+		console.log(url);
+		window.location.href = url;
+	});
+</script>
+
+<div class="row">
+	{% for movie in data %}
+		{# https://twig.symfony.com/doc/3.x/tags/include.html #}
+		{% include "movie/_card-movie.html.twig" with {'movie': movie, 'addLink': true } %}
+	{% endfor %}
 </div>
-{% endfor %}
-
 </div>
 
 {% endblock %}

@@ -25,10 +25,10 @@
 
 | @route           | name     | function     |
 | ---------------- | -------- | ------------ |
-| /home            | home     | index        |
-| /search/{search} | search_  | search       |
-| /search/id/{id}  | searchid | getMovieById |
-| /add/{id}        | addid    | addMovie     |
+| /home            | home_home     | index        |
+| /search/{search} | home_search_  | search       |
+| /search/id/{id}  | home_searchid | getMovieById |
+| /add/{id}        | home_addid    | addMovie     |
 
 ## MovieController
 
@@ -42,3 +42,16 @@
 | /search/title/{title} | movie_getbytitle | getMovieByTitle |
 | /add                  | movie_movie      | addMovie        |
 | /liste                | movie_liste      | liste           |
+
+## GenreController
+
+| @route                | name       | function        |
+| --------------------- | ---------- | --------------- |
+| /genre                |      | GenreController |
+| ------                | -----      | ------          |
+| /                     | genre_home       | index           |
+| /search               | genre_search     | search          |
+| /search/id/{id}       | genre_getbyid    | getgenreById    |
+| /search/name/{name}   | genre_getbyname | getgenreByname |
+| /add                  | genre_genre      | addgenre        |
+| /liste                | genre_liste      | liste           |

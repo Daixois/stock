@@ -9,7 +9,7 @@
 <div class="row">
 
 	<div class="col col-md-4">
-		<img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="card-img-top" alt="...">
+		<img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="card-img-top" alt="{{ movie.title }}">
 	</div>
 
 	<div class="col col-md-8">
@@ -32,11 +32,11 @@
 		</div>
 
 		<div class="card-body">
-			<a href="{{ path('searchid', {id: movie.id}) }}" class="card-link">Voir la fiche du film</a>
+			<a href="{{ path('home_searchid', {id: movie.id}) }}" class="card-link">Voir la fiche du film</a>
 		</div>
 
 		<div class="card-body">
-			<a class="btn btn-primary" href="{{ path('addid', {id: movie.id}) }}" class="card-link">Ajouter à la collection</a>
+			<a class="btn btn-primary" href="{{ path('home_addid', {id: movie.id}) }}" class="card-link">Ajouter à la collection</a>
 		</div>
 		{#  Add button back to home #}
 		{# <div class="card-body">

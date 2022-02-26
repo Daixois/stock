@@ -4,13 +4,13 @@
 
 {% block body %}
 
-<pre>
-	{# {{ dump(path("search_", { search : "-url-"})) }} #}
-</pre>
+{# <pre>
+	{{ dump(path("search_", { search : "-url-"})) }}
+</pre> #}
 
 <form 
 
-<form id="searchForm" action="{{ path("search_", { search : "-url-" }) }}">
+<form id="searchForm" action="{{ path("movie_search", { search : "-url-" }) }}">
 {# <form id="searchForm" action="/search/"> #}
 	<input type="search" name="search" placeholder="Recherche">
 	<input type="submit" value="Go">

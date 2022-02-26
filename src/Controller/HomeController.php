@@ -31,7 +31,7 @@ class HomeController extends AbstractController
 
         
         $recherche = $apiTmdb->searchApi($search);
-        //dd($recherche);
+        // dd($recherche);
         
         return $this->render('movie/search-movie.html.twig', [
             'data' => $recherche["results"],

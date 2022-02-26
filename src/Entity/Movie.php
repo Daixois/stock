@@ -67,57 +67,6 @@ class Movie
         return $this;
     }
 
-    // public function getFormat(): ?string
-    // {
-    //     return $this->format;
-    // }
-
-    // public function setFormat(?string $format): self
-    // {
-    //     $this->format = $format;
-
-    //     return $this;
-    // }
-
-    // /**
-    //  * @return Collection|Format[]
-    //  */
-    // public function getFormats(): Collection
-    // {
-    //     return $this->formats;
-    // }
-
-    // public function addFormat(Format $format): self
-    // {
-    //     if (!$this->formats->contains($format)) {
-    //         $this->formats[] = $format;
-    //         $format->addMovie($this);
-    //     }
-
-    //     return $this;
-    // }
-
-    // public function removeFormat(Format $format): self
-    // {
-    //     if ($this->formats->removeElement($format)) {
-    //         $format->removeMovie($this);
-    //     }
-
-    //     return $this;
-    // }
-
-    // public function getSort(): ?string
-    // {
-    //     return $this->sort;
-    // }
-
-    // public function setSort(?string $sort): self
-    // {
-    //     $this->sort = $sort;
-
-    //     return $this;
-    // }
-
     public function getPosterPath(): ?string
     {
         return $this->poster_path;

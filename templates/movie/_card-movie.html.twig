@@ -21,12 +21,12 @@
 		</div>
 
 			<div class="card-body">
-				<a href="{{ path('searchid', {id: movie.id}) }}" class="card-link">Voir la fiche du film</a>
+				<a href="{{ path('home_searchid', {id: movie.id}) }}" class="card-link">Voir la fiche du film</a>
 			</div>
 
 		{% if addLink is defined %}
 			<div class="card-body">
-				<a class="btn btn-primary" href="{{ path('addid', {id: movie.id}) }}" class="card-link">Ajouter à la collection</a>
+				<a class="btn btn-primary" href="{{ path('home_addid', {id: movie.id}) }}" class="card-link">Ajouter à la collection</a>
 			</div>
 		{% endif %}
 

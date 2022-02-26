@@ -37,7 +37,7 @@ class MovieController extends AbstractController
         // dd($recherche);
         
         return $this->render('home/search.html.twig', [
-            'controller_name' => 'HomeController',
+            'data' => $recherche["results"],
         ]);
     }
 
