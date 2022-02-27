@@ -5,19 +5,17 @@
 {% block body %}
     <div class="container">
         <div class="row">
-         {% for data in data %}
+         {% for genre in genre %}
             <div class="card col-3" style="width: 18rem;">
                     <div class="card-body">
                         <ul class="list-genre list-genre-flush">
                             <li class="list-genre-name"><b>Genres : </b>{{genre.name}}</li>
-                            
-                        </ul>
-                            {# <a href="#" class="btn btn-primary">Go somewhere</a> #}
-        
+                            <li class="list-genre-id"><b>Genres : </b>{{genre.id_tmdb}}</li>
+                        </ul>     
                     </div>
             </div>
             {% endfor %}
         </div> 
     </div>
-    </div>
+    
 {% endblock %}

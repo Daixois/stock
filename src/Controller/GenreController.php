@@ -31,7 +31,7 @@ class GenreController extends AbstractController
     {
 
         
-        $recherche = $apiTmdb->searchApi('comedie');
+        $recherche = $apiTmdb->searchApi('');
         
         dd($recherche);
         
@@ -95,8 +95,11 @@ class GenreController extends AbstractController
     /**
     * @Route("/liste", name="genre_liste") 
     */
-    public function liste(GenreRepository $genreRepository, ApiTmdbService $apiTmdb):Response
+    public function liste(GenreRepository $genreRepository, ApiTmdbService $apiTmdb, array $liste):Response
     {
+
+        $recherche = $apiTmdb->getGenreList($liste []);
+
         return $this->render('genre/index.html.twig', [
             'genre' => $genreRepository->findAll(),
         ]);

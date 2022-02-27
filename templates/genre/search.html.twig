@@ -3,5 +3,28 @@
 {% block title %}Hello Tom{% endblock %}
 
 {% block body %}
+<form 
 
+<form id="searchForm" action="{{ path("genre_search", { search : "-url-" }) }}">
+{# <form id="searchForm" action="/search/"> #}
+	<input type="search" name="search" placeholder="Recherche">
+	<input type="submit" value="Go">
+</form>
+
+<script>
+	form = document.getElementById('searchForm');
+	form.addEventListener('submit', function(e) {
+		e.preventDefault();
+		var url = form.action.replace('-url-', form.search.value);
+		console.log(url);
+		window.location.href = url;
+	});
+</script>
+
+<div class="row">
+	{% for genre in data %}
+		{# https://twig.symfony.com/doc/3.x/tags/include.html #}
+		{% include "movie/_card-genre.html.twig" with {'genre': genre, 'addLink': true } %}
+	{% endfor %}
+</div>
 {% endblock %}

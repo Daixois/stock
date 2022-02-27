@@ -62,11 +62,11 @@ class HomeController extends AbstractController
     
         $movieExist = $movieRepo->findBy(['tmdbId' => $id]);
 
-//  If movie doesn't exist in the BDD
-//  Create new movie with following info
-//  Manage, persist and flush the datas
-//TODO Repeter if exists pour genres; verifier que count ===0 si il existe pas genre = new Genre idtmdb et name
-// TODO boucle for each movie  pour les genres.. Many to many setter autant que possible
+        //  If movie doesn't exist in the BDD
+        //  Create new movie with following info
+        //  Manage, persist and flush the datas
+        //TODO Repeter if exists pour genres; verifier que count ===0 si il existe pas genre = new Genre idtmdb et name
+        // TODO boucle for each movie  pour les genres.. Many to many setter autant que possible
         if (count($movieExist) === 0) {
             $recherche = $apiTmdb->getMovieById($id);      
             // dd($recherche["genres"]);
@@ -91,29 +91,25 @@ class HomeController extends AbstractController
         /**
      * @Route("/add/genre/{id}", name="home_addgenreid")
      */
-    public function addGenre(ApiTmdbService $apiTmdb, string $id, ManagerRegistry $doctrine, GenreRepository $genreRepo): Response
+    public function addGenre(ApiTmdbService $apiTmdb, int $id, ManagerRegistry $doctrine, GenreRepository $genreRepo): Response
     {
     
-        $genreExist = $genreRepo->findBy(['tmdbId' => $id]);
+        $genreExist = $genreRepo->findBy(['idTmdb' => $id]);
 
-//  If movie doesn't exist in the BDD
-//  Create new movie with following info
-//  Manage, persist and flush the datas
-//TODO Repeter if exists pour genres; verifier que count ===0 si il existe pas genre = new Genre idtmdb et name
-// TODO boucle for each movie  pour les genres.. Many to many setter autant que possible
+        //  If movie doesn't exist in the BDD
+        //  Create new movie with following info
+        //  Manage, persist and flush the datas
+        //TODO Repeter if exists pour genres; verifier que count ===0 si il existe pas genre = new Genre idtmdb et name
+        // TODO boucle for each movie  pour les genres.. Many to many setter autant que possible
         if (count($genreExist) === 0) {
             $recherche = $apiTmdb->getGenreById($id);      
-            // dd($recherche["genres"]);
+            dd($recherche["genres"]);
             $genre = new Genre();
             $genre
                 ->setName($recherche["name"])
                 //TODO Créer propriété idTmdb pour Genre.
-                // ->setOriginalTitle($recherche["original_title"])
-                // ->setPosterPath($recherche["poster_path"])
-                // ->setOverview($recherche["overview"])
-                // ->setTmdbId($recherche["id"])
-                // ->setImdbId($recherche["imdb_id"])
-                // ->setReleaseDate(DateTime::createFromFormat('Y-m-d', $recherche["release_date"]))
+                ->setIdTmdb($recherche["idTmdb"])
+                
             ;
 
             $em = $doctrine->getManager();
