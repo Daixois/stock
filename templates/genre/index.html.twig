@@ -1,21 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello Tom{% endblock %}
+{% block title %}Hello GenreController!{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="row">
-         {% for genre in genre %}
-            <div class="card col-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <ul class="list-genre list-genre-flush">
-                            <li class="list-genre-name"><b>Genres : </b>{{genre.name}}</li>
-                            <li class="list-genre-id"><b>Genres : </b>{{genre.id_tmdb}}</li>
-                        </ul>     
-                    </div>
-            </div>
-            {% endfor %}
-        </div> 
-    </div>
-    
+<h1> Bonjour Tom ceci est la page de ton site où devront s'afficher les différents genres des films, tu t'en occuperas plus tard </h1>
+
 {% endblock %}

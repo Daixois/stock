@@ -36,7 +36,7 @@ class MovieController extends AbstractController
         $recherche = $apiTmdb->searchApi('spiderman');
         // dd($recherche);
         
-        return $this->render('home/search.html.twig', [
+        return $this->render('movie/search-movie.html.twig', [
             'data' => $recherche["results"],
         ]);
     }
@@ -51,7 +51,7 @@ class MovieController extends AbstractController
         $recherche = $apiTmdb->getMovieById($id);
         // dd($recherche);
         
-        return $this->render('movie/search.html.twig', [
+        return $this->render('movie/search-movie.html.twig', [
             'data' => $apiTmdb->getMovieById($id),
             'movie' => $movieRepository->findAll(),
         ]);
@@ -102,4 +102,5 @@ class MovieController extends AbstractController
             'movie' => $movieRepository->findAll(),
         ]);
     }
+    
 }

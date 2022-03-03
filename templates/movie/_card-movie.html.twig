@@ -10,9 +10,11 @@
 
 		<ul class="list-group list-group-flush">
 			<li class="list-group-item">{{ movie.title }}</li>
+
 		{# {% for genre in movie.genres %}
 			<li class="list-group-item">{{ genre }}</li>
 		{% endfor %} #}
+		
 			<li class="list-group-item">{{ movie.id }}</li>
 		</ul>
 
@@ -20,9 +22,9 @@
 			<a href="https://www.themoviedb.org/movie/{{ movie.id }}?language=fr" class="card-link">La Fiche Tmdb</a>
 		</div>
 
-			<div class="card-body">
-				<a href="{{ path('home_searchid', {id: movie.id}) }}" class="card-link">Voir la fiche du film</a>
-			</div>
+		<div class="card-body">
+			<a href="{{ path('home_searchid', {id: movie.id}) }}" class="card-link">Voir la fiche du film</a>
+		</div>
 
 		{% if addLink is defined %}
 			<div class="card-body">

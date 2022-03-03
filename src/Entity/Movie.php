@@ -36,13 +36,11 @@ class Movie
     #[ORM\Column(type: 'date', nullable: true)]
     private $release_date;
 
-    #[ORM\ManyToMany(targetEntity: Genre::class, mappedBy: 'movies')]
-    private $genres;
-
+   
     public function __construct()
     {
         $this->formats = new ArrayCollection();
-        $this->genres = new ArrayCollection();
+       
     }
 
     public function getId(): ?int
@@ -134,30 +132,5 @@ class Movie
         return $this;
     }
 
-    /**
-     * @return Collection|Genre[]
-     */
-    public function getGenres(): Collection
-    {
-        return $this->genres;
-    }
-
-    public function addGenre(Genre $genre): self
-    {
-        if (!$this->genres->contains($genre)) {
-            $this->genres[] = $genre;
-            $genre->addMovie($this);
-        }
-
-        return $this;
-    }
-
-    public function removeGenre(Genre $genre): self
-    {
-        if ($this->genres->removeElement($genre)) {
-            $genre->removeMovie($this);
-        }
-
-        return $this;
-    }
+  
 }
