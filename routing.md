@@ -25,33 +25,31 @@
 
 | @route           | name     | function     |
 | ---------------- | -------- | ------------ |
-| /home            | home_home     | index        |
-| /search/{search} | home_search_  | search       |
-| /search/id/{id}  | home_searchid | getMovieById |
-| /add/{id}        | home_addid    | addMovie     |
+| /home            |  home    | HomeController |
+| ------           | -----    | ------          |
+
 
 ## MovieController
 
 | @route                | name       | function        |
 | --------------------- | ---------- | --------------- |
-| /movie                |      | MovieController |
+| /movie                |            | MovieController |
 | ------                | -----      | ------          |
 | /                     | movie_home       | index           |
+| /search/{search}      |movie_searchMovie | searchMovie     |
 | /search               | movie_search     | search          |
 | /search/id/{id}       | movie_getbyid    | getMovieById    |
 | /search/title/{title} | movie_getbytitle | getMovieByTitle |
-| /add                  | movie_movie      | addMovie        |
+| /add/add/{id<\d+>}    | movie_addid      | addMovie        |
 | /liste                | movie_liste      | liste           |
 
 ## GenreController
 
 | @route                | name       | function        |
 | --------------------- | ---------- | --------------- |
-| /genre                |      | GenreController |
-| ------                | -----      | ------          |
+| /genre                |            | GenreController |
+| ------                | -----            | ------          |
 | /                     | genre_home       | index           |
-| /search               | genre_search     | search          |
-| /search/id/{id}       | genre_getbyid    | getgenreById    |
-| /search/name/{name}   | genre_getbyname | getgenreByname |
-| /add                  | genre_genre      | addgenre        |
-| /liste                | genre_liste      | liste           |
+| /search/name/{name}   | genre_getbyname  | getgenreByname  |
+| /add/allgenre         | genre_addAllGenre| addAllGenre     |
+| /add/genre/{id}       | genre_addgenre   | addGenre        |

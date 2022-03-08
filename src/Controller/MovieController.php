@@ -11,9 +11,8 @@ use App\Repository\MovieRepository;
 use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * @Route("/movie")
- */
+
+#[Route('/movie')]
 class MovieController extends AbstractController
 {
     
@@ -40,7 +39,7 @@ class MovieController extends AbstractController
     }
 
      
-    #[Route('/search/{search}', name: 'movie_search')]
+    #[Route('/search/{search}', name: 'movie_searchMovie')]
     public function searchMovie(ApiTmdbService $apiTmdb, string $search): Response
     {
 
@@ -53,7 +52,7 @@ class MovieController extends AbstractController
         ]);
     }
     
-    #[Route('/search/id/{is}', name: 'movie_getbyid')]
+    #[Route('/search/id/{id}', name: 'movie_getbyid')]
     public function getMovieById(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, int $id): Response
     {
 
