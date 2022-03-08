@@ -23,14 +23,14 @@ class GenreController extends AbstractController
         ]);
     }
 
-    #[Route('/search', name: 'genre_search')]
+    #[Route('/search/name/{name}', name: 'genre_search')]
     public function getGenre(GenreRepository $genreRepository, ApiTmdbService $apiTmdb, string $name): Response
     {
 
-        $recherche = $apiTmdb->getGenre($name);
-         dd($recherche);
-        return $this->render('movie/search-movie.html.twig', [
-            'data' => $apiTmdb->getGenre($name),
+        $allGenre = $apiTmdb->getAllGenre($name);
+        // dd($allGenre);
+        return $this->render('genre/index.html.twig', [
+            'genresApi' => $allGenre["genres"],
             'genre' => $genreRepository->findAll(),
         ]);
     }

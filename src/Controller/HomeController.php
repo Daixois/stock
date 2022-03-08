@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-
+use App\Entity\Genre;
 use App\Entity\Movie;
+use App\Repository\GenreRepository;
 use App\Repository\MovieRepository;
 use App\Service\ApiTmdbService;
 use DateTime;
@@ -54,7 +55,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/add/{id}", name="home_addid")
+     * @Route("/add/{id<\d+>}", name="home_addid")
      */
     public function addMovie(ApiTmdbService $apiTmdb, string $id, ManagerRegistry $doctrine, MovieRepository $movieRepo): Response
     {
@@ -88,35 +89,29 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/add/genre/{id}", name="home_addgenreid")
+     * @Route("/add/genre/{id}", name="home_addgenre")
      */
-    // public function addGenre(ApiTmdbService $apiTmdb, int $id, ManagerRegistry $doctrine, GenreRepository $genreRepo): Response
-    // {
+     public function addGenre(ApiTmdbService $apiTmdb, int $id, ManagerRegistry $doctrine, GenreRepository $genreRepo): Response
+     {
     
-    //     $genreExist = $genreRepo->findBy(['idTmdb' => $id]);
+         $genreExist = $genreRepo->findBy(['tmdbID' => $id]);
 
-        //  If movie doesn't exist in the BDD
-        //  Create new movie with following info
-        //  Manage, persist and flush the datas
-        //TODO Repeter if exists pour genres; verifier que count ===0 si il existe pas genre = new Genre idtmdb et name
-        // TODO boucle for each movie  pour les genres.. Many to many setter autant que possible
-        // if (count($genreExist) === 0) {
-        //     $recherche = $apiTmdb->getGenreById($id);      
-            // dd($recherche["genres"]);
-            // $genre = new Genre();
-    //         $genre
-    //             ->setName($recherche["name"])
-    //             //TODO Créer propriété idTmdb pour Genre.
-    //             ->setIdTmdb($recherche["idTmdb"])
-                
-    //         ;
+        
+         if (count($genreExist) === 0) {
+             $allGenre = $apiTmdb->getAllGenre();      
+            dd($allGenre["genres"]);
+             $genre = new Genre();
+             $genre
+                 ->setName($allGenre["genres"]["name"])
+                 ->setTmdbID($allGenre["genres"]["id"])    
+             ;
 
-    //         $em = $doctrine->getManager();
-    //         $em->persist($genre);
-    //         $em->flush();
-    //       }
-    //     return $this->redirectToRoute('searchid', ['id' => $id]);
-    // }
+             $em = $doctrine->getManager();
+             $em->persist($genre);
+             $em->flush();
+           }
+         return $this->redirectToRoute('genre_search', ['id' => $id]);
+     }
     /**
      * Route vers "Save/to/BDD
      * fonction qui appelle ApiTmdbService
@@ -124,4 +119,27 @@ class HomeController extends AbstractController
      * On enregistre ces infos en BDD (travail sur l'entité)
      */
 
+    #[Route('/add/allgenre', name: 'home_addAllGenre')]
+     public function addAllGenre(ApiTmdbService $apiTmdb, ManagerRegistry $doctrine, GenreRepository $genreRepo): Response
+     {
+        
+            $allGenre = $apiTmdb->getAllGenre();
+            foreach ($allGenre["genres"] as $genre) {
+                $genreExist = $genreRepo->findBy(['tmdbID' => $genre["id"]]);
+                if (count($genreExist) === 0) {
+                    $genreEntity = new Genre();
+                    $genreEntity
+                        ->setName($genre["name"])
+                        ->setTmdbID($genre["id"])    
+                    ;
+
+                    $em = $doctrine->getManager();
+                    $em->persist($genreEntity);
+                    $em->flush();
+                }
+            }
+            
+            return $this->redirectToRoute('home');
+        
+     }
 }

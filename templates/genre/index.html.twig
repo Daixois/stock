@@ -4,5 +4,19 @@
 
 {% block body %}
 <h1> Bonjour Tom ceci est la page de ton site où devront s'afficher les différents genres des films, tu t'en occuperas plus tard </h1>
+{% for genre in genresApi %}
 
+          <div class="card col-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <ul class="list-genre list-genre-flush">
+                            <li class="list-genre-name"><b>Genre : </b>{{genre.name}}</li>                          
+                        </ul>
+                    </div>
+
+                    <div class="card-body">
+				        <a class="btn btn-primary" href="{{ path('home_addgenre', {id: genre.id}) }}" class="card-link">Ajouter à la collection</a>
+			        </div>
+            </div>
+   
+{% endfor %}
 {% endblock %}
