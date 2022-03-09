@@ -36,10 +36,14 @@ class Movie
     #[ORM\Column(type: 'date', nullable: true)]
     private $release_date;
 
+    #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'movies')]
+    private $genres;
+
    
     public function __construct()
     {
         $this->formats = new ArrayCollection();
+        $this->genres = new ArrayCollection();
        
     }
 
@@ -128,6 +132,30 @@ class Movie
     public function setReleaseDate(?\DateTimeInterface $release_date): self
     {
         $this->release_date = $release_date;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Genre[]
+     */
+    public function getGenres(): Collection
+    {
+        return $this->genres;
+    }
+
+    public function addGenre(Genre $genre): self
+    {
+        if (!$this->genres->contains($genre)) {
+            $this->genres[] = $genre;
+        }
+
+        return $this;
+    }
+
+    public function removeGenre(Genre $genre): self
+    {
+        $this->genres->removeElement($genre);
 
         return $this;
     }
