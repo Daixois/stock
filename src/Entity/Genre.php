@@ -28,6 +28,10 @@ class Genre
     {
         $this->movies = new ArrayCollection();
     }
+    //Quand l'entité ne peut être convertie en string, on utilise __toString()
+    public function __toString() {
+        return $this->name;
+    }
 
     public function getId(): ?int
     {

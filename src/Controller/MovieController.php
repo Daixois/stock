@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Genre;
 use App\Service\ApiTmdbService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Movie;
+use App\Repository\GenreRepository;
 use App\Repository\MovieRepository;
 use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
@@ -89,7 +91,7 @@ class MovieController extends AbstractController
         ]);
     }
   
-    #[Route('add/add/{id<\d+>}', name: 'movie_addid')]
+    #[Route('/add/add/{id<\d+>}', name: 'movie_addid')]
     public function addMovie(ApiTmdbService $apiTmdb, string $id, ManagerRegistry $doctrine, MovieRepository $movieRepo): Response
     {
     
@@ -101,17 +103,18 @@ class MovieController extends AbstractController
        
         // TODO boucle for each movie  pour les genres.. Many to many setter autant que possible
             if (count($movieExist) === 0) {
-                $recherche = $apiTmdb->getMovieById($id);      
-                // dd($recherche["genres"]);
+                $completeMovie = $apiTmdb->getMovieById($id);      
+                // dd($completeMovie["genres"]);
                 $movie = new Movie();
                 $movie
-                    ->setTitle($recherche["title"])
-                    ->setOriginalTitle($recherche["original_title"])
-                    ->setPosterPath($recherche["poster_path"])
-                    ->setOverview($recherche["overview"])
-                    ->setTmdbId($recherche["id"])
-                    ->setImdbId($recherche["imdb_id"])
-                    ->setReleaseDate(DateTime::createFromFormat('Y-m-d', $recherche["release_date"]))
+                    ->setTitle($completeMovie["title"])
+                    ->setOriginalTitle($completeMovie["original_title"])
+                    ->setPosterPath($completeMovie["poster_path"])
+                    ->setOverview($completeMovie["overview"])
+                    ->setTmdbId($completeMovie["id"])
+                    ->setImdbId($completeMovie["imdb_id"])
+                    ->setReleaseDate(DateTime::createFromFormat('Y-m-d', $completeMovie["release_date"]))
+                    
                 ;
 
                 $em = $doctrine->getManager();
@@ -119,6 +122,68 @@ class MovieController extends AbstractController
                 $em->flush();
           }
         return $this->redirectToRoute('movie_searchid', ['id' => $id]);
+    }
+    
+    // TEST
+    // #[Route('/test', name: 'movie_test')]
+    // public function test(MovieRepository $movieRepository, GenreRepository $genreRepository, ManagerRegistry $doctrine): Response
+    // {
+        
+    //     $poseidon = $movieRepository->find(100);
+    //     $genreAction = $genreRepository->find(1);
+    //     $genreThriller = $genreRepository->find(17);
+    
+    //     $poseidon
+    //         ->addGenre($genreAction)
+    //         ->addGenre($genreThriller);
+
+    //     $em = $doctrine->getManager();
+    //     $em->persist($poseidon);
+    //     $em->flush();
+
+    //     return $this->redirectToRoute('home');
+    // }   
+
+    #[Route('/testgenre', name: 'movie_testgenre')]
+    public function testGenre(MovieRepository $movieRepository, GenreRepository $genreRepository, ManagerRegistry $doctrine, ApiTmdbService $apiTmdb): Response
+    {
+        // Déclare doctrine
+        $em = $doctrine->getManager();
+
+        // 1. Tu récupère tes films en BDD (findAll)
+        $ficheMovie = $movieRepository->findAll();
+
+        // 2. ForEach films, 
+        foreach ($ficheMovie as $movie) {
+            // 2bis tu interroges TMDB pour obtenir leur genre (Service TMDB)
+            $tmdbMovie = $apiTmdb->getMovieById($movie->getTmdbId());
+
+            // 3. Pour les genres reçus (forEach), tu vérifies dans ta BDD que l'ID TMDB_Genre est ou n'est pas dans ta table Genre (findBy tmdb_id)
+            foreach ($tmdbMovie['genres'] as $genreTmdb) {
+                $genreBdd = $genreRepository->findOneBy(['tmdbID' => $genreTmdb['id']]);
+                
+                // 4. Si tu n'as pas le genre, tu rajoutes le genre (Set puis Get). Sinon, tu le(s) prend (Get)
+                if ($genreBdd === null) {
+                    $addGenre = new Genre();
+                    $addGenre
+                        ->setName($genreTmdb['name'])
+                        ->setTmdbID($genreTmdb['id'])
+                    ;
+                    $genreBdd = $addGenre;
+                    $em->persist($addGenre);
+                }
+                
+                $movie->addGenre($genreBdd);
+                $em->persist($genreBdd);
+                
+            }          
+        }
+
+        $em->flush();
+
+        dd('stop');
+        
+        return $this->redirectToRoute('home');
     }
 
    

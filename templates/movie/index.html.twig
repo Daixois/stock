@@ -7,7 +7,8 @@
     <div class="container">
         <div class="row">
          {% for movie in movie %}
-            <div class="card col-3" style="width: 18rem;">
+            <div class="card col-3 m-2" style="width: 18rem;">
+            
                 <img src="https://image.tmdb.org/t/p/w500/{{ movie.posterPath }}" class="card-img-top" alt={{movie.title}}>
                     <div class="card-body">
                         <h5 class="card-title">{{ movie.title}}</h5>
@@ -18,6 +19,8 @@
                             <li class="list-movie-name"><b>Titre Originel : </b>{{movie.originalTitle}}</li>
                             {# TODO changer le format de DateTime en string #}
                             {# <li class="list-movie-name"><b>Date de sortie : {{movie.releaseDate}}</li> #}
+
+                            <li class="list-movie-genre"><b>Genre : </b>{% for genre in movie.genres %}{{genre}} {% endfor %}</li>
                         </ul>
                     </div>
             </div>

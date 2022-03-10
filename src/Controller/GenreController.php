@@ -68,7 +68,7 @@ class GenreController extends AbstractController
        
         if (count($genreExist) === 0) {
             $allGenre = $apiTmdb->getAllGenre();      
-           dd($allGenre["genres"]);
+        //    dd($allGenre["genres"]);
             $genre = new Genre();
             $genre
                 ->setName($allGenre["genres"]["name"])

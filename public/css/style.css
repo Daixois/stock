@@ -14,3 +14,12 @@ nav a{
 nav a:hover{
     color: violet !important;
 }
+
+/* Cards Movie */
+
+.cardMovie
+{
+    background-color: rgba(199, 24, 24, 0.5);
+    margin: 2em;
+    height: auto;
+}
