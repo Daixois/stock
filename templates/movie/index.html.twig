@@ -5,28 +5,29 @@
 {% block body %}
 
     <div class="container">
-        <div class="row">
-         {% for movie in movie %}
-            <div class="card col-3 m-2 p-1 cardMovie" style="width: 18rem;">
-            
-                <img src="https://image.tmdb.org/t/p/w500/{{ movie.posterPath }}" class="card-img-top" alt={{movie.title}}>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ movie.title}}</h5>
-                        <ul class="list-movie list-movie-flush">
-                            <li class="list-movie-name titre"><b>Titre : </b>{{movie.title}}</li>
-                            <li class="list-movie-name synopsis"><b>Synopsis : </b>{{movie.overview|length >100 ? movie.overview|slice(0, 100) ~ '[...]' : movie.overview }}</li>
-                            
-                            <li class="list-movie-name id"><b>id : </b>{{movie.id}}</li>
-                            <li class="list-movie-name titreoriginal"><b>Titre Originel : </b>{{movie.originalTitle}}</li>
-                            {# TODO changer le format de DateTime en string #}
-                            {# <li class="list-movie-name"><b>Date de sortie : {{movie.releaseDate}}</li> #}
-
-                            <li class="list-movie-name genre"><b>Genre : </b>{% for genre in movie.genres %}{{genre}} {% endfor %}</li>
-                        </ul>
+        <form id="searchForm" action="{{ path("movie_searchMovie") }}" method="GET">
+            <input type="search" name="research" placeholder="Recherche">
+            <button type="submit" value="Go">
+        </form>
+            <div class="row">
+                {% for movie in movie %}
+                    <div class="card col-3 m-2 p-1 cardMovie" style="width: 18rem;">
+                        <img src="https://image.tmdb.org/t/p/w500/{{ movie.posterPath }}" class="card-img-top" alt={{movie.title}}>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ movie.title}}</h5>
+                                <ul class="list-movie list-movie-flush">
+                                    <li class="list-movie-name titre"><b>Titre : </b>{{movie.title}}</li>
+                                    <li class="list-movie-name synopsis"><b>Synopsis : </b>{{movie.overview|length >100 ? movie.overview|slice(0, 100) ~ '[...]' : movie.overview }}</li>
+                                    <li class="list-movie-name id"><b>id : </b>{{movie.id}}</li>
+                                    <li class="list-movie-name titreoriginal"><b>Titre Originel : </b>{{movie.originalTitle}}</li>
+                                    {# TODO changer le format de DateTime en string #}
+                                    {# <li class="list-movie-name"><b>Date de sortie : {{movie.releaseDate}}</li> #}
+                                    <li class="list-movie-name genre"><b>Genre : </b>{% for genre in movie.genres %}{{genre}} {% endfor %}</li>
+                                </ul>
+                            </div>
                     </div>
-            </div>
-            {% endfor %}
-        </div> 
+                {% endfor %}
+            </div> 
     </div>
     
 {% endblock %}

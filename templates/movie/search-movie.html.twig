@@ -8,15 +8,13 @@
 	{{ dump(path("search_", { search : "-url-"})) }}
 </pre> #}
 
-<form 
-
-<form id="searchForm" action="{{ path("movie_search", { search : "-url-" }) }}">
+<form id="searchForm" action="{{ path("movie_searchMovie") }} method="GET">
 {# <form id="searchForm" action="/search/"> #}
 	<input type="search" name="search" placeholder="Recherche">
-	<input type="submit" value="Go">
+	<button type="submit" value="Go">
 </form>
 
-<script>
+{# <script>
 	form = document.getElementById('searchForm');
 	form.addEventListener('submit', function(e) {
 		e.preventDefault();
@@ -24,7 +22,7 @@
 		console.log(url);
 		window.location.href = url;
 	});
-</script>
+</script> #}
 
 <div class="row">
 	{% for movie in data %}

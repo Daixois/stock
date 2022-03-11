@@ -20,15 +20,41 @@ nav a:hover{
 .cardMovie
 {
     background-color: rgba(255, 215, 0, 0.89);
-    margin: 2em;
     height: auto;
-    box-shadow: 10px 5px 5px rgba(255, 215, 0, 0.89);
+    /* box-shadow: 10px 5px 5px rgba(255, 215, 0, 0.89); */
+    
 }
 
 body{
     background-color: rgba(16, 2, 66, 0.89);
 }
 
-/* .synopsis{
-    height: 10px;
-} */
+.cardMovie li{
+    list-style-type: none;
+    /* padding-left: 0; */
+}
+
+/* Cards Results */
+
+.cardResult{
+    /* background-color: rgba(255, 215, 0, 0.89); */
+    height: auto;
+    /* box-shadow: 10px 5px 5px rgba(255, 215, 0, 0.89); */
+    max-width: 100%;
+}
+
+.cardResult li{
+    list-style-type: none;
+    /* padding-left: 0; */
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+}
+
+.row{
+    display: flex;
+    justify-content: center;
+    
+}

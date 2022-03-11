@@ -27,24 +27,24 @@ class MovieController extends AbstractController
     }
 
  
-    #[Route('/search', name: 'movie_search')]
-    public function search(ApiTmdbService $apiTmdb): Response
-    {
+    // #[Route('/search', name: 'movie_search')]
+    // public function search(ApiTmdbService $apiTmdb): Response
+    // {
 
         
-        $search = $apiTmdb->searchApi('spiderman');
-        // dd($search);
+    //     $search = $apiTmdb->searchApi('spiderman');
+   
         
-        return $this->render('movie/search-movie.html.twig', [
-            'data' => $search["results"],
-        ]);
-    }
+    //     return $this->render('movie/search-movie.html.twig', [
+    //         'data' => $search["results"],
+    //     ]);
+    // }
 
      
-    #[Route('/search/{search}', name: 'movie_searchMovie')]
-    public function searchMovie(ApiTmdbService $apiTmdb, string $search): Response
+    #[Route('/search', name: 'movie_searchMovie')]
+    public function searchMovie(ApiTmdbService $apiTmdb): Response
     {
-
+        $search= $_GET['research'];
         
         $searchMovie = $apiTmdb->searchApi($search);
         // dd($searchMovie);
@@ -101,7 +101,6 @@ class MovieController extends AbstractController
         //  Create new movie with following info
         //  Manage, persist and flush the datas
        
-        // TODO boucle for each movie  pour les genres.. Many to many setter autant que possible
             if (count($movieExist) === 0) {
                 $completeMovie = $apiTmdb->getMovieById($id);      
                 // dd($completeMovie["genres"]);
@@ -123,26 +122,6 @@ class MovieController extends AbstractController
           }
         return $this->redirectToRoute('movie_searchid', ['id' => $id]);
     }
-    
-    // TEST
-    // #[Route('/test', name: 'movie_test')]
-    // public function test(MovieRepository $movieRepository, GenreRepository $genreRepository, ManagerRegistry $doctrine): Response
-    // {
-        
-    //     $poseidon = $movieRepository->find(100);
-    //     $genreAction = $genreRepository->find(1);
-    //     $genreThriller = $genreRepository->find(17);
-    
-    //     $poseidon
-    //         ->addGenre($genreAction)
-    //         ->addGenre($genreThriller);
-
-    //     $em = $doctrine->getManager();
-    //     $em->persist($poseidon);
-    //     $em->flush();
-
-    //     return $this->redirectToRoute('home');
-    // }   
 
     #[Route('/testgenre', name: 'movie_testgenre')]
     public function testGenre(MovieRepository $movieRepository, GenreRepository $genreRepository, ManagerRegistry $doctrine, ApiTmdbService $apiTmdb): Response
