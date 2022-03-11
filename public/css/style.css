@@ -19,7 +19,16 @@ nav a:hover{
 
 .cardMovie
 {
-    background-color: rgba(199, 24, 24, 0.5);
+    background-color: rgba(255, 215, 0, 0.89);
     margin: 2em;
     height: auto;
+    box-shadow: 10px 5px 5px rgba(255, 215, 0, 0.89);
 }
+
+body{
+    background-color: rgba(16, 2, 66, 0.89);
+}
+
+/* .synopsis{
+    height: 10px;
+} */
