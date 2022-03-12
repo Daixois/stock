@@ -51,6 +51,17 @@ class MovieController extends AbstractController
         
         return $this->render('movie/search-movie.html.twig', [
             'data' => $searchMovie["results"],
+            'research' => $search,
+        ]);
+    }
+
+    #[Route('/research', name: 'movie_research')]
+    public function research(ApiTmdbService $apiTmdb): Response
+    {
+        
+        return $this->render('movie/search.html.twig', [
+            'movie' => 'MovieController',
+            
         ]);
     }
     
@@ -120,7 +131,7 @@ class MovieController extends AbstractController
                 $em->persist($movie);
                 $em->flush();
           }
-        return $this->redirectToRoute('movie_searchid', ['id' => $id]);
+        return $this->redirectToRoute('movie_addid', ['id' => $id]);
     }
 
     #[Route('/testgenre', name: 'movie_testgenre')]

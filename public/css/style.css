@@ -37,7 +37,7 @@ body{
 /* Cards Results */
 
 .cardResult{
-    /* background-color: rgba(255, 215, 0, 0.89); */
+    background-color: rgba(255, 215, 0, 0.89);
     height: auto;
     /* box-shadow: 10px 5px 5px rgba(255, 215, 0, 0.89); */
     max-width: 100%;
@@ -48,13 +48,12 @@ body{
     /* padding-left: 0; */
 }
 
-.button{
+.cardResult button{
     display: flex;
     justify-content: center;
 }
 
 .row{
     display: flex;
-    justify-content: center;
-    
+    justify-content: center; 
 }

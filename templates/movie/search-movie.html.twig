@@ -4,15 +4,15 @@
 
 {% block body %}
 
-{# <pre>
-	{{ dump(path("search_", { search : "-url-"})) }}
-</pre> #}
+<div class="research">
+	{# <form id="searchForm" action="{{ path("movie_searchMovie") }}" method="GET">
+		<input type="search" name="research" placeholder="Recherche">
+		<button type="submit" value="Go">Go</button>
+	</form> #}
 
-<form id="searchForm" action="{{ path("movie_searchMovie") }} method="GET">
-{# <form id="searchForm" action="/search/"> #}
-	<input type="search" name="search" placeholder="Recherche">
-	<button type="submit" value="Go">
-</form>
+	{% include "movie/search.html.twig" %}
+</div>
+
 
 {# <script>
 	form = document.getElementById('searchForm');
