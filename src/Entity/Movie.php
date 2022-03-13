@@ -72,6 +72,11 @@ class Movie
         return $this->poster_path;
     }
 
+    public function getposter_path(): ?string
+    {
+        return $this->poster_path;
+    }
+
     public function setPosterPath(?string $poster_path): self
     {
         $this->poster_path = $poster_path;

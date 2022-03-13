@@ -26,21 +26,6 @@ class MovieController extends AbstractController
         ]);
     }
 
- 
-    // #[Route('/search', name: 'movie_search')]
-    // public function search(ApiTmdbService $apiTmdb): Response
-    // {
-
-        
-    //     $search = $apiTmdb->searchApi('spiderman');
-   
-        
-    //     return $this->render('movie/search-movie.html.twig', [
-    //         'data' => $search["results"],
-    //     ]);
-    // }
-
-     
     #[Route('/search', name: 'movie_searchMovie')]
     public function searchMovie(ApiTmdbService $apiTmdb): Response
     {
@@ -75,10 +60,19 @@ class MovieController extends AbstractController
         
         return $this->render('movie/search-movie.html.twig', [
             'data' => $apiTmdb->getMovieById($id),
-            'movie' => $movieRepository->findAll(),
+            'movieAll' => $movieRepository->findAll(),
         ]);
     }
 
+    #[Route('/show/{id}', name: 'movie_getdatabaseid')]
+    public function getMovieInDatabaseById(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, int $id): Response
+    {
+        $movie = $movieRepository->find($id);
+        
+        return $this->render('movie/get-movie.html.twig', [
+            'movie' => $movie,
+        ]);
+    }    
    
     #[Route('/search/title/{title}', name: 'movie_getbytitle')]
     public function getMovieByTitle(ApiTmdbService $apiTmdb, string $title): Response
@@ -131,7 +125,7 @@ class MovieController extends AbstractController
                 $em->persist($movie);
                 $em->flush();
           }
-        return $this->redirectToRoute('movie_addid', ['id' => $id]);
+        return $this->redirectToRoute('movie_liste', ['id' => $id]);
     }
 
     #[Route('/testgenre', name: 'movie_testgenre')]

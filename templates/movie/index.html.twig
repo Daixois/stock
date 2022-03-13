@@ -11,7 +11,7 @@
         </form>
     </div> #}
     <div class="research">
-	    {% include "movie/search.html.twig" %}
+	    {% include "movie/_search.html.twig" %}
     </div>
     <div class="card col-12 m-2 w-75 cardResult";>
         <div class="row">               
@@ -34,9 +34,9 @@
                     </ul>
                 </div>
                 <div class="card-body button">
-                    <a class="btn btn-primary m-2" href="{{ path('movie_searchMovie', {id: movie.id}) }}" class="card-link">Autre recherche</a>
-                    <a class="btn btn-primary m-2" href="https://www.themoviedb.org/movie/{{ movie.id }}?language=fr" class="card-link">La Fiche Tmdb</a>
-                    <a class="btn btn-primary m-2" href="{{ path('movie_getbyid', {id: movie.id}) }}" class="card-link">Voir la fiche du film</a>
+                    <a class="btn btn-primary m-2" href="{{ path('movie_research') }}" class="card-link">Autre recherche</a>
+                    <a class="btn btn-primary m-2" href="https://www.themoviedb.org/movie/{{ movie.tmdbId }}?language=fr" class="card-link">La Fiche Tmdb</a>
+                    <a class="btn btn-primary m-2" href="{{ path('movie_getdatabaseid', {id: movie.id}) }}" class="card-link">Voir la fiche du film</a>
                 </div>
             {% endfor %}
         </div> 

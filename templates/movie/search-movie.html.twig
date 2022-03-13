@@ -10,7 +10,7 @@
 		<button type="submit" value="Go">Go</button>
 	</form> #}
 
-	{% include "movie/search.html.twig" %}
+	{% include "movie/_search.html.twig" %}
 </div>
 
 
@@ -24,6 +24,7 @@
 	});
 </script> #}
 
+		{# {{ dump(data) }} #}
 <div class="row">
 	{% for movie in data %}
 		{# https://twig.symfony.com/doc/3.x/tags/include.html #}
