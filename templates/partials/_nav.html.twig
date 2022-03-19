@@ -32,12 +32,18 @@
           <a class="nav-link disabled">Lien 3 </a>
         </li>
       </ul>
-      {# Utilisation d'un formulaire de recherche ? #}
-      {# <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> #}
-      <a class="btn btn-success" href="#" role="button">Login</a>
+      
+      {# thomas.dimas.goux@gmail.com AZERTY #}
+      {# {{ dump(app.user) }} #}
+      {% if app.user is null %}			
+		    <a class="btn btn-success" href="{{ path('app_login') }}" role="button">Login</a> 
+		  {% else %}
+				<a class="btn btn-danger" href="{{ path('app_logout') }}" type="button">Déconnexion</a>
+      {% endif %}
+
+			{# option class="btn btn-primary"#}
+			{# <button class="btn btn-outline-success" type="submit">Search</button> #}
+		
     </div>
   </div>
 </nav>

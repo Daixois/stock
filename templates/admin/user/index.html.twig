@@ -32,6 +32,8 @@
                 <td>
                     <a href="{{ path('admin_user_show', {'id': user.id}) }}"  class="btn btn-primary" role="button">show</a>
                     <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-info" role="button">edit</a>
+                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-danger">Delete</a>
+                   
                 </td>
             </tr>
         {% else %}

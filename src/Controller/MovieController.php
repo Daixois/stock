@@ -44,7 +44,7 @@ class MovieController extends AbstractController
     public function research(ApiTmdbService $apiTmdb): Response
     {
         
-        return $this->render('movie/search.html.twig', [
+        return $this->render('movie/_search.html.twig', [
             'movie' => 'MovieController',
             
         ]);
