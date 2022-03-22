@@ -1,14 +1,8 @@
 {# {% extends 'base.html.twig' %} #}
 
 
-
-    {# <form id="researchForm" action="{{ path("movie_searchMovie")}}" method="get">
-        <input type="search" name="research" placeholder="Recherche par nom de film">
-        <button type="submit" value="Search">Search</button>
-    </form> #}
-
 <form id="researchForm" action="{{ path("movie_searchMovie")}}" method="get">
-  <div class="mb-3">
+  <div class="mb-4">
     <input type="search" class="form-control" name="research" placeholder="Recherche par nom de film">
   </div>
   <button type="submit" class="btn btn-primary" value="Search">Search</button>

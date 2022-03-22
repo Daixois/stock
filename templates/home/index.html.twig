@@ -7,8 +7,45 @@
 <h1> Bonjour Tom ceci est la page d'accueil de ton site, tu t'en occuperas plus tard </h1>
 
 <a href="{{ path('movie_liste')}}" class="btn btn-outline-primary" role="button">Films</a>
-{# <a href="{{ path('...')}}" class="btn btn-outline-secondary">Livres</a>
-<a href="{{ path('...')}}" class="btn btn-outline-success">Musique</a>
-<a href="{{ path('...')}}" class="btn btn-outline-danger">Jeux Vidéos</a>
-<a href="{{ path('...')}}" class="btn btn-outline-warning">Collection personnalisée</a> #}
+
+{% if app.user is null %}
+
+    <div class="research">
+	    {% include "movie/_search.html.twig" %}
+    </div>
+
+{% else %}
+
+<div class="card col-12 m-2 w-75 cardResult";>
+        <div class="row">               
+            {% for movie in movie %}
+                <div class="card col-3 m-2 p-1 cardMovieImg">
+                    <img src="https://image.tmdb.org/t/p/w500/{{ movie.posterPath }}" class="card-img-top h-100 d-inline-block p-3" alt={{movie.title}}>
+                </div>
+                <div class ="col-7">
+                    <div class ="card-body">
+                        <h5 class="card-title">{{ movie.title }}</h5>
+                    </div>
+                    <ul class="list-movie list-movie-flush">
+                        <li class="list-movie-name titre"><b>Titre : </b>{{movie.title}}</li>
+                        <li class="list-movie-name synopsis"><b>Synopsis : </b>{{movie.overview|length >100 ? movie.overview|slice(0, 100) ~ '[...]' : movie.overview }}</li>
+                        <li class="list-movie-name id"><b>id : </b>{{movie.id}}</li>
+                        <li class="list-movie-name titreoriginal"><b>Titre Originel : </b>{{movie.originalTitle}}</li>
+                            {# TODO changer le format de DateTime en string #}
+                        {# <li class="list-movie-name"><b>Date de sortie : {{movie.releaseDate}}</li> #}
+                        <li class="list-movie-name genre"><b>Genre : </b>{% for genre in movie.genres %}{{genre}} {% endfor %}</li>
+                    </ul>
+                </div>
+                <div class="card-body button">
+                    <a class="btn btn-primary m-2" href="{{ path('movie_research') }}" class="card-link">Autre recherche</a>
+                    <a class="btn btn-primary m-2" href="https://www.themoviedb.org/movie/{{ movie.tmdbId }}?language=fr" class="card-link">La Fiche Tmdb</a>
+                    <a class="btn btn-primary m-2" href="{{ path('movie_getdatabaseid', {id: movie.id}) }}" class="card-link">Voir la fiche du film</a>
+                </div>
+            {% endfor %}
+        </div> 
+    </div>
+
+{% endif %}
+
+
 {% endblock %}

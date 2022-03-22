@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[Route('/home')]
 class HomeController extends AbstractController
 {
     #[Route('/home', name: 'home')]
@@ -22,4 +23,23 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
+
+    #[Route('/', name: 'home_liste_login')]
+    public function liste(MovieRepository $movieRepository, ApiTmdbService $apiTmdb):Response
+    {
+        return $this->render('home/index.html.twig', [
+            'movie' => $movieRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/', name: 'home_research')]
+    public function research(ApiTmdbService $apiTmdb): Response
+    {
+        
+        return $this->render('home/index.html.twig', [
+            'home' => 'HomeController',
+            
+        ]);
+    }
+        
 }
