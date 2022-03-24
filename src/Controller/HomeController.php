@@ -27,8 +27,11 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home_liste_login')]
     public function liste(MovieRepository $movieRepository, ApiTmdbService $apiTmdb):Response
     {
+        $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
         return $this->render('home/index.html.twig', [
             'movie' => $movieRepository->findAll(),
+            'home' => 'HomeController',
+            'lastMovie' => $lastMovie,
         ]);
     }
 
@@ -39,6 +42,16 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'home' => 'HomeController',
             
+        ]);
+    }
+    
+    public function getLastAdded(MovieRepository $movieRepository): Response
+    {
+        $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
+        return $this->render('home/index.html.twig', [
+            'movie' => $movieRepository->findAll(),
+            'home' => 'HomeController',
+            'lastMovie' => $lastMovie,
         ]);
     }
         

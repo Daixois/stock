@@ -38,7 +38,7 @@
       {% if app.user is null %}			
 		    <a class="btn btn-success" href="{{ path('app_login') }}" role="button">Login</a> 
 		  {% else %}
-				<a class="btn btn-danger" href="{{ path('home_research') }}" type="button">Déconnexion</a>
+				<a class="btn btn-danger" href="{{ path('app_logout') }}" type="button">Déconnexion</a>
       {% endif %}
 
 			{# option class="btn btn-primary"#}
