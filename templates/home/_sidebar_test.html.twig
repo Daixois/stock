@@ -1,0 +1,14 @@
+<div class="h1 my-5">
+	Les derniers films ajoutés
+	{% for movie in lastMovie %}
+		<div class="list-group-item list-group-item-action d-flex gap-3 py-3" style="border:none">
+			{% include 'movie/_card-movie.html.twig' %}
+		</div>
+	{% endfor %}
+</div>
+{# <h2 class="h1 my-5">Les derniers films ajoutés</h2>
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+        {% for movie in lastMovie %}
+            {% include 'movie/_card-movie.html.twig' %}
+        {% endfor %}
+    </div> #}

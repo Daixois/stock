@@ -17,6 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     #[Route('/home', name: 'home')]
+   
     public function index(): Response
     {
         return $this->render('home/index.html.twig', [
@@ -35,7 +36,7 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/', name: 'home_research')]
+    #[Route('/research', name: 'home_research')]
     public function research(ApiTmdbService $apiTmdb): Response
     {
         
@@ -45,14 +46,17 @@ class HomeController extends AbstractController
         ]);
     }
     
-    public function getLastAdded(MovieRepository $movieRepository): Response
-    {
-        $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
-        return $this->render('home/index.html.twig', [
-            'movie' => $movieRepository->findAll(),
-            'home' => 'HomeController',
-            'lastMovie' => $lastMovie,
-        ]);
-    }
+    // /* A function that returns a response. */
+    // public function getLastAdded(MovieRepository $movieRepository): Response
+    // {
+    //     $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
+    //     return $this->render('home/_recent_movies.html.twig', [
+    //         'movie' => $movieRepository->findAll(),
+    //         'home' => 'HomeController',
+    //         'lastMovie' => $lastMovie,
+    //     ]);
+    // }
+
+
         
 }

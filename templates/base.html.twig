@@ -20,10 +20,17 @@
     </head>
     <body>
     {% include "partials/_nav.html.twig" %}
+    {# {% include 'home/_sidebar_test.html.twig' %} #}
+    
     {# {% include "movie/_search.html.twig" %} #}
         <div class="container">
         {% block body %}
-        
+        {# <div id="sidebar">
+
+        {{ render(controller(
+            'App\\Controller\\MovieController::getLastAdded', {max: 3}
+        ))}}
+        </div> #}
         {% endblock %}
         </div>
     </body>
