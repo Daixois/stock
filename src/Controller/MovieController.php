@@ -57,9 +57,11 @@ class MovieController extends AbstractController
         
         $searchMovieId = $apiTmdb->getMovieById($id);
         // dd($searchMovieId);
-        
+        $movieId = json_encode($searchMovieId);
+        $movieId = json_decode($movieId);
+        // dd($movieId);
         return $this->render('movie/search-movie.html.twig', [
-            'data' => $apiTmdb->getMovieById($id),
+            'data' => $movieId,
             'movieAll' => $movieRepository->findAll(),
         ]);
     }

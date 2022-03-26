@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Collections{% endblock %}
+
+{% block body %}
+    <h1>Collections</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ collection.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ collection.Type }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_collections_index') }}">back to list</a>
+
+    <a href="{{ path('admin_collections_edit', {'id': collection.id}) }}">edit</a>
+
+    {{ include('admin/collections/_delete_form.html.twig') }}
+{% endblock %}

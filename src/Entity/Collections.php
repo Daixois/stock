@@ -14,82 +14,39 @@ class Collections
     private $id;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $Films;
+    private $Type;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $Livres;
+    private $picture;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $Musique;
-
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $Jeuxvideos;
-
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $Presse;
-
+    
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getFilms(): ?string
+    public function getType(): ?string
     {
-        return $this->Films;
+        return $this->Type;
     }
 
-    public function setFilms(?string $Films): self
+    public function setType(?string $Type): self
     {
-        $this->Films = $Films;
+        $this->Type = $Type;
 
         return $this;
     }
 
-    public function getLivres(): ?string
+    public function getPicture(): ?string
     {
-        return $this->Livres;
+        return $this->picture;
     }
 
-    public function setLivres(?string $Livres): self
+    public function setPicture(?string $picture): self
     {
-        $this->Livres = $Livres;
+        $this->picture = $picture;
 
         return $this;
     }
 
-    public function getMusique(): ?string
-    {
-        return $this->Musique;
-    }
-
-    public function setMusique(string $Musique): self
-    {
-        $this->Musique = $Musique;
-
-        return $this;
-    }
-
-    public function getJeuxvideos(): ?string
-    {
-        return $this->Jeuxvideos;
-    }
-
-    public function setJeuxvideos(?string $Jeuxvideos): self
-    {
-        $this->Jeuxvideos = $Jeuxvideos;
-
-        return $this;
-    }
-
-    public function getPresse(): ?string
-    {
-        return $this->Presse;
-    }
-
-    public function setPresse(?string $Presse): self
-    {
-        $this->Presse = $Presse;
-
-        return $this;
-    }
 }

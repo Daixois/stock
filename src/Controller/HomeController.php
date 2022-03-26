@@ -45,18 +45,5 @@ class HomeController extends AbstractController
             
         ]);
     }
-    
-    // /* A function that returns a response. */
-    // public function getLastAdded(MovieRepository $movieRepository): Response
-    // {
-    //     $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
-    //     return $this->render('home/_recent_movies.html.twig', [
-    //         'movie' => $movieRepository->findAll(),
-    //         'home' => 'HomeController',
-    //         'lastMovie' => $lastMovie,
-    //     ]);
-    // }
-
-
-        
+     
 }
