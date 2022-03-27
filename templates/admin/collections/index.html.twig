@@ -1,5 +1,9 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %} #}
+{% extends 'admin/layout.html.twig' %}
+{% block stylesheets %}
 
+<link rel="stylesheet" href="{{ asset('css/admin.css')}}">
+{% endblock %}
 {% block title %}Collections index{% endblock %}
 
 {% block body %}
@@ -21,6 +25,7 @@
                 <td>
                     <a href="{{ path('admin_collections_show', {'id': collection.id}) }}">show</a>
                     <a href="{{ path('admin_collections_edit', {'id': collection.id}) }}">edit</a>
+                    <a href="{{ path('admin_user_edit', {'id': collection.id}) }}" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         {% else %}

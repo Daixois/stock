@@ -1,11 +1,17 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %} #}
+{% extends 'admin/layout.html.twig' %}
+{% block stylesheets %}
 
-{% block title %}New Collections{% endblock %}
+<link rel="stylesheet" href="{{ asset('css/admin.css')}}">
+{% endblock %}
+{% block title %}Ajout d'une nouvelle collection{% endblock %}
 
 {% block body %}
-    <h1>Create new Collections</h1>
-
-    {{ include('admin/collections/_form.html.twig') }}
-
-    <a href="{{ path('admin_collections_index') }}">back to list</a>
+    <div class="addForm">
+        <h1>Create new Collections</h1>
+        
+            {{ include('admin/collections/_form.html.twig') }}
+        
+        <a href="{{ path('admin_collections_index') }}">back to list</a>
+    </div>
 {% endblock %}

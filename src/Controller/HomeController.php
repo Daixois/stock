@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Genre;
 use App\Entity\Movie;
+use App\Repository\CollectionsRepository;
 use App\Repository\GenreRepository;
 use App\Repository\MovieRepository;
 use App\Service\ApiTmdbService;
@@ -26,9 +27,11 @@ class HomeController extends AbstractController
     }
 
     #[Route('/', name: 'home_liste_login')]
-    public function liste(MovieRepository $movieRepository, ApiTmdbService $apiTmdb):Response
+    public function liste(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, CollectionsRepository $collectionsRepository):Response
     {
         $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
+        
+        $collectionType = $collectionsRepository->findAll();
         return $this->render('home/index.html.twig', [
             'movie' => $movieRepository->findAll(),
             'home' => 'HomeController',

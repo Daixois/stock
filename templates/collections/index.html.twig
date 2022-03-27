@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Collections{% endblock %}
+
+{% block body %}
+<ul>
+		{% for collection in collections %}
+			<li>{{ collection.type }}</li>
+            
+            {# <li>{{ collection.picture }}</li> #}
+            <li><img src="{{ asset('collection.picture') }}" alt="{{ collection.type }}" /></li>
+		{% endfor %}
+	</ul>
+{% endblock %}

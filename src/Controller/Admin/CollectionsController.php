@@ -68,7 +68,7 @@ class CollectionsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'admin_collections_delete', methods: ['POST'])]
+    #[Route('/delete/{id}', name: 'admin_collections_delete', methods: ['POST'])]
     public function delete(Request $request, Collections $collection, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$collection->getId(), $request->request->get('_token'))) {

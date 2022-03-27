@@ -47,7 +47,7 @@ class Movie
     {
         $this->formats = new ArrayCollection();
         $this->genres = new ArrayCollection();
-       
+        $this->createdAt = new \DateTime("now");
     }
     public function __toString() {
         return $this->name;

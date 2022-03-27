@@ -47,14 +47,14 @@ class RegistrationFormType extends AbstractType
                 'multiple' => true,
                 'expanded' => true
             ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-            ])
+            // ->add('agreeTerms', CheckboxType::class, [
+            //     'mapped' => false,
+            //     'constraints' => [
+            //         new IsTrue([
+            //             'message' => 'You should agree to our terms.',
+            //         ]),
+            //     ],
+            // ])
             ->add('submit', SubmitType::class)
             
         ;
