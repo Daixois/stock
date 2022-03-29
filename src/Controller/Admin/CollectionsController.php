@@ -78,4 +78,6 @@ class CollectionsController extends AbstractController
 
         return $this->redirectToRoute('admin_collections_index', [], Response::HTTP_SEE_OTHER);
     }
+
+  
 }

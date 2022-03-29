@@ -8,6 +8,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class CollectionsType extends AbstractType
 {
@@ -15,8 +17,8 @@ class CollectionsType extends AbstractType
     {
         $builder
             ->add('Type', TextType::class)
-            ->add('Picture', TextType::class)
-
+            // ->add('Picture', VichFileType::class)
+            ->add('imageFile', VichImageType::class)
             ->add('Save', SubmitType::class)
         ;
     }

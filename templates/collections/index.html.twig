@@ -8,7 +8,7 @@
 			<li>{{ collection.type }}</li>
             
             {# <li>{{ collection.picture }}</li> #}
-            <li><img src="{{ asset('collection.picture') }}" alt="{{ collection.type }}" /></li>
+            <li><img src="{{ vich_uploader_asset(collection, 'imageFile') }}" alt="{{ collection.type }}" /></li>
 		{% endfor %}
 	</ul>
 {% endblock %}

@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CollectionsController extends AbstractController
 {
-    #[Route('/collection/liste', name: 'collections_liste')]
+    #[Route('/collections/liste', name: 'collections_liste')]
     public function index(CollectionsRepository $collectionsRepository): Response
     {
         return $this->render('collections/index.html.twig', [
