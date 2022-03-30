@@ -31,11 +31,12 @@ class HomeController extends AbstractController
     {
         $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
         
-        $collectionType = $collectionsRepository->findAll();
+        $collections = $collectionsRepository->findAll();
         return $this->render('home/index.html.twig', [
             'movie' => $movieRepository->findAll(),
             'home' => 'HomeController',
             'lastMovie' => $lastMovie,
+            'collections' => $collections,
         ]);
     }
 

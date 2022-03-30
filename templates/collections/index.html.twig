@@ -3,12 +3,7 @@
 {% block title %}Collections{% endblock %}
 
 {% block body %}
-<ul>
-		{% for collection in collections %}
-			<li>{{ collection.type }}</li>
-            
-            {# <li>{{ collection.picture }}</li> #}
-            <li><img src="{{ vich_uploader_asset(collection, 'imageFile') }}" alt="{{ collection.type }}" /></li>
-		{% endfor %}
-	</ul>
+	
+	{# {% include "collections/_list.html.twig" %} #}
+
 {% endblock %}
