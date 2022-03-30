@@ -1,5 +1,6 @@
 # Routes
 
+<!-- Inutilisé -->
 ## Admincontroller
 
 | @route       | name       | function  |
@@ -11,7 +12,7 @@
 | /delete/{id} | admin_delete     | delete    |
 | /add/format  | admin_add_format | addFormat |
 
-
+<!-- inutilisé -->
 ## FormatController
 
 | @route  | name    | function         |
@@ -27,7 +28,8 @@
 | ---------------- | -------- | ------------ |
 | /home            |  home    | HomeController |
 | ------           | -----    | ------          |
-
+| /                | home_liste_login  | liste  |
+| /research        | home_research  | research  |
 
 ## MovieController
 
@@ -42,6 +44,7 @@
 | /search/title/{title} | movie_getbytitle | getMovieByTitle |
 | /add/add/{id<\d+>}    | movie_addid      | addMovie        |
 | /liste                | movie_liste      | liste           |
+| /testgenre            | movie_testgenre  | testGenre       |
 
 ## GenreController
 
@@ -54,6 +57,21 @@
 | /add/allgenre         | genre_addAllGenre| addAllGenre     |
 | /add/genre/{id}       | genre_addgenre   | addGenre        |
 
+## RegistrationController
+
+| @route                | name       | function        |
+| --------------------- | ---------- | --------------- |
+|                       |            |                 |
+| ------                | -----      | ------          |
+| /register             | app_register | register      |
+
+## SecurityController
+
+| @route                | name       | function        |
+| --------------------- | ---------- | --------------- |
+|                       |            |                 |
+| ------                | -----      | ------          |
+| /register             | app_register | register      |
 
 
 ## Admin\UserController
