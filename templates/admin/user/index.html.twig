@@ -1,8 +1,9 @@
 {# {% extends 'base.html.twig' %} #}
-{% extends 'admin/layout.html.twig' %}
+{% extends 'admin.html.twig' %}
 {% block stylesheets %}
-{# {{parent()}} #}
+{{parent()}}
 <link rel="stylesheet" href="{{ asset('css/admin.css')}}">
+
 {% endblock %}
 
 {% block title %}User index{% endblock %}
