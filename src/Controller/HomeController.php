@@ -19,10 +19,14 @@ class HomeController extends AbstractController
 {
     #[Route('/home', name: 'home')]
    
-    public function index(): Response
+    public function index(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, CollectionsRepository $collectionsRepository): Response
     {
+        
+        $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
+            'lastMovie' => $lastMovie,
+            'movie' => $movieRepository->findAll(),
         ]);
     }
 

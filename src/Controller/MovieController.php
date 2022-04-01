@@ -41,11 +41,12 @@ class MovieController extends AbstractController
     }
 
     #[Route('/research', name: 'movie_research')]
-    public function research(ApiTmdbService $apiTmdb): Response
+    public function research(MovieRepository $movieRepository, ApiTmdbService $apiTmdb): Response
     {
-        
+        $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
         return $this->render('movie/research.html.twig', [
-            'movie' => 'MovieController',
+            'movie' => $movieRepository->findAll(),
+            'lastMovie' => $lastMovie,
             
         ]);
     }
