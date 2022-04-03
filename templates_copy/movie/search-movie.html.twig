@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Tom{% endblock %}
+
+{% block body %}
+
+<div class="research">
+	{% include "movie/_search.html.twig" %}
+</div>
+		{# {{ dump(data) }} #}
+<div class="row">
+	{% for movie in data %}
+		{# https://twig.symfony.com/doc/3.x/tags/include.html #}
+		{% include "movie/_card-movie.html.twig" with {'movie': movie, 'addLink': true } %}
+	{% endfor %}
+</div>
+{% endblock %}
