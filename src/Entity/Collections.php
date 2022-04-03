@@ -3,9 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\CollectionsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Expr\Value;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-#[ORM\Entity(repositoryClass: CollectionsRepository::class)]
+#[Vich\Uploadable]
+#[ORM\Entity(repositoryClass:CollectionsRepository::class)]
 class Collections
 {
     #[ORM\Id]
@@ -14,82 +19,111 @@ class Collections
     private $id;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $Films;
+    private $Type;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $Livres;
+    private $Picture;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $Musique;
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private $createdAt;
 
+    #[ORM\Column(type: 'date', nullable: true)]
+    private $UpdatedAt;
+    
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $Jeuxvideos;
+    private $image;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $Presse;
+
+    #[Vich\UploadableField(mapping:'collection_image', fileNameProperty:"image")]
+    private $imageFile;
+
+    public function __construct()
+    {
+        $this->type = new ArrayCollection();
+        $this->createdAt = new \DateTime("now");
+        $this->UpdatedAt = new \DateTime("now");
+    }
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getFilms(): ?string
+    public function getType(): ?string
     {
-        return $this->Films;
+        return $this->Type;
     }
 
-    public function setFilms(?string $Films): self
+    public function setType(?string $Type): self
     {
-        $this->Films = $Films;
+        $this->Type = $Type;
 
         return $this;
     }
 
-    public function getLivres(): ?string
+    public function getPicture(): ?string
     {
-        return $this->Livres;
+        return $this->Picture;
     }
 
-    public function setLivres(?string $Livres): self
+    public function setPicture(?string $Picture): self
     {
-        $this->Livres = $Livres;
+        $this->picture = $Picture;
 
         return $this;
     }
 
-    public function getMusique(): ?string
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->Musique;
+        return $this->createdAt;
     }
 
-    public function setMusique(string $Musique): self
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
-        $this->Musique = $Musique;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getJeuxvideos(): ?string
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->Jeuxvideos;
+        return $this->UpdatedAt;
     }
 
-    public function setJeuxvideos(?string $Jeuxvideos): self
+    public function setUpdatedAt(?\DateTimeInterface $UpdatedAt): self
     {
-        $this->Jeuxvideos = $Jeuxvideos;
+        $this->UpdatedAt = $UpdatedAt;
 
         return $this;
     }
 
-    public function getPresse(): ?string
+    public function getImage(): ?string
     {
-        return $this->Presse;
+        return $this->image;
     }
 
-    public function setPresse(?string $Presse): self
+    public function setImage(?string $image): self
     {
-        $this->Presse = $Presse;
+        $this->image = $image;
 
         return $this;
     }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile = null)
+    {
+        $this->imageFile = $imageFile;
+
+        if ($imageFile) {
+           
+            $this->updatedAt = new \DateTime('now');
+        }
+        return $this;
+    }
+
 }

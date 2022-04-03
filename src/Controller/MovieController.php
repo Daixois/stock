@@ -41,11 +41,12 @@ class MovieController extends AbstractController
     }
 
     #[Route('/research', name: 'movie_research')]
-    public function research(ApiTmdbService $apiTmdb): Response
+    public function research(MovieRepository $movieRepository, ApiTmdbService $apiTmdb): Response
     {
-        
-        return $this->render('movie/search.html.twig', [
-            'movie' => 'MovieController',
+        $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
+        return $this->render('movie/research.html.twig', [
+            'movie' => $movieRepository->findAll(),
+            'lastMovie' => $lastMovie,
             
         ]);
     }
@@ -57,9 +58,11 @@ class MovieController extends AbstractController
         
         $searchMovieId = $apiTmdb->getMovieById($id);
         // dd($searchMovieId);
-        
+        $movieId = json_encode($searchMovieId);
+        $movieId = json_decode($movieId);
+        // dd($movieId);
         return $this->render('movie/search-movie.html.twig', [
-            'data' => $apiTmdb->getMovieById($id),
+            'data' => $movieId,
             'movieAll' => $movieRepository->findAll(),
         ]);
     }
@@ -91,8 +94,11 @@ class MovieController extends AbstractController
     #[Route('/liste', name: 'movie_liste')]
     public function liste(MovieRepository $movieRepository, ApiTmdbService $apiTmdb):Response
     {
+        $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
+        
         return $this->render('movie/index.html.twig', [
             'movie' => $movieRepository->findAll(),
+            'lastMovie' => $lastMovie,
         ]);
     }
   

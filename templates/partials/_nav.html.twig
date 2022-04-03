@@ -3,7 +3,7 @@
     <a class="navbar-brand" href="#"></a>
     <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{{path('home')}}">
+    <a class="navbar-brand" href="{{path('home_liste_login')}}">
       <img src="{{asset('img/logo.svg')}}" alt="" width="30" height="24" class="d-inline-block align-text-top">
       
     </a>
@@ -12,32 +12,40 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Lien 1</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Lien 2</a>
+          <a class="nav-link active" aria-current="page" href="{{ path('admin_dashboard')}}">Accès à l'administration du site</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Menu déroulant ?
+            Accès aux collections
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Choix 1</a></li>
-            <li><a class="dropdown-item" href="#">Choix 2</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Choix 3</a></li>
+            <li><button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Cliquez pour accéder à vos films"><a class="dropdown-item" href="{{ path('movie_liste')}}">Films</a></button></li>
+            {# <li><hr class="dropdown-divider"></li> #}
+            <li><button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="En cours de construction"><a class="dropdown-item" href="#">autre collection</a></button></li>
+            {# <li><hr class="dropdown-divider"></li> #}
+            <li><button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="En cours de construction"><a class="dropdown-item" href="#">autre collection</a></button></li>
+            {# <li><hr class="dropdown-divider"></li> #}
+            <li><button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="En cours de construction"><a class="dropdown-item" href="#">autre collection</a></button></li>
+            {# <li><hr class="dropdown-divider"></li> #}
+            <li><button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="En cours de construction"><a class="dropdown-item" href="#">autre collection</a></button></li>
           </ul>
         </li>
-        <li class="nav-item">
+        {# <li class="nav-item">
           <a class="nav-link disabled">Lien 3 </a>
-        </li>
+        </li> #}
       </ul>
-      {# Utilisation d'un formulaire de recherche ? #}
-      {# <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> #}
-      <a class="btn btn-success" href="#" role="button">Login</a>
+      
+     
+      {# {{ dump(app.user) }} #}
+      {% if app.user is null %}			
+		    <a class="btn btn-success" href="{{ path('app_login') }}" role="button">Login</a> 
+		  {% else %}
+				<a class="btn btn-danger" href="{{ path('app_logout') }}" type="button">Déconnexion</a>
+      {% endif %}
+
+			{# option class="btn btn-primary"#}
+			{# <button class="btn btn-outline-success" type="submit">Search</button> #}
+		
     </div>
   </div>
 </nav>

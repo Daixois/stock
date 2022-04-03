@@ -1,0 +1,40 @@
+{# {% extends 'base.html.twig' %} #}
+{% extends 'admin.html.twig' %}
+{% block stylesheets %}
+{{parent()}}
+<link rel="stylesheet" href="{{ asset('css/admin.css')}}">
+{% endblock %}
+{% block title %}Collections index{% endblock %}
+
+{% block body %}
+    <h1>Collections index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for collection in collections %}
+            <tr>
+                <td>{{ collection.id }}</td>
+                <td>{{ collection.Type }}</td>
+                <td>
+                    <a href="{{ path('admin_collections_show', {'id': collection.id}) }}">show</a>
+                    <a href="{{ path('admin_collections_edit', {'id': collection.id}) }}">edit</a>
+                    <a href="{{ path('admin_user_edit', {'id': collection.id}) }}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_collections_new') }}">Create new</a>
+{% endblock %}

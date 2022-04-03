@@ -39,12 +39,15 @@ class Movie
     #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'movies')]
     private $genres;
 
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private $created_at;
+
    
     public function __construct()
     {
         $this->formats = new ArrayCollection();
         $this->genres = new ArrayCollection();
-       
+        $this->createdAt = new \DateTime("now");
     }
     public function __toString() {
         return $this->name;
@@ -164,6 +167,18 @@ class Movie
     public function removeGenre(Genre $genre): self
     {
         $this->genres->removeElement($genre);
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
 
         return $this;
     }

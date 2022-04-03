@@ -5,25 +5,8 @@
 {% block body %}
 
 <div class="research">
-	{# <form id="searchForm" action="{{ path("movie_searchMovie") }}" method="GET">
-		<input type="search" name="research" placeholder="Recherche">
-		<button type="submit" value="Go">Go</button>
-	</form> #}
-
 	{% include "movie/_search.html.twig" %}
 </div>
-
-
-{# <script>
-	form = document.getElementById('searchForm');
-	form.addEventListener('submit', function(e) {
-		e.preventDefault();
-		var url = form.action.replace('-url-', form.search.value);
-		console.log(url);
-		window.location.href = url;
-	});
-</script> #}
-
 		{# {{ dump(data) }} #}
 <div class="row">
 	{% for movie in data %}

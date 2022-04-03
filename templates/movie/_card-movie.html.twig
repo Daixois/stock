@@ -4,9 +4,12 @@
 			<div class="col-3">
 				<img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="card-img-top h-100 d-inline-block p-3" alt=" {{ movie.title }} ">			
 			</div>
+			{#  Impossible to access an attribute ("poster_path") on a boolean variable (""). #}
+			{# {{dump (movie.poster_path)}} #}
 			<div class ="col-7">
 				<div class="card-body">
-					<h5 class="card-title">{{ movie.title }}</h5>	
+					<h5 class="card-title">{{ movie.title }}</h5>
+						
 				</div>
 				<ul class="list-movie list-movie-flush">
 					<li class="list-movie-item synopsis"><b>Synopsis : </b>{{movie.overview|length >100 ? movie.overview|slice(0, 500) ~ '[...]' : movie.overview}}</li>
@@ -16,7 +19,7 @@
 				</ul>
 			</div>
 			<div class="card-body button">
-				<a class="btn btn-primary m-2" href="https://www.themoviedb.org/movie/{{ movie.id }}?language=fr" class="card-link">La Fiche Tmdb</a>
+				{# <a class="btn btn-primary m-2" href="https://www.themoviedb.org/movie/{{ movie.tmdbId }}?language=fr" class="card-link">La Fiche Tmdb</a> #}
 				<a class="btn btn-primary m-2" href="{{ path('movie_getbyid', {id: movie.id}) }}" class="card-link">Voir la fiche du film</a>
 				{% if addLink is defined %}
 					<a class="btn btn-primary m-2" href="{{ path('movie_addid', {id: movie.id}) }}" class="card-link">Ajouter à la collection</a>

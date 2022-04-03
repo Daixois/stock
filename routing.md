@@ -53,3 +53,61 @@
 | /search/name/{name}   | genre_getbyname  | getgenreByname  |
 | /add/allgenre         | genre_addAllGenre| addAllGenre     |
 | /add/genre/{id}       | genre_addgenre   | addGenre        |
+
+
+## SecurityController
+
+| @route                | name       | function        |
+| --------------------- | ---------- | --------------- |
+| /register             | app_register     | register  |
+| ------                | -----            | ------    |
+
+
+## SecurityController
+
+| @route                | name       | function        |
+| --------------------- | ---------- | --------------- |
+| /register             | app_register     | register  |
+| ------                | -----            | ------    |
+
+## Admin\UserController
+
+| @route                | name       | function        |
+| --------------------- | ---------- | --------------- |
+| /admin/user           |            | userController  |
+| ------                | -----            | ------    |
+| /                     | admin_user_index | index     |
+| /new                  | admin_user_new   | new       |
+| /{id}                 | admin_user_show  | show      |
+| /{id}/edit            | admin_user_edit  | edit      |
+| /delete/{id}/         | admin_user_delete| delete    |
+
+## Admin\CollectionsController
+
+| @route                | name       | function        |
+| --------------------- | ---------- | --------------- |
+| /admin/collections           |            | collectionsController  |
+| ------                | -----            | ------    |
+| /                     | admin_collections_index | index     |
+| /new                  | admin_collections_new   | new       |
+| /{id}                 | admin_collections_show  | show      |
+| /{id}/edit            | admin_collections_edit  | edit      |
+| /delete/{id}/         | admin_collections_delete| delete    |
+
+## Admin\DashboardController
+
+| @route                | name       | function        |
+| --------------------- | ---------- | --------------- |
+| /admin/               |            | dashboardController  |
+| ------                | -----           | ------    |
+| /                     | admin_dashboard | index     |
+
+## CollectionsController
+
+| @route                | name       | function        |
+| --------------------- | ---------- | --------------- |
+| /collection           |            | CollectionsController  |
+| ------                | -----      | ------          |
+| /                     | collections_home | index     |
+
+

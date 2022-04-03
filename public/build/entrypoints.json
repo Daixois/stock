@@ -1,0 +1,14 @@
+{
+  "entrypoints": {
+    "app": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-_yarn___virtual___bootstrap-virtual-fab65cf396_0_cache_bootstrap-npm-5_1_3-691fdc19a6-0bfabe.js",
+        "/build/app.js"
+      ],
+      "css": [
+        "/build/app.css"
+      ]
+    }
+  }
+}
