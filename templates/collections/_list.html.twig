@@ -11,7 +11,8 @@
                     <ul class="list-collection list-collection-flush">
                         <li class="list-collection-name titre"><b>Titre : </b>{{collection.type}}</li>
                         <li class="list-collection-name objectif"><b>Objectif : </b> Commencez à inventorier vos {{collection.type}}</li>
-						<a class="btn btn-success" href="{{ path('app_login') }}" role="button">Login</a> 
+						{# <a class="btn btn-success" href="{{ path('app_login') }}" role="button">Login</a>  #}
+                        <a class="btn btn-success" href="{{ path('app_register') }}" role="button">S'inscrire</a>
                     </ul>
                 </div>
             {% endfor %}

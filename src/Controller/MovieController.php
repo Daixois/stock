@@ -8,8 +8,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Movie;
+use App\Entity\User;
 use App\Repository\GenreRepository;
 use App\Repository\MovieRepository;
+use App\Repository\UserRepository;
 use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,10 +21,13 @@ class MovieController extends AbstractController
 {
     
     #[Route('/', name: 'movie_home')]
-    public function index(): Response
+    public function index(MovieRepository $movieRepository, ApiTmdbService $apiTmdb): Response
     {
+        $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
+        
         return $this->render('movie/index.html.twig', [
-            'movie' => 'MovieController',
+            'movie' => $movieRepository->findAll(),
+            'lastMovie' => $lastMovie,
         ]);
     }
 
@@ -92,13 +97,14 @@ class MovieController extends AbstractController
 
     
     #[Route('/liste', name: 'movie_liste')]
-    public function liste(MovieRepository $movieRepository, ApiTmdbService $apiTmdb):Response
+    public function liste(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, UserRepository $userRepository):Response
     {
         $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
-        
+        $users = $this->getUser();
         return $this->render('movie/index.html.twig', [
             'movie' => $movieRepository->findAll(),
             'lastMovie' => $lastMovie,
+            'users' => $users,
         ]);
     }
   

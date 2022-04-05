@@ -111,3 +111,43 @@
 | /                     | collections_home | index     |
 
 
+## BdController
+
+| @route                | name       | function        |
+| --------------------- | ---------- | --------------- |
+| /bd           |            | BdsController  |
+| ------                | -----      | ------          |
+| /                     | bds_home | index     |
+
+## BooksController
+
+| @route                | name       | function        |
+| --------------------- | ---------- | --------------- |
+| /books          |            | BooksController  |
+| ------                | -----      | ------          |
+| /                     | books_home | index     |
+
+## ComicsController
+
+| @route                | name       | function        |
+| --------------------- | ---------- | --------------- |
+| /comics               |            | ComicsController  |
+| ------                | -----      | ------          |
+| /                     | comics_home | index     |
+
+## GamesController
+
+| @route                | name       | function        |
+| --------------------- | ---------- | --------------- |
+| /games          |            | GamesController  |
+| ------                | -----      | ------          |
+| /                     | games_home | index     |
+
+## MusicsController
+
+| @route                | name       | function        |
+| --------------------- | ---------- | --------------- |
+| /musics               |            | MusicsController  |
+| ------                | -----      | ------          |
+| /                     | musics_home | index     |
+

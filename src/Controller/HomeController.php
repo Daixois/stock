@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Genre;
 use App\Entity\Movie;
+use App\Entity\User;
 use App\Repository\CollectionsRepository;
 use App\Repository\GenreRepository;
 use App\Repository\MovieRepository;
+use App\Repository\UserRepository;
 use App\Service\ApiTmdbService;
 use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
@@ -19,14 +21,19 @@ class HomeController extends AbstractController
 {
     #[Route('/home', name: 'home')]
    
-    public function index(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, CollectionsRepository $collectionsRepository): Response
+    public function index(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, CollectionsRepository $collectionsRepository, UserRepository $userRepository): Response
     {
         
         $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
+        $users = $this->getUser();
+        $collections = $collectionsRepository->findAll();
+
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'lastMovie' => $lastMovie,
             'movie' => $movieRepository->findAll(),
+            'users' => $users,
+            'collections' => $collections,
         ]);
     }
 

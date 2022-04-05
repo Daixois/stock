@@ -9,30 +9,21 @@
 {# <a href="{{ path('movie_liste')}}" class="btn btn-outline-primary" role="button">Films</a> #}
 <div class="homepage">
 {% if app.user is null %}
-
-    {# <div class="research">
-	    {% include "movie/_search.html.twig" %}
-    </div> #}
-
-    	{# <h2 class="h1 my-5">Les derniers films ajoutés</h2>
-				<div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
-					{% for movie in lastMovie %}
-						{% include 'movie/_card-movie.html.twig' %}
-					{% endfor %}
-				</div> #}
-
-                {# <h2 class="h1 my-5">Les dernières collections ajoutées</h2>
-				<div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
-					{% for movie in lastMovie %}
-						{% include 'movie/_card-movie.html.twig' %}
-					{% endfor %}
-				</div> #}
+    
+    <p> Bienvenue sur Stock, le site qui vous permet de stocker vos collections.</p>
     <div>
         {% include "collections/_list.html.twig" %}
     </div>
 
-
+    <div>
+        <p> Pour consulter votre collection, connectez-vous !</p>
+        <p> Pour commencer votre collection, inscrivez-vous !</p>
+        <a class="btn btn-success" href="{{ path('app_login') }}" role="button">Se Connecter</a> 
+        <a class="btn btn-success" href="{{ path('app_register') }}" role="button">S'inscrire</a> 
+    </div>
 {% else %}
+
+<p>  Bonjour  {{ app.user.pseudo }} Quelles collections allons-nous développer aujourd'hui? </p>
 
 <div class="card col-9 m-2 w-75 cardResult";>
         <div class="row">               

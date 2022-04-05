@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Form\RegistrationType;
+use App\Repository\MovieRepository;
 use App\Security\EmailVerifier;
 use App\Security\LoginAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,10 +29,10 @@ class RegistrationController extends AbstractController
     // }
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator, EntityManagerInterface $entityManager, MovieRepository $movieRepository): Response
     {
         $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -61,9 +63,14 @@ class RegistrationController extends AbstractController
                 $request
             );
         }
-
+            
+        $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
+        $users = $this->getUser();
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            'movie' => $movieRepository->findAll(),
+            'lastMovie' => $lastMovie,
+            'users' => $users,
         ]);
     }
 

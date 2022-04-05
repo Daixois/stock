@@ -11,23 +11,23 @@
     </nav>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{ path('admin_dashboard')}}">Accès à l'administration du site</a>
-        </li>
+       
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Accès aux collections
+            Collections
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Cliquez pour accéder à vos films"><a class="dropdown-item" href="{{ path('movie_liste')}}">Films</a></button></li>
             {# <li><hr class="dropdown-divider"></li> #}
-            <li><button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="En cours de construction"><a class="dropdown-item" href="#">autre collection</a></button></li>
+            <li><button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="En cours de construction"><a class="dropdown-item" href="{{path('books_home')}}">Livres</a></button></li>
             {# <li><hr class="dropdown-divider"></li> #}
-            <li><button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="En cours de construction"><a class="dropdown-item" href="#">autre collection</a></button></li>
+            <li><button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="En cours de construction"><a class="dropdown-item" href="{{path('musics_home')}}">Musiques</a></button></li>
             {# <li><hr class="dropdown-divider"></li> #}
-            <li><button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="En cours de construction"><a class="dropdown-item" href="#">autre collection</a></button></li>
+            <li><button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="En cours de construction"><a class="dropdown-item" href="{{path('bd_home')}}">Bande-Dessinées</a></button></li>
             {# <li><hr class="dropdown-divider"></li> #}
-            <li><button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="En cours de construction"><a class="dropdown-item" href="#">autre collection</a></button></li>
+            <li><button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="En cours de construction"><a class="dropdown-item" href="{{path('comics_home')}}">Comics</a></button></li>
+            {# <li><hr class="dropdown-divider"></li> #}
+            <li><button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="En cours de construction"><a class="dropdown-item" href="{{path('games_home')}}">Jeux Vidéo></a></button></li>
           </ul>
         </li>
         {# <li class="nav-item">
@@ -40,7 +40,19 @@
       {% if app.user is null %}			
 		    <a class="btn btn-success" href="{{ path('app_login') }}" role="button">Login</a> 
 		  {% else %}
-				<a class="btn btn-danger" href="{{ path('app_logout') }}" type="button">Déconnexion</a>
+          <a class="nav-link active" aria-current="page" href="{{ path('admin_dashboard')}}">Administration</a>
+        <div>
+       
+				  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ app.user.pseudo }}
+          </a>
+       
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="btn btn-danger" href="{{ path('admin_dashboard')}}" type="button">Administration</a></li>
+            <li><a class="btn btn-danger" href="#" type="button">Profil</a></li>
+            <li><a class="btn btn-danger" href="{{ path('app_logout') }}" type="button">Déconnexion</a></li>
+          </ul>
+        </div>
       {% endif %}
 
 			{# option class="btn btn-primary"#}

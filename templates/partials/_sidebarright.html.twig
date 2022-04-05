@@ -1,4 +1,15 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
+{# <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
+   <div class="mb-4">
+    <input type="search" class="form-control" name="research" placeholder="Recherche par film">
+  </div>
+   
     <a class="btn btn-primary m-2" href="{{ path('movie_research') }}" class="card-link">Recherche</a>
 	
-</div>
+</div> #}
+
+<form id="researchForm" action="{{ path("movie_searchMovie")}}" method="get">
+  <div class="mb-4">
+    <input type="search" class="form-control" name="research" placeholder="Recherche par nom de film">
+  </div>
+  <button type="submit" class="btn btn-primary" value="Search">Search</button>
+</form>
