@@ -39,22 +39,16 @@ class RegistrationType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('roles', ChoiceType::class, [
-                'choices' => [
-                    'Administrateur' => 'ROLE_ADMIN',
-                    'User' => 'ROLE_USER',
-                ],
-                'multiple' => true,
-                'expanded' => true
-            ])
-            // ->add('agreeTerms', CheckboxType::class, [
-            //     'mapped' => false,
-            //     'constraints' => [
-            //         new IsTrue([
-            //             'message' => 'You should agree to our terms.',
-            //         ]),
+            //  Choix du niveau de l'utilisateur mais uniquement pour l'Admin
+            // ->add('roles', ChoiceType::class, [
+            //     'choices' => [
+            //         'Administrateur' => 'ROLE_ADMIN',
+            //         'User' => 'ROLE_USER',
             //     ],
+            //     'multiple' => true,
+            //     'expanded' => true
             // ])
+           
             ->add('submit', SubmitType::class)
             
         ;

@@ -23,9 +23,9 @@
                 <td>{{ collection.id }}</td>
                 <td>{{ collection.Type }}</td>
                 <td>
-                    <a href="{{ path('admin_collections_show', {'id': collection.id}) }}">show</a>
-                    <a href="{{ path('admin_collections_edit', {'id': collection.id}) }}">edit</a>
-                    <a href="{{ path('admin_user_edit', {'id': collection.id}) }}" class="btn btn-danger">Delete</a>
+                    <a href="{{ path('admin_collections_show', {'id': collection.id}) }}" class="btn btn-primary"><i class="bi bi-eye"> Voir</i></a>
+                    <a href="{{ path('admin_collections_edit', {'id': collection.id}) }}" class="btn btn-info"><i class="bi bi-pencil"> Editer</i></a>
+                    <a href="{{ path('admin_user_edit', {'id': collection.id}) }}" class="btn btn-danger"><i class="bi bi-trash"> Supprimer</i></a>
                 </td>
             </tr>
         {% else %}

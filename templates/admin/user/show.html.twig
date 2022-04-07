@@ -24,10 +24,10 @@
                 <th>Roles</th>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
             </tr>
-            <tr>
+            {# <tr>
                 <th>Password</th>
                 <td>{{ user.password }}</td>
-            </tr>
+            </tr> #}
             <tr>
                 <th>Pseudo</th>
                 <td>{{ user.Pseudo }}</td>
@@ -35,9 +35,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('admin_user_index') }}" class="btn btn-info" role="button">back to list</a>
+    <a href="{{ path('admin_user_index') }}" class="btn btn-info" role="button"><i class="bi bi-backspace"></i> Back to list</a>
 
-    <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-info" role="button">edit</a>
+    <a href="{{ path('admin_user_edit', {'id': user.id}) }}"class="btn btn-info"><i class="bi bi-pencil"> Editer</i></a>
 
     {{ include('admin/user/_delete_form.html.twig') }}
 {% endblock %}

@@ -17,7 +17,15 @@
             Collections
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Cliquez pour accéder à vos films"><a class="dropdown-item" href="{{ path('movie_liste')}}">Films</a></button></li>
+            <li><button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Cliquez pour accéder à vos films">
+            {# {% if is_granted("ROLE_USER") %}
+            <a class="dropdown-item" href="{{ path('movie_liste')}}">Films</a></button></li>
+            {% else %}
+            <a class="dropdown-item" href="{{ path('home')}}">Films</a></button></li>
+            {% endif %} #}
+
+            <a class="dropdown-item" href="{{ (is_granted("ROLE_USER") ? path('movie_liste') : path('home')) }}">Films</a></button></li>
+            
             {# <li><hr class="dropdown-divider"></li> #}
             <li><button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="En cours de construction"><a class="dropdown-item" href="{{path('books_home')}}">Livres</a></button></li>
             {# <li><hr class="dropdown-divider"></li> #}

@@ -29,13 +29,12 @@
                 <td>{{ user.id }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
+                {# <td>{{ user.password }}</td> #}
                 <td>{{ user.Pseudo }}</td>
                 <td>
-                    <a href="{{ path('admin_user_show', {'id': user.id}) }}"  class="btn btn-primary" role="button">show</a>
-                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-info" role="button">edit</a>
-                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-danger">Delete</a>
-                   
+                    <a href="{{ path('admin_user_show', {'id': user.id}) }}" class="btn btn-primary"><i class="bi bi-eye"> Voir</i></a>
+                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-info"><i class="bi bi-pencil"> Editer</i></a>
+                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-danger"><i class="bi bi-trash3"> Supprimer</i></a>
                 </td>
             </tr>
         {% else %}
