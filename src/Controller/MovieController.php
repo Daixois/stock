@@ -182,5 +182,14 @@ class MovieController extends AbstractController
         return $this->redirectToRoute('home');
     }
 
+        // public function sidebarleft(MovieRepository $movieRepository, GenreRepository $genreRepository, ManagerRegistry $doctrine, ApiTmdbService $apiTmdb): Response
+        // {
+        //     $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
+
+        //     return $this->render('partials/_sidebarleft.html.twig', [
+        //         'lastMovie' => $lastMovie,
+        //     ]);
+
+        // }
    
 }

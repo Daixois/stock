@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+
+{% if is_granted('ROLE_ADMIN') %}
+    <h1>List des utilisateurs</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Pseudo</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.Pseudo }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_new') }}">Create new</a>
+
+{% else %}
+
+    <h1>Vous n'avez pas les droits pour accéder à cette page</h1>
+    <a href="{{ path('home') }}" class="list-group-item list-group-item-action}}" aria-current="true">Retour au site</a>
+
+{% endif %}
+
+ 
+{% endblock %}

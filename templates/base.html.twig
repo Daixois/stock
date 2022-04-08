@@ -29,6 +29,9 @@
                 {% block _sidebarleft %}
                 <div class="col-3">
                    {% include 'partials/_sidebarleft.html.twig' %}  
+                   {# {{ render(controller(
+                       'App\\Controller\\MovieController::sidebarleft'
+                   ))}} #}
                 </div>
                 {% endblock %}
                     <div class="col-7">       

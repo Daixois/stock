@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{# {% extends 'admin.html.twig' %} #}
+
+{% block title %}Ajout d'une nouvelle collection{% endblock %}
+
+{% block body %}
+    <div class="addForm">
+        <h1>Create new Collections</h1>
+        
+            {{ include('admin/collections/_form.html.twig') }}
+        
+        <a href="{{ path('home') }}" class="btn btn-warning"><i class="bi bi-house"> Retour à l'accueil</i></a>
+    </div>
+{% endblock %}

@@ -123,31 +123,38 @@
 
 | @route                | name       | function        |
 | --------------------- | ---------- | --------------- |
-| /books          |            | BooksController  |
+| /books                |            | BooksController |
 | ------                | -----      | ------          |
-| /                     | books_home | index     |
+| /                     | books_home | index           |
 
 ## ComicsController
 
 | @route                | name       | function        |
 | --------------------- | ---------- | --------------- |
-| /comics               |            | ComicsController  |
+| /comics               |            | ComicsController|
 | ------                | -----      | ------          |
-| /                     | comics_home | index     |
+| /                     | comics_home | index          |
 
 ## GamesController
 
 | @route                | name       | function        |
 | --------------------- | ---------- | --------------- |
-| /games          |            | GamesController  |
+| /games                |            | GamesController |
 | ------                | -----      | ------          |
-| /                     | games_home | index     |
+| /                     | games_home | index           |
 
 ## MusicsController
 
 | @route                | name       | function        |
 | --------------------- | ---------- | --------------- |
-| /musics               |            | MusicsController  |
+| /musics               |            | MusicsController|
 | ------                | -----      | ------          |
-| /                     | musics_home | index     |
+| /                     | musics_home| index           |
 
+## UserController
+
+| @route                | name       | function        |
+| --------------------- | ---------- | --------------- |
+| /user                 |            | UserController  |
+| ------                | -----      | ------          |
+| /                     | user_home  | index           |
