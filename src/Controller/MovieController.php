@@ -37,7 +37,6 @@ class MovieController extends AbstractController
         $search= $_GET['research'];
         
         $searchMovie = $apiTmdb->searchApi($search);
-        // dd($searchMovie);
         
         return $this->render('movie/search-movie.html.twig', [
             'data' => $searchMovie["results"],
@@ -58,9 +57,7 @@ class MovieController extends AbstractController
     
     #[Route('/search/id/{id}', name: 'movie_getbyid')]
     public function getMovieById(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, int $id): Response
-    {
-
-        
+    { 
         $searchMovieId = $apiTmdb->getMovieById($id);
         // dd($searchMovieId);
         $movieId = json_encode($searchMovieId);
@@ -84,9 +81,7 @@ class MovieController extends AbstractController
    
     #[Route('/search/title/{title}', name: 'movie_getbytitle')]
     public function getMovieByTitle(ApiTmdbService $apiTmdb, string $title): Response
-    {
-
-        
+    { 
         $searchTitle = $apiTmdb->getMovieByTitle($title);
         // dd($searchTitle);
         

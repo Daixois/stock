@@ -7,6 +7,7 @@ use App\Service\ApiTmdbService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class RenderController extends AbstractController
 {
@@ -30,13 +31,17 @@ class RenderController extends AbstractController
 
     public function sidebarright(ApiTmdbService $apiTmdb): Response
     {
-        $research= $_GET['research'];
+        $request = Request::createFromGlobals();
+        $request->query->get('research');
+        // $search= $_GET['research'];
         
-        $searchMovie = $apiTmdb->searchApi($research);
+        $searchMovie = $apiTmdb->searchApi($request);
         
         return $this->render('partials/_sidebarright.html.twig', [
             'data' => $searchMovie["results"],
-            'research' => $research,
+            'research' => $request,
         ]);
     }
+
+
 }
