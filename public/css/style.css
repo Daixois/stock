@@ -61,3 +61,12 @@ body{
 /* Admin */
 
 /* Voir admin.css */
+
+/* Footer */
+
+.footer{
+    background-color: aqua;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
