@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CollectionsRepository;
 use App\Repository\MovieRepository;
 use App\Service\ApiTmdbService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,5 +44,12 @@ class RenderController extends AbstractController
         ]);
     }
 
-
+    public function footer(CollectionsRepository $collectionsRepository): Response
+    {
+        
+        $collections = $collectionsRepository->findAll();
+        return $this->render('partials/_footer.html.twig', [
+            'collections' => $collections,
+        ]);
+    }
 }
