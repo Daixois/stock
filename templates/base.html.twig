@@ -28,10 +28,10 @@
             <div class="row">
                 {% block _sidebarleft %}
                 <div class="col-3">
-                   {% include 'partials/_sidebarleft.html.twig' %}  
-                   {# {{ render(controller(
-                       'App\\Controller\\MovieController::sidebarleft'
-                   ))}} #}
+                   {# {% include 'partials/_sidebarleft.html.twig' %}   #}
+                   {{ render(controller(
+                       'App\\Controller\\RenderController::sidebarleft'
+                   ))}}
                 </div>
                 {% endblock %}
                     <div class="col-7">       
@@ -42,7 +42,10 @@
 
                 {% block _sidebarright %}
                 <div class="col-2">
-                   {% include 'partials/_sidebarright.html.twig' %}  
+                   {# {% include 'partials/_sidebarright.html.twig' %}   #}
+                   {{ render(controller(
+                       'App\\Controller\\RenderController::sidebarright'
+                   ))}}
                 </div>
                 {% endblock %}
             </div>
