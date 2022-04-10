@@ -7,6 +7,7 @@ use App\Form\UserFormType;
 use App\Repository\MovieRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,6 +48,8 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}', name: 'user_show', methods: ['GET'])]
+    //  Symfony me dit que la class User n'existe pas pas pourtant j'ai l'entité qui est appelée
+    #[ParamConverter('user', class: 'User', options: ['id'=>'id'])]
     public function show(User $user,int $id,UserRepository $userRepository): Response
     {
        $user= $userRepository->find($id);
