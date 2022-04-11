@@ -94,11 +94,11 @@ class MovieController extends AbstractController
     #[Route('/liste', name: 'movie_liste')]
     public function liste(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, UserRepository $userRepository):Response
     {
-        $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
+        // $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
         $users = $this->getUser();
         return $this->render('movie/index.html.twig', [
             'movie' => $movieRepository->findAll(),
-            'lastMovie' => $lastMovie,
+            // 'lastMovie' => $lastMovie,
             'users' => $users,
         ]);
     }
