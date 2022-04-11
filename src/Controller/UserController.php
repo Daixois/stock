@@ -49,10 +49,10 @@ class UserController extends AbstractController
 
     #[Route('/{id}', name: 'user_show', methods: ['GET'])]
     //  Symfony me dit que la class User n'existe pas pas pourtant j'ai l'entité qui est appelée
-    #[ParamConverter('user', class: 'User', options: ['id'=>'id'])]
-    public function show(User $user,int $id,UserRepository $userRepository): Response
+    // #[ParamConverter('user', class: User::class, options: ['id'=>'id'])]
+    public function show(User $user): Response
     {
-       $user= $userRepository->find($id);
+    //    $user= $userRepository->find($id);
        
         return $this->render('user/show.html.twig', [
             'user' => $user,
