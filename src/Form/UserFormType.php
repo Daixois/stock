@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class UserFormType extends AbstractType
 {
@@ -18,7 +19,7 @@ class UserFormType extends AbstractType
             ->add('Pseudo', TextType::class)
             ->add('email', TextType::class)
             ->add('password', PasswordType::class)
-            
+            ->add('imageFile', VichImageType::class)
         ;
     }
 

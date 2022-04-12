@@ -13,3 +13,13 @@ vich_uploader:
            inject_on_load: false
            delete_on_update: true
            delete_on_remove: true
+    # Selon entité mapping imagefile
+        user_image:
+    #    chemin ou les photos seront uploadees
+           uri_prefix: /img/user_image
+           upload_destination: '%kernel.project_dir%/public/img/user_image'
+           namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+           inject_on_load: false
+           delete_on_update: true
+           delete_on_remove: true

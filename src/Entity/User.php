@@ -5,12 +5,15 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -35,6 +38,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="boolean")
      */
     private $isVerified = false;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $image;
+
+    #[Vich\UploadableField(mapping:'user_image', fileNameProperty:"image")]
+    private $imageFile;
 
     public function __toString() {
         return $this->Pseudo;
@@ -132,6 +141,34 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->isVerified = $isVerified;
 
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile = null)
+    {
+        $this->imageFile = $imageFile;
+
+        // if ($imageFile) {
+           
+        //     $this->updatedAt = new \DateTime('now');
+        // }
         return $this;
     }
 }

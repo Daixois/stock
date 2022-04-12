@@ -24,13 +24,13 @@ class HomeController extends AbstractController
     public function index(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, CollectionsRepository $collectionsRepository, UserRepository $userRepository): Response
     {
         
-        $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
+        // $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
         $users = $this->getUser();
         $collections = $collectionsRepository->findAll();
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-            'lastMovie' => $lastMovie,
+            // 'lastMovie' => $lastMovie,
             'movie' => $movieRepository->findAll(),
             'users' => $users,
             'collections' => $collections,
