@@ -14,7 +14,7 @@ vich_uploader:
            delete_on_update: true
            delete_on_remove: true
     # Selon entité mapping imagefile
-        user_image:
+       user_image:
     #    chemin ou les photos seront uploadees
            uri_prefix: /img/user_image
            upload_destination: '%kernel.project_dir%/public/img/user_image'

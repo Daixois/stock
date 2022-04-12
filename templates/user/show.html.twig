@@ -29,23 +29,25 @@
 </tbody>
 </table> #}
 <div class="card mb-3" style="max-width: 540px;">
-<div class="row g-0">
-<div class="col-md-4">
-    <img src="..." class="img-fluid rounded-start" alt="{{ user.Pseudo }}">
-</div>
-<div class="col-md-8">
-    <div class="card-body">
-    <h5 class="card-pseudo">{{ user.Pseudo }}</h5>
-    <p class="card-mail">{{ user.email }}</p>
-    <p class="card-collections">Liste des collections</p>
-    <ul>
-        <li>Collections 1</li>
-        <li>Collections 2</li>
-        <li>Collections 3</li>
-    </ul>
+    <div class="row g-0">
+        
+            <div class="col-md-4">
+                <img src="{{ vich_uploader_asset(user, 'imageFile') }}" class="img-fluid rounded-start" alt="{{ user.Pseudo }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                <h5 class="card-pseudo">{{ user.Pseudo }}</h5>
+                <p class="card-mail">{{ user.email }}</p>
+                <p class="card-collections">Liste des collections</p>
+                <ul>
+                    <li>Collections 1</li>
+                    <li>Collections 2</li>
+                    <li>Collections 3</li>
+                </ul>
+                </div>
+            </div>
+        
     </div>
-</div>
-</div>
 </div>
 
     <a href="{{ path('user_index') }}" class="btn btn-warning"><i class="bi bi-house"> Retour à l'accueil</i></a>
