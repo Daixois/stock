@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
@@ -50,6 +52,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'date', nullable: true)]
     private $UpdatedAt;
 
+    #[ORM\ManyToMany(targetEntity: Collections::class, mappedBy: 'User_id')]
+    private $collections;
+
     public function __toString() {
         return $this->Pseudo;
     }
@@ -59,6 +64,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->type = new ArrayCollection();
         // $this->createdAt = new \DateTime("now");
         $this->UpdatedAt = new \DateTime("now");
+        $this->collections = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -191,6 +197,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUpdatedAt(?\DateTimeInterface $UpdatedAt): self
     {
         $this->UpdatedAt = $UpdatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Collections[]
+     */
+    public function getCollections(): Collection
+    {
+        return $this->collections;
+    }
+
+    public function addCollection(Collections $collection): self
+    {
+        if (!$this->collections->contains($collection)) {
+            $this->collections[] = $collection;
+            $collection->addUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCollection(Collections $collection): self
+    {
+        if ($this->collections->removeElement($collection)) {
+            $collection->removeUserId($this);
+        }
 
         return $this;
     }

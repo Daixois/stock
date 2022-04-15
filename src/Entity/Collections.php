@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CollectionsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Expr\Value;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -37,11 +38,15 @@ class Collections
     #[Vich\UploadableField(mapping:'collection_image', fileNameProperty:"image")]
     private $imageFile;
 
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'collections')]
+    private $User_id;
+
     public function __construct()
     {
         $this->type = new ArrayCollection();
         $this->createdAt = new \DateTime("now");
         $this->UpdatedAt = new \DateTime("now");
+        $this->User_id = new ArrayCollection();
     }
 
 
@@ -123,6 +128,30 @@ class Collections
            
             $this->updatedAt = new \DateTime('now');
         }
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUserId(): Collection
+    {
+        return $this->User_id;
+    }
+
+    public function addUserId(User $userId): self
+    {
+        if (!$this->User_id->contains($userId)) {
+            $this->User_id[] = $userId;
+        }
+
+        return $this;
+    }
+
+    public function removeUserId(User $userId): self
+    {
+        $this->User_id->removeElement($userId);
+
         return $this;
     }
 

@@ -45,7 +45,7 @@ class Movie
    
     public function __construct()
     {
-        $this->formats = new ArrayCollection();
+        // $this->formats = new ArrayCollection();
         $this->genres = new ArrayCollection();
         $this->createdAt = new \DateTime("now");
     }
