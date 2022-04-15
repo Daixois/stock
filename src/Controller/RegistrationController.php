@@ -64,12 +64,12 @@ class RegistrationController extends AbstractController
             );
         }
             
-        $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
+        // $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
         $users = $this->getUser();
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
             'movie' => $movieRepository->findAll(),
-            'lastMovie' => $lastMovie,
+            // 'lastMovie' => $lastMovie,
             'users' => $users,
         ]);
     }

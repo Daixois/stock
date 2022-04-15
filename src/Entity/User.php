@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -42,13 +43,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $image;
 
-    #[Vich\UploadableField(mapping:'user_image', fileNameProperty:"image")]
+    #[Vich\UploadableField(mapping:'user_image', fileNameProperty:"image",)]
+    // #[Ignore()] Comme l'image est déjà dans le fichier imageFile, on ignore l'attribut imageFile
     private $imageFile;
+
+    #[ORM\Column(type: 'date', nullable: true)]
+    private $UpdatedAt;
 
     public function __toString() {
         return $this->Pseudo;
     }
 
+    public function __construct()
+    {
+        // $this->type = new ArrayCollection();
+        // $this->createdAt = new \DateTime("now");
+        $this->UpdatedAt = new \DateTime("now");
+    }
 
     public function getId(): ?int
     {
@@ -165,10 +176,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->imageFile = $imageFile;
 
-        // if ($imageFile) {
+        if ($imageFile) {
            
-        //     $this->updatedAt = new \DateTime('now');
-        // }
+            $this->updatedAt = new \DateTime('now');
+        }
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->UpdatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $UpdatedAt): self
+    {
+        $this->UpdatedAt = $UpdatedAt;
+
         return $this;
     }
 }

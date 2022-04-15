@@ -14,6 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Gregwar\CaptchaBundle\Type\CaptchaType;
 
 class RegistrationType extends AbstractType
 {
@@ -38,6 +39,9 @@ class RegistrationType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+            ])
+            ->add('captcha', CaptchaType::class, [
+                'label' => 'Vérifions que vous êtes bien humain',
             ])
             //  Choix du niveau de l'utilisateur mais uniquement pour l'Admin
             // ->add('roles', ChoiceType::class, [
