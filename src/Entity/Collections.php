@@ -39,8 +39,10 @@ class Collections
     #[Vich\UploadableField(mapping:'collection_image', fileNameProperty:"image")]
     private $imageFile;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'collections')]
-    private $User_id;
+
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'user')]
+    private $User;
 
     
 
@@ -134,26 +136,16 @@ class Collections
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUserId(): Collection
+   
+
+    public function getUser(): ?User
     {
-        return $this->User_id;
+        return $this->User;
     }
 
-    public function addUserId(User $userId): self
+    public function setUser(?User $User): self
     {
-        if (!$this->User_id->contains($userId)) {
-            $this->User_id[] = $userId;
-        }
-
-        return $this;
-    }
-
-    public function removeUserId(User $userId): self
-    {
-        $this->User_id->removeElement($userId);
+        $this->User = $User;
 
         return $this;
     }

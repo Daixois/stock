@@ -22,7 +22,9 @@ class CollectionsController extends AbstractController
     #[Route('/liste', name: 'collections_liste')]
     public function index(CollectionsRepository $collectionsRepository, MovieRepository $movieRepository): Response
     {
-        
+        $user = $this->getUser();
+        $userCollection = $collectionsRepository->findBy(['User' =>$user]);
+        // dd($userCollection);
         return $this->render('collections/index.html.twig', [
             'controller_name' => 'CollectionsController',
             'collections' => $collectionsRepository->findAll(),
@@ -38,6 +40,9 @@ class CollectionsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $collection->setUser($this->getUser());
+
             $entityManager->persist($collection);
             $entityManager->flush();
 
@@ -49,45 +54,11 @@ class CollectionsController extends AbstractController
             'form' => $form,
         ]);
     }
-    // Je veux lier les collections aux utilisateurs
-        #[Route('/user', name: 'collections_user')]
-        public function userCollections(CollectionsRepository $collectionsRepository, UserRepository $userRepository, ManagerRegistry $doctrine): Response
-        {
-            // 1 j'appelle les utilisateurs de la base de données
-            $user = $doctrine->getRepository(User::class)->findAll();
-            //dd ($user);
-            // 2 je récupère les collections de la base de données
-            $collections = $doctrine->getRepository(Collections::class)->findAll();
-            dd ($collections);
 
-            // Proposé par copilot
-            // 3 Je vérifie que les collections sont liées à un utilisateur
-            foreach ($collections as $collection) {
-                dd ($collection);
-                // 4 je récupère l'id de l'utilisateur
-                // $userId = $collection->getUser()->getId();
-                //dd ($userId);
-                // 5 je récupère l'id de l'utilisateur de la session
-                // $userSession = $this->getUser()->getId();
-                //dd ($userSession);
-                // 6 je vérifie que l'id de l'utilisateur de la session est égal à l'id de l'utilisateur de la collection
-                // if ($userId == $userSession) {
-                    // 7 je récupère les collections liées à l'utilisateur
-                    // $userCollections = $collection;
-                    //dd ($userCollections);
-                }
-            // }
-
-            return $this->render('collections/user.html.twig', [
-                'controller_name' => 'CollectionsController',
-                'collections' => $collectionsRepository->findAll(),
-                'users' => $userRepository->findAll(),        
-            ]);
-        }
 
         // #[Route('/getUser', name: 'collections_getUser')]
         // public function getUser(UserRepository $userRepository, CollectionsRepository $collectionsRepository): Response
-        // {
+        // {    
         //     $user = $this->getUser();
         //     $userId = $user->getId();
         //     $user = $userRepository->find($userId);

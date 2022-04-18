@@ -21,18 +21,18 @@ class CollectionsType extends AbstractType
             
             
             ->add('Name', TextType::class)
-            ->add('Type', ChoiceType::class, [
-                'choices' => [
-                    'Bande-Dessinee' => 'Bande-Dessinee',
-                    'Comics' => 'Comics',
-                    'Films' => 'Films',
-                    'Jeux-Video' => 'Jeux-Video',
-                    'Livres' => 'Livres',
-                    'Musiques' => 'Musiques',
-                ],
-                'multiple' => false,
-                'expanded' => true
-            ])
+            // ->add('Type', ChoiceType::class, [
+            //     'choices' => [
+            //         'Bande-Dessinee' => 'Bande-Dessinee',
+            //         'Comics' => 'Comics',
+            //         'Films' => 'Films',
+            //         'Jeux-Video' => 'Jeux-Video',
+            //         'Livres' => 'Livres',
+            //         'Musiques' => 'Musiques',
+            //     ],
+            //     'multiple' => false,
+            //     'expanded' => true
+            // ])
             ->add('imageFile', VichImageType::class , [
                 'required' => false,
                 // 'allow_delete' => true,
