@@ -12,14 +12,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
-class CollectionsType extends AbstractType
+class CollectionGenreType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('Type', TextType::class)
             // ->add('Picture', VichFileType::class)
-            ->add('Name', TextType::class)
+            // ->add('Name', TextType::class)
             ->add('imageFile', VichImageType::class , [
                 'required' => false,
                 // 'allow_delete' => true,

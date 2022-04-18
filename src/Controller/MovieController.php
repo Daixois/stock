@@ -172,19 +172,19 @@ class MovieController extends AbstractController
 
         $em->flush();
 
-        dd('stop');
+        // dd('stop');
         
         return $this->redirectToRoute('home');
     }
 
-        public function sidebarleft(MovieRepository $movieRepository): Response
-        {
-            $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
+        // public function sidebarleft(MovieRepository $movieRepository): Response
+        // {
+        //     $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
 
-            return $this->render('partials/_sidebarleft.html.twig', [
-                'lastMovie' => $lastMovie,
-            ]);
+        //     return $this->render('partials/_sidebarleft.html.twig', [
+        //         'lastMovie' => $lastMovie,
+        //     ]);
 
-        }
+        // }
    
 }

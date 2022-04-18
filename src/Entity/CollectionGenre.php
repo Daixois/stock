@@ -2,17 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\CollectionsRepository;
+use App\Repository\CollectionGenreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Expr\Value;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[Vich\Uploadable]
-#[ORM\Entity(repositoryClass:CollectionsRepository::class)]
-class Collections
+#[ORM\Entity(repositoryClass: CollectionGenreRepository::class)]
+class CollectionGenre
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -20,29 +18,19 @@ class Collections
     private $id;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $Type;
-
-    // #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    // private $Picture;
+    private $type;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $createdAt;
 
-    #[ORM\Column(type: 'date', nullable: true)]
-    private $UpdatedAt;
-    
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private $updatedAt;
+
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $image;
 
-
     #[Vich\UploadableField(mapping:'collection_image', fileNameProperty:"image")]
     private $imageFile;
-
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'collections')]
-    private $User_id;
-
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $Name;
 
     public function __construct()
     {
@@ -51,8 +39,6 @@ class Collections
         $this->UpdatedAt = new \DateTime("now");
         $this->User_id = new ArrayCollection();
     }
-
-
     public function getId(): ?int
     {
         return $this->id;
@@ -60,24 +46,12 @@ class Collections
 
     public function getType(): ?string
     {
-        return $this->Type;
+        return $this->type;
     }
 
-    public function setType(?string $Type): self
+    public function setType(?string $type): self
     {
-        $this->Type = $Type;
-
-        return $this;
-    }
-
-    public function getPicture(): ?string
-    {
-        return $this->Picture;
-    }
-
-    public function setPicture(?string $Picture): self
-    {
-        $this->picture = $Picture;
+        $this->type = $type;
 
         return $this;
     }
@@ -96,12 +70,12 @@ class Collections
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->UpdatedAt;
+        return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $UpdatedAt): self
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
-        $this->UpdatedAt = $UpdatedAt;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
@@ -133,41 +107,4 @@ class Collections
         }
         return $this;
     }
-
-    /**
-     * @return Collection|User[]
-     */
-    public function getUserId(): Collection
-    {
-        return $this->User_id;
-    }
-
-    public function addUserId(User $userId): self
-    {
-        if (!$this->User_id->contains($userId)) {
-            $this->User_id[] = $userId;
-        }
-
-        return $this;
-    }
-
-    public function removeUserId(User $userId): self
-    {
-        $this->User_id->removeElement($userId);
-
-        return $this;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->Name;
-    }
-
-    public function setName(?string $Name): self
-    {
-        $this->Name = $Name;
-
-        return $this;
-    }
-
 }

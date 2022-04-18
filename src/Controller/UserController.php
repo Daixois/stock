@@ -25,11 +25,10 @@ class UserController extends AbstractController
     #[Route('/', name: 'user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository, MovieRepository $movieRepository): Response
     {
-        $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
         
         return $this->render('user/index.html.twig', [
             'users' => $userRepository->findAll(),
-            'lastMovie' => $lastMovie,
+            
         ]);
     }
 
@@ -67,8 +66,8 @@ class UserController extends AbstractController
     // #[ParamConverter('user', class: User::class, options: ['id'=>'id'])]
     public function show(User $user): Response
     {
-    //    $user= $userRepository->find($id);
             $users = $this->getUser();
+            
         return $this->render('user/show.html.twig', [
             'user' => $user,
             'users' => $users,
