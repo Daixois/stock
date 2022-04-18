@@ -124,8 +124,7 @@ class MovieController extends AbstractController
                     ->setOverview($completeMovie["overview"])
                     ->setTmdbId($completeMovie["id"])
                     ->setImdbId($completeMovie["imdb_id"])
-                    ->setReleaseDate(DateTime::createFromFormat('Y-m-d', $completeMovie["release_date"]))
-                    
+                    ->setReleaseDate(DateTime::createFromFormat('Y-m-d', $completeMovie["release_date"]))           
                 ;
 
                 $em = $doctrine->getManager();
@@ -176,15 +175,5 @@ class MovieController extends AbstractController
         
         return $this->redirectToRoute('home');
     }
-
-        // public function sidebarleft(MovieRepository $movieRepository): Response
-        // {
-        //     $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
-
-        //     return $this->render('partials/_sidebarleft.html.twig', [
-        //         'lastMovie' => $lastMovie,
-        //     ]);
-
-        // }
    
 }
