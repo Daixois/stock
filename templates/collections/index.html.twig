@@ -6,6 +6,25 @@
 
 {% block body %}
 	
-	{% include "collections/_list.html.twig" %}
+	
+	{% if app.user is null %}
+		
+		<p> Bienvenue sur Stock, le site qui vous permet de stocker vos collections.</p>
+		<div>
+			{% include "collections/_listuser.html.twig" %}
+		</div>
 
+		<div>
+			<p> Pour consulter votre collection, connectez-vous !</p>
+			<p> Pour commencer votre collection, inscrivez-vous !</p>
+			<a class="btn btn-success" href="{{ path('app_login') }}" role="button">Se Connecter</a> 
+			<a class="btn btn-success" href="{{ path('app_register') }}" role="button">S'inscrire</a> 
+		</div>
+	{% else %}
+
+	<p>  Bonjour  {{ app.user.pseudo }} Quelles collections allons-nous développer aujourd'hui? </p>
+
+			{% include "collections/_list.html.twig" %}
+
+	{% endif %}
 {% endblock %}

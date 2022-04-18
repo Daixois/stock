@@ -42,13 +42,18 @@ class Movie
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $created_at;
 
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private $updatedAt;
+
    
     public function __construct()
     {
         // $this->formats = new ArrayCollection();
         $this->genres = new ArrayCollection();
-        $this->createdAt = new \DateTime("now");
+        $this->created_at = new \DateTime("now");
+        $this->updatedAt = new \DateTime("now");
     }
+
     public function __toString() {
         return $this->name;
     }
@@ -179,6 +184,18 @@ class Movie
     public function setCreatedAt(?\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
