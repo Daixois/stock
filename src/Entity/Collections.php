@@ -41,6 +41,9 @@ class Collections
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'collections')]
     private $User_id;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $Name;
+
     public function __construct()
     {
         $this->type = new ArrayCollection();
@@ -151,6 +154,18 @@ class Collections
     public function removeUserId(User $userId): self
     {
         $this->User_id->removeElement($userId);
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->Name;
+    }
+
+    public function setName(?string $Name): self
+    {
+        $this->Name = $Name;
 
         return $this;
     }

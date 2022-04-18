@@ -18,7 +18,12 @@ class CollectionsType extends AbstractType
         $builder
             ->add('Type', TextType::class)
             // ->add('Picture', VichFileType::class)
-            ->add('imageFile', VichImageType::class)
+            ->add('Name', TextType::class)
+            ->add('imageFile', VichImageType::class , [
+                'required' => false,
+                // 'allow_delete' => true,
+                // 'download_link' => true,
+            ])
             ->add('Save', SubmitType::class)
         ;
     }

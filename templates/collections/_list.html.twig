@@ -1,22 +1,27 @@
 <div class="card col-12 m-2 w-75 cardCollection";>
-        <div class="row"> 
-            <p> Voici les premières collections disponibles sur le site. Pour commencer à inventorier vos collections, inscrivez-vous.
-            Pour les consulter, connectez-vous .</p>              
-            {% for collection in collections %}
-                <div class="card col-3 m-2 p-1 cardCollectionImg">
-                    <img src="{{ vich_uploader_asset(collection, 'imageFile') }}" class="card-img-top h-100 d-inline-block p-3" alt={{collection.type}}>
+    <div class="row"> 
+        <p> Voici les premières collections disponibles sur le site. Pour commencer à inventorier vos collections, inscrivez-vous.
+        Pour les consulter, connectez-vous .</p>              
+        {% for collection in collections %}
+            <div class="card col-3 m-2 p-1 cardCollectionImg">
+                <img src="{{ vich_uploader_asset(collection, 'imageFile') }}" class="card-img-top h-100 d-inline-block p-3" alt={{collection.type}}>
+            </div>
+            <div class ="col-7">
+                <div class ="card-body">
+                    <h5 class="card-title">{{ collection.type }}</h5>
                 </div>
-                <div class ="col-7">
-                    <div class ="card-body">
-                        <h5 class="card-title">{{ collection.type }}</h5>
-                    </div>
-                    {# <ul class="list-collection list-collection-flush"> #}
-                        {# <li class="list-collection-name titre"><b>Titre : </b>{{collection.type}}</li> #}
-                        {# <li class="list-collection-name objectif"> Commencez à inventorier vos {{collection.type}}</li> #}
-						{# <a class="btn btn-success" href="{{ path('app_login') }}" role="button">Login</a>  #}
-                        {# <a class="btn btn-success" href="{{ path('app_register') }}" role="button">S'inscrire</a> #}
-                    {# </ul> #}
-                </div>
-            {% endfor %}
-        </div> 
+                
+                {# <ul class="list-collection list-collection-flush"> #}
+                    {# <li class="list-collection-name titre"><b>Titre : </b>{{collection.type}}</li> #}
+                    {# <li class="list-collection-name objectif"> Commencez à inventorier vos {{collection.type}}</li> #}
+                    {# <a class="btn btn-success" href="{{ path('app_login') }}" role="button">Login</a>  #}
+                    {# <a class="btn btn-success" href="{{ path('app_register') }}" role="button">S'inscrire</a> #}
+                {# </ul> #}
+            </div>
+            
+        {% endfor %}
+    </div> 
+    <div>
+        <a href="{{ path('collections_new') }}" class="btn btn-primary">Créer une collection</a>
     </div>
+</div>
