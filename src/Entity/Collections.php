@@ -19,11 +19,12 @@ class Collections
     #[ORM\Column(type: 'integer')]
     private $id;
 
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $Name;
+
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $Type;
-
-    // #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    // private $Picture;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $createdAt;
@@ -41,8 +42,7 @@ class Collections
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'collections')]
     private $User_id;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $Name;
+    
 
     public function __construct()
     {
@@ -58,6 +58,18 @@ class Collections
         return $this->id;
     }
 
+    public function getName(): ?string
+    {
+        return $this->Name;
+    }
+
+    public function setName(?string $Name): self
+    {
+        $this->Name = $Name;
+
+        return $this;
+    }
+    
     public function getType(): ?string
     {
         return $this->Type;
@@ -66,18 +78,6 @@ class Collections
     public function setType(?string $Type): self
     {
         $this->Type = $Type;
-
-        return $this;
-    }
-
-    public function getPicture(): ?string
-    {
-        return $this->Picture;
-    }
-
-    public function setPicture(?string $Picture): self
-    {
-        $this->picture = $Picture;
 
         return $this;
     }
@@ -158,16 +158,6 @@ class Collections
         return $this;
     }
 
-    public function getName(): ?string
-    {
-        return $this->Name;
-    }
-
-    public function setName(?string $Name): self
-    {
-        $this->Name = $Name;
-
-        return $this;
-    }
+    
 
 }
