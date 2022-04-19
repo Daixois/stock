@@ -33,7 +33,7 @@ class Movie
     #[ORM\Column(type: 'text', nullable: true)]
     private $overview;
 
-    #[ORM\Column(type: 'date', nullable: true)]
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $release_date;
 
     #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'movies')]

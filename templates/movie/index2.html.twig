@@ -24,8 +24,8 @@
                         <li class="list-movie-name id"><b>id : </b>{{movie.id}}</li>
                         <li class="list-movie-name titreoriginal"><b>Titre Originel : </b>{{movie.originalTitle}}</li>
                             {# TODO changer le format de DateTime en string #}
-                        <li class="list-movie-name"><b>Date de sortie : {{movie.releaseDate|date("Y")}}</li>
-                        <li class="list-movie-name genre"><b>Genre : </b>{% for genre in movie.genres %}{{genre}} {% endfor %}</li>
+                        <li class="list-movie-name"><b>Date de sortie :</b> {{movie.releaseDate|date("Y")}}</li>
+                        <li class="list-movie-name genre"><b>Genre : </b>{% for genre in movie.genres %}{{genre}},{% endfor %}</li>
                     </ul>
                 </div>
                 <div class="card-body button">

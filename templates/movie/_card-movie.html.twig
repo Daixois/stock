@@ -4,8 +4,6 @@
 			<div class="col-3">
 				<img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="card-img-top h-100 d-inline-block p-3" alt=" {{ movie.title }} ">			
 			</div>
-			{#  Impossible to access an attribute ("poster_path") on a boolean variable (""). #}
-			{# {{dump (movie.poster_path)}} #}
 			<div class ="col-7">
 				<div class="card-body">
 					<h5 class="card-title">{{ movie.title }}</h5>

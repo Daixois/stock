@@ -2,18 +2,22 @@
 
 namespace App\Controller;
 
-use App\Entity\Genre;
-use App\Service\ApiTmdbService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Movie;
+use DateTime;
 use App\Entity\User;
+use App\Entity\Genre;
+use App\Entity\Movie;
+use App\Data\SearchData;
+use App\Form\SearchForm;
+use App\Form\SearchFormType;
+use App\Service\ApiTmdbService;
+use App\Repository\UserRepository;
 use App\Repository\GenreRepository;
 use App\Repository\MovieRepository;
-use App\Repository\UserRepository;
-use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 #[Route('/movie')]
@@ -23,11 +27,11 @@ class MovieController extends AbstractController
     #[Route('/', name: 'movie_home')]
     public function index(MovieRepository $movieRepository, ApiTmdbService $apiTmdb): Response
     {
-        $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
+        // $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
         
         return $this->render('movie/index.html.twig', [
             'movie' => $movieRepository->findAll(),
-            'lastMovie' => $lastMovie,
+            // 'lastMovie' => $lastMovie,
         ]);
     }
 
@@ -94,15 +98,53 @@ class MovieController extends AbstractController
     #[Route('/liste', name: 'movie_liste')]
     public function liste(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, UserRepository $userRepository):Response
     {
-        // $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
+        
+        $data = new SearchData();
+        $form = $this->createForm(SearchFormType::class, $data);
+        
+        $moviesSearch = $movieRepository->findSearchMovie();
+       
         $users = $this->getUser();
         return $this->render('movie/index.html.twig', [
             'movie' => $movieRepository->findAll(),
-            // 'lastMovie' => $lastMovie,
+            'movies' =>$moviesSearch,
+            'form' => $form->createView(),
             'users' => $users,
         ]);
     }
   
+    #[Route('/liste2', name: 'movie_liste2')]
+    public function liste2(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, UserRepository $userRepository,GenreRepository $genreRepository):Response
+    {
+        $nbResult= 2;
+        if (isset($_GET['limit']) && $_GET['limit'] > 0) {
+            $nbResult = $_GET['limit'];
+        }
+        $page= 1;
+        if (isset($_GET['page']) && $_GET['page'] > 0) {
+            $page = $_GET['page'];
+        }
+        $anneeMin= null;
+        if (isset($_GET['anneeMin']) && $_GET['anneeMin'] > 0) {
+            $anneeMin = $_GET['anneeMin'];
+        }
+        $anneeMax= null;
+        if (isset($_GET['anneeMax']) && $_GET['anneeMax'] > 0) {
+            $anneeMax = $_GET['anneeMax'];
+        }
+        
+        $genre = $genreRepository->find(17);
+        // dd($genre);
+        // $anneeMin= new \DateTime();
+        // $moviesSearch = $movieRepository->findBy([], [], $nbResult, $page*$nbResult-($nbResult));
+        $moviesSearch = $movieRepository->findByExampleField('Thriller');
+        $users = $this->getUser();
+        return $this->render('movie/index2.html.twig', [
+            
+            'movie' =>$moviesSearch,
+            'users' => $users,
+        ]);
+    }
     #[Route('/add/add/{id<\d+>}', name: 'movie_addid')]
     public function addMovie(ApiTmdbService $apiTmdb, string $id, ManagerRegistry $doctrine, MovieRepository $movieRepo): Response
     {

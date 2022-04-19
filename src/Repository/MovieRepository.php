@@ -34,7 +34,7 @@ class MovieRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+  
 
     /*
     public function findOneBySomeField($value): ?Movie
@@ -47,4 +47,13 @@ class MovieRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /*
+    * Récupérer les films
+    *@return Movies[]
+    */
+    public function findSearchMovie(): array
+    {
+        return $this->findAll();
+    }
 }
