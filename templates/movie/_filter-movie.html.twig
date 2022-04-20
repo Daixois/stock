@@ -1,0 +1,25 @@
+{{ form_start(form, {attr: {class: 'filter'}}) }}
+   {{ form_row(form.q)}}
+
+   <h4>Genres</h4>
+    {{ form_row(form.genres)}}
+    {# A venir #}
+    {# <h4>Actors</h4>
+    {{ form_row(form.actors)}} #}
+    <h4>Recherche par années</h4>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_row(form.anneeMin)}}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.anneeMax)}}
+            </div>
+        </div>
+
+    
+    <button type="submit" class="btn btn-primary w-100">Filtrer</button>
+
+
+    
+{{ form_end(form) }}
+

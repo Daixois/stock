@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
 use App\Entity\Genre;
 use App\Entity\Movie;
 use App\Entity\User;
+use App\Form\SearchFormType;
 use App\Repository\CollectionsRepository;
 use App\Repository\GenreRepository;
 use App\Repository\MovieRepository;
@@ -15,25 +17,34 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
 #[Route('/home')]
 class HomeController extends AbstractController
 {
     #[Route('/home', name: 'home')]
    
-    public function index(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, CollectionsRepository $collectionsRepository, UserRepository $userRepository): Response
+    public function index(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, CollectionsRepository $collectionsRepository, GenreRepository $genreRepository, UserRepository $userRepository, Request $request): Response
     {
         
-        // $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
+        $data = new SearchData();
+        $form = $this->createForm(SearchFormType::class, $data);
+        $form->handleRequest($request);
+        // dd($data);
+        
+        $moviesSearch = $movieRepository->findSearchMovie($data);
+
         $users = $this->getUser();
         $collections = $collectionsRepository->findAll();
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-            // 'lastMovie' => $lastMovie,
+            'form' => $form->createView(),
+            'movies' =>$moviesSearch,
             'movie' => $movieRepository->findAll(),
             'users' => $users,
             'collections' => $collections,
+            'genre' => $genreRepository->findOneBy([]),
         ]);
     }
 

@@ -18,7 +18,7 @@ use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+use Symfony\Component\HttpFoundation\Request;
 
 #[Route('/movie')]
 class MovieController extends AbstractController
@@ -96,13 +96,14 @@ class MovieController extends AbstractController
 
     
     #[Route('/liste', name: 'movie_liste')]
-    public function liste(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, UserRepository $userRepository):Response
+    public function liste(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, UserRepository $userRepository, Request $request):Response
     {
         
         $data = new SearchData();
         $form = $this->createForm(SearchFormType::class, $data);
-        
-        $moviesSearch = $movieRepository->findSearchMovie();
+        $form->handleRequest($request);
+        // dd($data);
+        $moviesSearch = $movieRepository->findSearchMovie($data);
        
         $users = $this->getUser();
         return $this->render('movie/index.html.twig', [
@@ -112,7 +113,7 @@ class MovieController extends AbstractController
             'users' => $users,
         ]);
     }
-  
+//   Test pagination 
     #[Route('/liste2', name: 'movie_liste2')]
     public function liste2(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, UserRepository $userRepository,GenreRepository $genreRepository):Response
     {
@@ -137,7 +138,7 @@ class MovieController extends AbstractController
         // dd($genre);
         // $anneeMin= new \DateTime();
         // $moviesSearch = $movieRepository->findBy([], [], $nbResult, $page*$nbResult-($nbResult));
-        $moviesSearch = $movieRepository->findByExampleField('Thriller');
+        $moviesSearch = $movieRepository->findBy([], [], $nbResult, $page*$nbResult-($nbResult));
         $users = $this->getUser();
         return $this->render('movie/index2.html.twig', [
             

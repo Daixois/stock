@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Movie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use PhpParser\Node\Scalar\MagicConst\Dir;
 
 /**
  * @method Movie|null find($id, $lockMode = null, $lockVersion = null)
@@ -52,8 +54,35 @@ class MovieRepository extends ServiceEntityRepository
     * Récupérer les films
     *@return Movies[]
     */
-    public function findSearchMovie(): array
+    public function findSearchMovie(SearchData $search): array
     {
-        return $this->findAll();
+        $query = $this
+            ->createQueryBuilder('m')
+            ->select('m', 'g')
+            ->join('m.genres', 'g');
+
+        if (!empty($search->q)) {
+            $query
+                ->andWhere('m.title LIKE :q')
+                ->setParameter('q', '%' . $search->q . '%');
+        }
+        
+        if (!empty($search->anneeMin)) {
+            $query
+                ->andWhere('m.annee >= :q')
+                ->setParameter('anneeMin', '%' . $search->anneeMin . '%');
+        }
+        if (!empty($search->anneeMax)) {
+            $query
+                ->andWhere('m.annee <= :q')
+                ->setParameter('anneeMax', '%' . $search->anneeMax . '%');
+        }
+
+        if (!empty($search->genres)) {
+            $query
+                ->andWhere('g.id IN (:genres)')
+                ->setParameter('genres', $search->genres);
+        }
+        return $query->getQuery()->getResult();
     }
 }

@@ -20,12 +20,12 @@ class SearchData
     /**
      * @var null|integer
      */
-     public $annéeMin;
+     public $anneeMin;
 
      /**
      * @var null|integer
      */
-    public $annéeMax;
+    public $anneeMax;
 
 
 }

@@ -3,11 +3,6 @@
 {% block title %}Hello Tom{% endblock %}
 
 {% block body %}
-
-    {# Remplacée par sidebarright #}
-    {# <div class="research">
-	    {% include "movie/_search.html.twig" %}
-    </div> #}
     <div class="card col-12 m-2 w-75 cardResult";>
         <div class="row">               
             {% for movie in movie %}
@@ -23,9 +18,8 @@
                         <li class="list-movie-name synopsis"><b>Synopsis : </b>{{movie.overview|length >100 ? movie.overview|slice(0, 100) ~ '[...]' : movie.overview }}</li>
                         <li class="list-movie-name id"><b>id : </b>{{movie.id}}</li>
                         <li class="list-movie-name titreoriginal"><b>Titre Originel : </b>{{movie.originalTitle}}</li>
-                            {# TODO changer le format de DateTime en string #}
-                        <li class="list-movie-name"><b>Date de sortie : {{movie.releaseDate|date("Y")}}</li>
-                        <li class="list-movie-name genre"><b>Genre : </b>{% for genre in movie.genres %}{{genre}} {% endfor %}</li>
+                        <li class="list-movie-name"><b>Date de sortie :</b> {{movie.releaseDate|date("Y")}}</li>
+                        <li class="list-movie-name genre"><b>Genre : </b>{% for genre in movie.genres %}{{genre}},{% endfor %}</li>
                     </ul>
                 </div>
                 <div class="card-body button">
@@ -34,7 +28,12 @@
                     <a class="btn btn-primary m-2" href="{{ path('movie_getdatabaseid', {id: movie.id}) }}" class="card-link">Voir la fiche du film</a>
                 </div>
             {% endfor %}
-        </div> 
     </div>
-        
 {% endblock %}
+{% block _sidebarright %}
+    <div class="filter col-2">
+        {% include "movie/_filter-movie.html.twig" %}
+    </div>
+{% endblock %}
+
+

@@ -4,7 +4,10 @@ namespace App\Form;
 
 
 use App\Data\SearchData;
+use App\Entity\Genre;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,17 +26,27 @@ public function buildForm(FormBuilderInterface $builder, array $options)
                 'placeholder' => 'Rechercher un film',
             ],
         ])
-        // ->add('genres', null, [
-        //     'required' => false,
-        //     'expanded' => true,
-        //     'multiple' => true,
-        // ])
-        // ->add('annéeMin', null, [
-        //     'required' => false,
-        // ])
-        // ->add('annéeMax', null, [
-        //     'required' => false,
-        // ])
+        ->add('genres', EntityType::class, [
+            'label' => false,
+            'required' => false,
+            'class' => Genre::class,
+            'expanded' => true,
+            'multiple' => true,
+        ])
+        ->add('anneeMin', NumberType::class, [
+            'label' => false,
+            'required' => false,
+            'attr' => [
+                'placeholder' => 'Année minimum',
+            ],
+        ])
+        ->add('anneeMax', NumberType::class, [
+            'label' => false,
+            'required' => false,
+            'attr' => [
+                'placeholder' => 'Année maximum',
+            ],
+        ])
     ;
 }
 
@@ -42,7 +55,7 @@ public function buildForm(FormBuilderInterface $builder, array $options)
         $resolver->setDefaults([
             'data_class' => SearchData::class,
             'method' => 'GET',
-            // 'csrf_protection' => false
+            'csrf_protection' => false
         ]);
     }
 
