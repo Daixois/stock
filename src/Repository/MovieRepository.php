@@ -2,11 +2,13 @@
 
 namespace App\Repository;
 
-use App\Data\SearchData;
 use App\Entity\Movie;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Data\SearchData;
 use Doctrine\Persistence\ManagerRegistry;
 use PhpParser\Node\Scalar\MagicConst\Dir;
+use Knp\Component\Pager\PaginatorInterface;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Movie|null find($id, $lockMode = null, $lockVersion = null)
@@ -16,10 +18,12 @@ use PhpParser\Node\Scalar\MagicConst\Dir;
  */
 class MovieRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Movie::class);
+        $this->paginator = $paginator;
     }
+   
 
     // /**
     //  * @return Movie[] Returns an array of Movie objects
@@ -52,9 +56,9 @@ class MovieRepository extends ServiceEntityRepository
 
     /*
     * Récupérer les films
-    *@return Movies[]
+    *@return PaginationInterface
     */
-    public function findSearchMovie(SearchData $search): array
+    public function findSearchMovie(SearchData $search): PaginationInterface
     {
         $query = $this
             ->createQueryBuilder('m')
@@ -83,6 +87,13 @@ class MovieRepository extends ServiceEntityRepository
                 ->andWhere('g.id IN (:genres)')
                 ->setParameter('genres', $search->genres);
         }
-        return $query->getQuery()->getResult();
+        $query =  $query->getQuery();
+        return $this->paginator->paginate(
+            $query,
+            // $search->page,
+            1,
+            // $search->limit
+            5
+        );
     }
 }

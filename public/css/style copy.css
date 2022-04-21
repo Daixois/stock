@@ -1,10 +1,91 @@
+/*  Carousel */
+
+.bgDegrade{
+    background: linear-gradient(rgb(71,6,174), white);
+    background: linear-gradient(rgb(71,6,174), white);
+}
+
+/* NavBar */
+
+nav a{
+    color:yellow !important;
+    font-size: 25px;
+}
+
+nav a:hover{
+    color: violet !important;
+}
+
+/* Cards Movie */
+
+.cardMovie
+{
+    /* background-color: rgba(255, 215, 0, 0.89); */
+    height: auto;
+   
+    /* box-shadow: 10px 5px 5px rgba(255, 215, 0, 0.89); */
+    
+}
+
+body{
+    /* background-color: rgba(16, 2, 66, 0.89); */
+    /* background-color: rgba(119, 117, 124, 0.89); */
+
+    background-color: rgb(218,218,218);
+}
+
+.cardMovie li{
+    list-style-type: none;
+     margin: 2px;
+    /* padding-left: 0; */
+}
+
+/* Cards Results */
+
+.cardResult{
+    background-color: rgba(241, 241, 238, 0.89);
+    height: auto;
+    /* box-shadow: 10px 5px 5px rgba(255, 215, 0, 0.89); */
+    max-width: 100%;
+    margin: 2rem;
+
+}
+
+.cardResult li{
+    list-style-type: none;
+    /* padding-left: 0; */
+}
+
+.cardResult button{
+    display: flex;
+    justify-content: center;
+}
+
+.row{
+    display: flex;
+    justify-content: center; 
+}
+
+/* Admin */
+
+/* Voir admin.css */
+
+/* Footer */
+
+.footer{
+    background-color: aqua;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
 /* Cartes Test */
 
-/* *, ::before, ::after {
+*, ::before, ::after {
     box-sizing: border-box;
 }
 
-body {
+/* body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
@@ -13,7 +94,7 @@ body {
     justify-content: center;
     align-items: center;
     background: rgb(218,218,218);
-}
+} */
 
 .cartes {
     background: #f1f1f1;
@@ -23,17 +104,16 @@ body {
     border-radius: 5px;
     margin: 0 25px;
     box-shadow: 0px 10px 25px rgba(0,0,0,0.4);
-} */
+}
 
-.card-img-top {
-    height: 40%;
-    width: 95%;
+.movieImg {
+    height: 60%;
+    width: 100%;
     background-position: top;
     position: relative;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
-    
 }
 
 /* .filtreBleu {
@@ -49,7 +129,7 @@ body {
     background: rgba(118,176,194,0.5);
 } */
 
-/* .movieTitre {
+.movieTitre {
     padding: 10px;
     width: 100%;
     display: flex;
@@ -106,38 +186,4 @@ body {
     padding-bottom: 5px;
     font-size: 20px;
     margin: 0;
-} */
-
-/* NavBar */
-
-nav a{
-    color:yellow !important;
-    font-size: 25px;
-}
-
-nav a:hover{
-    color: violet !important;
-}
-
-/* Footer */
-
-.footer{
-    background-color: aqua;
-    color: white;
-    text-align: center;
-    padding: 10px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 10px;
-    /* grid-auto-rows: minmax(100px, auto);
-    grid-auto-flow: dense; */
-}
-
-.filter {
-    display: block;
-    position: sticky;
-    top: 20px;
 }

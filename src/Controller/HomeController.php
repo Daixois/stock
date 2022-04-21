@@ -30,6 +30,7 @@ class HomeController extends AbstractController
         $data = new SearchData();
         $form = $this->createForm(SearchFormType::class, $data);
         $form->handleRequest($request);
+     
         // dd($data);
         
         $moviesSearch = $movieRepository->findSearchMovie($data);
@@ -44,7 +45,7 @@ class HomeController extends AbstractController
             'movie' => $movieRepository->findAll(),
             'users' => $users,
             'collections' => $collections,
-            'genre' => $genreRepository->findOneBy([]),
+            'genre' => $genreRepository->findAll(),
         ]);
     }
 
@@ -71,5 +72,6 @@ class HomeController extends AbstractController
             
         ]);
     }
+  
      
 }

@@ -1,0 +1,36 @@
+
+{# <div class = "cartes col-sm">
+    <div class ="movieImg">
+        <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="card-img-top h-100 d-inline-block p-3" alt=" {{ movie.title }} ">	
+    </div>
+    <div class ="movieTitre">
+        <div class ="titre">{{ movie.title }}</div>
+    </div>
+    <div class ="movieSynopsis">
+        <div class = "synopsis">{{movie.overview|length >100 ? movie.overview|slice(0, 500) ~ '[...]' : movie.overview}}</div>
+    </div>
+    <div class ="movieAnnee">
+        <div class = "annee">{{movie.releaseDate|date("Y")}}</div>
+    </div>
+    <div class ="movieGenres">
+        {% for genre in movie.genres %}{{genre}} {% endfor %}
+    </div>
+</div> #}
+
+<div class="card">
+     <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="card-img-top d-inline-block p-3" alt=" {{ movie.title }} ">
+     <div class="card-body">
+        <h5 class="card-title">{{ movie.title }}</h5>
+        <p class="card-text">{{ movie.overview|length >100 ? movie.overview|slice(0, 500) ~ '[...]' : movie.overview}}</p>
+        <p class="card-text"><small class="text-muted">{{movie.releaseDate|date("Y")}}</small></p>
+         {% for genre in movie.genres %}
+        # {{genre}}
+        {% endfor %}
+    </div>	
+
+
+
+
+
+
+</div>

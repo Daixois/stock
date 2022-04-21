@@ -3,66 +3,19 @@
 {% block title %}Hello Tom{% endblock %}
 
 {% block body %}
-
-<h1> Bonjour Tom ceci est la page d'accueil de ton site, tu t'en occuperas plus tard </h1>
-
-{# <a href="{{ path('movie_liste')}}" class="btn btn-outline-primary" role="button">Films</a> #}
-<div class="homepage">
-{% if app.user is null %}
-    
-    <p> Bienvenue sur Stock, le site qui vous permet de stocker vos collections.</p>
-    <div>
-        {% include "collections/_list.html.twig" %}
+    <div class="container">
+        <div class="grid">
+            {% for movie in movie %}
+                {% include "movie/_cartemovie.html.twig"%}
+            {% endfor %}
+        </div>
     </div>
-
     <div>
-        <p> Pour consulter votre collection, connectez-vous !</p>
-        <p> Pour commencer votre collection, inscrivez-vous !</p>
-        <a class="btn btn-success" href="{{ path('app_login') }}" role="button">Se Connecter</a> 
-        <a class="btn btn-success" href="{{ path('app_register') }}" role="button">S'inscrire</a> 
+        {{ knp_pagination_render(movies) }}
     </div>
-{% else %}
-
-<p>  Bonjour  {{ app.user.pseudo }} Quelles collections allons-nous développer aujourd'hui? </p>
-
-<div class="card col-9 m-2 w-75 cardResult";>
-    <div class="row">               
-        {% for movie in movie %}
-        <div class="card col-3 m-2 p-1 cardMovieImg">
-            <img src="https://image.tmdb.org/t/p/w500/{{ movie.posterPath }}" class="card-img-top h-100 d-inline-block p-3" alt={{movie.title}}>
-        </div>
-        <div class ="col-7">
-            <div class ="card-body">
-                <h5 class="card-title">{{ movie.title }}</h5>
-            </div>
-            <ul class="list-movie list-movie-flush">
-                <li class="list-movie-name titre"><b>Titre : </b>{{movie.title}}</li>
-                <li class="list-movie-name synopsis"><b>Synopsis : </b>{{movie.overview|length >100 ? movie.overview|slice(0, 100) ~ '[...]' : movie.overview }}</li>
-                <li class="list-movie-name id"><b>id : </b>{{movie.id}}</li>
-                <li class="list-movie-name titreoriginal"><b>Titre Originel : </b>{{movie.originalTitle}}</li>
-                <li class="list-movie-name"><b>Date de sortie :</b> {{movie.releaseDate|date("Y")}}</li>
-                {# <li class="list-movie-name genre"><b>Genre : </b>{% for genre in movie.genres %}{{genre}} {% endfor %}</li> #}
-            </ul>
-            <div>
-                {% for g in movie.genres %}
-                    <em class="text-muted text-primary text-italic">#{{g.name}}</em>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="card-body button">
-            <a class="btn btn-primary m-2" href="{{ path('movie_research') }}" class="card-link">Autre recherche</a>
-            <a class="btn btn-primary m-2" href="https://www.themoviedb.org/movie/{{ movie.tmdbId }}?language=fr" class="card-link">La Fiche Tmdb</a>
-            <a class="btn btn-primary m-2" href="{{ path('movie_getdatabaseid', {id: movie.id}) }}" class="card-link">Voir la fiche du film</a>
-        </div>
-        {% endfor %}
-    </div> 
-</div>
-
-{% endif %}
-</div>
 {% endblock %}
 {% block _sidebarright %}
-    <div class="filter col-2">
+    <div class="filter col-2 m-2">
         {% include "movie/_filter-movie.html.twig" %}
     </div>
 {% endblock %}
