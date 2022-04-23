@@ -5,7 +5,10 @@
 {% block body %}
 
     {% if app.user is null %}
-        <p> Veuillez vous connecter pour accéder à votre collection {{ collection_genre.type }}</p>
+        <p> Veuillez vous connecter pour accéder à votre collection. </p>
+
+        <a class="btn btn-success" href="{{ path('app_login') }}" role="button">Se Connecter</a>
+			<a class="btn btn-success" href="{{ path('app_register') }}" role="button">S'inscrire</a>
     {% else %}
         {# <p>Hello {{ app.user.username }}</p> #}
     <div class ="addFilm">

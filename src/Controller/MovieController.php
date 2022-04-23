@@ -193,48 +193,48 @@ class MovieController extends AbstractController
         return $this->redirectToRoute('home');
     }
 
-    #[Route('/testactor', name: 'movie_testactor')]
-    public function testCast(MovieRepository $movieRepository, ActorsRepository $actorsRepository, ManagerRegistry $doctrine, ApiTmdbService $apiTmdb): Response
-    {
+    // #[Route('/testactor', name: 'movie_testactor')]
+    // public function testCast(MovieRepository $movieRepository, ActorsRepository $actorsRepository, ManagerRegistry $doctrine, ApiTmdbService $apiTmdb): Response
+    // {
         // Déclare doctrine
-        $em = $doctrine->getManager();
+        // $em = $doctrine->getManager();
 
         // 1. Tu récupère tes films en BDD (findAll)
-        $ficheMovie = $movieRepository->findAll();
+        // $ficheMovie = $movieRepository->findAll();
 
         // 2. ForEach films, 
-        foreach ($ficheMovie as $movie) {
-            // 2bis tu interroges TMDB pour obtenir leur genre (Service TMDB)
-            $tmdbMovie = $apiTmdb->getMovieById($movie->getTmdbId());
+        // foreach ($ficheMovie as $movie) {
+            // 2bis tu interroges TMDB pour obtenir les acteurs (Service TMDB)
+            // $tmdbMovie = $apiTmdb->getMovieById($movie->getTmdbId());
 
-            // 3. Pour les genres reçus (forEach), tu vérifies dans ta BDD que l'ID TMDB_Genre est ou n'est pas dans ta table Genre (findBy tmdb_id)
-            foreach ($tmdbMovie['actors'] as $actorTmdb) {
-                $actorBdd = $actorsRepository->findOneBy(['tmdbID' => $actorTmdb['id']]);
+            // 3. Pour les acteurs reçus (forEach), tu vérifies dans ta BDD que l'ID TMDB_Actors est ou n'est pas dans ta table Actors (findBy tmdb_id)
+            // foreach ($tmdbMovie['actors'] as $actorTmdb) {
+            //     $actorBdd = $actorsRepository->findOneBy(['tmdbID' => $actorTmdb['id']]);
                 
                 // 4. Si tu n'as pas le genre, tu rajoutes le genre (Set puis Get). Sinon, tu le(s) prend (Get)
-                if ($actorBdd === null) {
-                    $addActor = new Actors();
-                    $addActor
-                        ->setName($actorTmdb['name'])
-                        ->setfirstName($actorTmdb['first_name'])
-                        ->setTmdbID($actorTmdb['id'])
-                    ;
-                    $genreBdd = $addActor;
-                    $em->persist($addActor);
-                }
+        //         if ($actorBdd === null) {
+        //             $addActor = new Actors();
+        //             $addActor
+        //                 ->setName($actorTmdb['name'])
+        //                 ->setfirstName($actorTmdb['first_name'])
+        //                 ->setTmdbID($actorTmdb['id'])
+        //             ;
+        //             $genreBdd = $addActor;
+        //             $em->persist($addActor);
+        //         }
                 
-                $movie->addActor($actorBdd);
-                $em->persist($actorBdd);
+        //         $movie->addActor($actorBdd);
+        //         $em->persist($actorBdd);
                 
-            }          
-        }
+        //     }          
+        // }
 
-        $em->flush();
+        // $em->flush();
 
         // dd('stop');
         
-        return $this->redirectToRoute('home');
-    }
+    //     return $this->redirectToRoute('home');
+    // }
     
    
 }

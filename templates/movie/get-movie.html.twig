@@ -6,32 +6,30 @@
 {% block body %}
 
 
-	<div class="card">
+	<div class="card fichefilm">
 		<div class="row">
 
 			<div class="col col-md-4">
-				<img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="card-img-top h-100" alt="{{ movie.title }}">
+				<img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="card-img-top h-100 fiche-poster" alt="{{ movie.title }}">
 			</div>
 
 			<div class="col col-md-8">
 				<div class="card-body">
-					<h5 class="card-title">
+					<h5 class="fiche-title">
 						<b>{{ movie.title }}</b>
 					</h5>
-					<p class="card-text">
+					<p class="card-text fiche-synopsis">
 						<i>{{ movie.overview }}</i>
 					</p>
-
-
-					<div class="list-group list-group-horizontal">
-						<b>Genres :</b>
+					<div class="list-group list-group-horizontal fiche-genre">
+						{# <b>Genres :</b> #}
 						{% for genre in movie.genres %}
 							<p class="list-group">
-								#{{ genre }}
+								 # {{ genre }} 
 							</p>
 						{% endfor %}
 					</div>
-					<div class="id">
+					<div class="fiche-id">
 						<p class="list">
 							<b>Id :
 							</b>
@@ -39,22 +37,13 @@
 					</div>
 
 					<div class="list-group list-group-horizontal">
-						
-							
-						
-
-						<div class="card-body">
-							
+						<div class="card-body">						
 						</div>
-
-						<div class="card-body">
-							
+						<div class="card-body">						
 						</div>
 					</div>
 				</div>
 			</div>
-
-
 		</div>
 	</div>
 
