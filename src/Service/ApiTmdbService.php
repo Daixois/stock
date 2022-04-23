@@ -57,5 +57,10 @@ class ApiTmdbService
 		return $this->getApi('movie/' . $title . $this->apiKey);
 	}
 
+	public function getAllActors() 
+	{
+		return $this->getApi('person/{person_id}'. $this->apiKey); 
+	}
+
 }
 

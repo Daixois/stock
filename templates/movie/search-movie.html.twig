@@ -3,10 +3,13 @@
 {% block title %}Hello Tom{% endblock %}
 
 {% block body %}
-<div class="row">
-	{% for movie in data %}
-		{# https://twig.symfony.com/doc/3.x/tags/include.html #}
-		{% include "movie/_card-movie.html.twig" with {'movie': movie, 'addLink': true } %}
-	{% endfor %}
-</div>
+
+	<div class="container">
+			<div class="grid">
+				{% for movie in data %}
+					{% include "movie/_card-movie.html.twig"%}
+				{% endfor %}
+			</div>
+	</div>
+
 {% endblock %}

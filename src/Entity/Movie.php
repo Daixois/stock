@@ -45,6 +45,9 @@ class Movie
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $updatedAt;
 
+    #[ORM\ManyToMany(targetEntity: Actors::class, inversedBy: 'movies')]
+    private $Actors;
+
    
     public function __construct()
     {
@@ -52,6 +55,7 @@ class Movie
         $this->genres = new ArrayCollection();
         $this->created_at = new \DateTime("now");
         $this->updatedAt = new \DateTime("now");
+        $this->Actors = new ArrayCollection();
     }
 
     public function __toString() {
@@ -196,6 +200,30 @@ class Movie
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Actors[]
+     */
+    public function getActors(): Collection
+    {
+        return $this->Actors;
+    }
+
+    public function addActor(Actors $actor): self
+    {
+        if (!$this->Actors->contains($actor)) {
+            $this->Actors[] = $actor;
+        }
+
+        return $this;
+    }
+
+    public function removeActor(Actors $actor): self
+    {
+        $this->Actors->removeElement($actor);
 
         return $this;
     }

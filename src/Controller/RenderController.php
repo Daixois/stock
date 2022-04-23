@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
+use App\Form\SearchFormType;
 use App\Repository\CollectionsRepository;
 use App\Repository\MovieRepository;
 use App\Service\ApiTmdbService;
@@ -50,6 +52,25 @@ class RenderController extends AbstractController
         $collections = $collectionsRepository->findAll();
         return $this->render('partials/_footer.html.twig', [
             'collections' => $collections,
+        ]);
+    }
+
+    public function filter(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, Request $request): Response
+    {
+        $data = new SearchData();
+        $data->page = $request->get('page', 1);
+        $form = $this->createForm(SearchFormType::class, $data);
+        $form->handleRequest($request);
+     
+        // dd($data);
+        
+        $moviesSearch = $movieRepository->findSearchMovie($data);
+
+        
+        return $this->render('movie/_filter-movie.html.twig', [
+            'form' => $form->createView(),
+            'movies' =>$moviesSearch,
+            'movie' => $movieRepository->findAll(),
         ]);
     }
 }

@@ -72,14 +72,17 @@ class MovieRepository extends ServiceEntityRepository
         }
         
         if (!empty($search->anneeMin)) {
+            $min = date("Y-m-d", mktime(0, 0, 0, 1, 1, $search->anneeMin));
+            // dd($min);
             $query
-                ->andWhere('m.annee >= :q')
-                ->setParameter('anneeMin', '%' . $search->anneeMin . '%');
+                ->andWhere('m.release_date >= :anneeMin')
+                ->setParameter('anneeMin', $min);
         }
         if (!empty($search->anneeMax)) {
+            $max = date("Y-m-d", mktime(0, 0, 0, 12, 31, $search->anneeMax));
             $query
-                ->andWhere('m.annee <= :q')
-                ->setParameter('anneeMax', '%' . $search->anneeMax . '%');
+                ->andWhere('m.release_date <= :anneeMax')
+                ->setParameter('anneeMax', $max);
         }
 
         if (!empty($search->genres)) {
@@ -90,10 +93,10 @@ class MovieRepository extends ServiceEntityRepository
         $query =  $query->getQuery();
         return $this->paginator->paginate(
             $query,
-            // $search->page,
-            1,
+            $search->page,
+           
             // $search->limit
-            5
+            6
         );
     }
 }

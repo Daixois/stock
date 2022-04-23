@@ -1,22 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello Tom{% endblock %}
+{% block title %}Hello Tom
+{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="grid">
-            {% for movie in movie %}
-                {% include "movie/_cartemovie.html.twig"%}
-            {% endfor %}
-        </div>
-    </div>
-    <div>
-        {{ knp_pagination_render(movies) }}
-    </div>
-{% endblock %}
-{% block _sidebarright %}
-    <div class="filter col-2 m-2">
-        {% include "movie/_filter-movie.html.twig" %}
-    </div>
-{% endblock %}
+	{% if app.user is null %}
 
+		<p>
+			Bienvenue sur Stock, le site qui vous permet de stocker vos collections.</p>
+		<div>
+			{% include "collections/_list.html.twig" %}
+		</div>
+
+		<div>
+			<p>
+				Pour consulter votre collection, connectez-vous !</p>
+			<p>
+				Pour commencer votre collection, inscrivez-vous !</p>
+			<a class="btn btn-success" href="{{ path('app_login') }}" role="button">Se Connecter</a>
+			<a class="btn btn-success" href="{{ path('app_register') }}" role="button">S'inscrire</a>
+		</div>
+	{% else %}
+		<p>
+			Bonjour
+			{{ app.user.pseudo }}
+			Quelles collections allons-nous développer aujourd'hui?
+		</p>
+        <div class ="addFilm">
+        <form id="researchForm" action="{{ path("movie_searchMovie")}}" method="get">
+        <h5>Ajouter un film </h5>
+            <div class="mb-4">
+                <input type="search" class="form-control" name="research" placeholder="Taper le nom du film à ajouter">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2" value="Search">Recherche</button>
+        </form>
+    </div>
+		<div class="container">
+			<div class="grid">
+				{% for movie in movies %}
+					{% include "movie/_cartemovie.html.twig"%}
+				{% endfor %}
+			</div>
+		</div>
+
+		<div style:"margin-top: 4rem;">
+			{{ knp_pagination_render(movies) }}
+		</div>
+	{% endif %}
+{% endblock %}

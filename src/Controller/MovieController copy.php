@@ -7,10 +7,8 @@ use App\Entity\User;
 use App\Entity\Genre;
 use App\Entity\Movie;
 use App\Data\SearchData;
-use App\Entity\Actors;
 use App\Form\SearchForm;
 use App\Form\SearchFormType;
-use App\Repository\ActorsRepository;
 use App\Service\ApiTmdbService;
 use App\Repository\UserRepository;
 use App\Repository\GenreRepository;
@@ -53,10 +51,10 @@ class MovieController extends AbstractController
     #[Route('/research', name: 'movie_research')]
     public function research(MovieRepository $movieRepository, ApiTmdbService $apiTmdb): Response
     {
-        // $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
+        $lastMovie = $movieRepository->findBy([], ['created_at' => 'DESC'], 3);
         return $this->render('movie/research.html.twig', [
             'movie' => $movieRepository->findAll(),
-            // 'lastMovie' => $lastMovie,
+            'lastMovie' => $lastMovie,
             
         ]);
     }
@@ -118,7 +116,39 @@ class MovieController extends AbstractController
             'users' => $users,
         ]);
     }
-    
+//   Test pagination 
+    #[Route('/liste2', name: 'movie_liste2')]
+    public function liste2(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, UserRepository $userRepository,GenreRepository $genreRepository):Response
+    {
+        $nbResult= 2;
+        if (isset($_GET['limit']) && $_GET['limit'] > 0) {
+            $nbResult = $_GET['limit'];
+        }
+        $page= 1;
+        if (isset($_GET['page']) && $_GET['page'] > 0) {
+            $page = $_GET['page'];
+        }
+        $anneeMin= null;
+        if (isset($_GET['anneeMin']) && $_GET['anneeMin'] > 0) {
+            $anneeMin = $_GET['anneeMin'];
+        }
+        $anneeMax= null;
+        if (isset($_GET['anneeMax']) && $_GET['anneeMax'] > 0) {
+            $anneeMax = $_GET['anneeMax'];
+        }
+        
+        $genre = $genreRepository->find(17);
+        // dd($genre);
+        // $anneeMin= new \DateTime();
+        // $moviesSearch = $movieRepository->findBy([], [], $nbResult, $page*$nbResult-($nbResult));
+        $moviesSearch = $movieRepository->findBy([], [], $nbResult, $page*$nbResult-($nbResult));
+        $users = $this->getUser();
+        return $this->render('movie/index2.html.twig', [
+            
+            'movie' =>$moviesSearch,
+            'users' => $users,
+        ]);
+    }
     #[Route('/add/add/{id<\d+>}', name: 'movie_addid')]
     public function addMovie(ApiTmdbService $apiTmdb, string $id, ManagerRegistry $doctrine, MovieRepository $movieRepo): Response
     {
@@ -142,13 +172,12 @@ class MovieController extends AbstractController
                     ->setImdbId($completeMovie["imdb_id"])
                     ->setReleaseDate(DateTime::createFromFormat('Y-m-d', $completeMovie["release_date"]))           
                 ;
+
                 $em = $doctrine->getManager();
                 $em->persist($movie);
                 $em->flush();
           }
-
-
-        return $this->redirectToRoute('movie_testgenre', ['id' => $id]);
+        return $this->redirectToRoute('movie_liste', ['id' => $id]);
     }
 
     #[Route('/testgenre', name: 'movie_testgenre')]
@@ -192,49 +221,5 @@ class MovieController extends AbstractController
         
         return $this->redirectToRoute('home');
     }
-
-    #[Route('/testactor', name: 'movie_testactor')]
-    public function testCast(MovieRepository $movieRepository, ActorsRepository $actorsRepository, ManagerRegistry $doctrine, ApiTmdbService $apiTmdb): Response
-    {
-        // Déclare doctrine
-        $em = $doctrine->getManager();
-
-        // 1. Tu récupère tes films en BDD (findAll)
-        $ficheMovie = $movieRepository->findAll();
-
-        // 2. ForEach films, 
-        foreach ($ficheMovie as $movie) {
-            // 2bis tu interroges TMDB pour obtenir leur genre (Service TMDB)
-            $tmdbMovie = $apiTmdb->getMovieById($movie->getTmdbId());
-
-            // 3. Pour les genres reçus (forEach), tu vérifies dans ta BDD que l'ID TMDB_Genre est ou n'est pas dans ta table Genre (findBy tmdb_id)
-            foreach ($tmdbMovie['actors'] as $actorTmdb) {
-                $actorBdd = $actorsRepository->findOneBy(['tmdbID' => $actorTmdb['id']]);
-                
-                // 4. Si tu n'as pas le genre, tu rajoutes le genre (Set puis Get). Sinon, tu le(s) prend (Get)
-                if ($actorBdd === null) {
-                    $addActor = new Actors();
-                    $addActor
-                        ->setName($actorTmdb['name'])
-                        ->setfirstName($actorTmdb['first_name'])
-                        ->setTmdbID($actorTmdb['id'])
-                    ;
-                    $genreBdd = $addActor;
-                    $em->persist($addActor);
-                }
-                
-                $movie->addActor($actorBdd);
-                $em->persist($actorBdd);
-                
-            }          
-        }
-
-        $em->flush();
-
-        // dd('stop');
-        
-        return $this->redirectToRoute('home');
-    }
-    
    
 }

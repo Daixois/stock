@@ -28,6 +28,7 @@ class HomeController extends AbstractController
     {
         
         $data = new SearchData();
+        $data->page = $request->get('page', 1);
         $form = $this->createForm(SearchFormType::class, $data);
         $form->handleRequest($request);
      
