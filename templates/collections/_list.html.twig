@@ -1,14 +1,13 @@
-<div class="card col-12 m-2 w-75 cardCollection";>
+<div class="cardCollection col-12";>
     <div class="row"> 
-        <p> Voici les premières collections disponibles sur le site. Pour commencer à inventorier vos collections, inscrivez-vous.
-        Pour les consulter, connectez-vous .</p>              
+        <p> Les collections disponibles </p>              
         {% for collection in collections %}
-            <div class="card col-3 m-2 p-1 cardCollectionImg">
+            <div class="card col-12">
                 <img src="{{ vich_uploader_asset(collection, 'imageFile') }}" class="card-img-top h-100 d-inline-block p-3" alt={{collection.type}}>
             </div>
-            <div class ="col-7">
+            <div class ="col-12">
                 <div class ="card-body">
-                    <h5 class="card-title">{{ collection.name }}</h5>
+                    <h5 class="card-name">{{ collection.name }}</h5>
                 </div>
             </div>           
         {% endfor %}

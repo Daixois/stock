@@ -18,18 +18,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class CollectionsController extends AbstractController
 {
     #[Route('/', name: 'admin_collections_index', methods: ['GET'])]
-    public function index(CollectionsRepository $collectionsRepository): Response
+    public function index(CollectionGenreRepository $collectionGenreRepository): Response
     {
         return $this->render('admin/collections/index.html.twig', [
-            'collections' => $collectionsRepository->findAll(),
+            'collections' => $collectionGenreRepository->findAll(),
         ]);
     }
 
     #[Route('/new', name: 'admin_collections_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $collection = new Collections();
-        $form = $this->createForm(CollectionsType::class, $collection);
+        $collection = new CollectionGenre();
+        $form = $this->createForm(CollectionGenreType::class, $collection);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

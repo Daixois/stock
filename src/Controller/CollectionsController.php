@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CollectionsController extends AbstractController
 {
     #[Route('/liste', name: 'collections_liste')]
-    public function index(CollectionsRepository $collectionsRepository, CollectionGenreRepository $collectionGenreRepository, MovieRepository $movieRepository): Response
+    public function index(CollectionsRepository $collectionsRepository, MovieRepository $movieRepository): Response
     {
         $user = $this->getUser();
         $userCollection = $collectionsRepository->findBy(['User' =>$user]);
@@ -29,7 +29,7 @@ class CollectionsController extends AbstractController
         return $this->render('collections/index.html.twig', [
             'controller_name' => 'CollectionsController',
             'collections' => $collectionsRepository->findAll(),
-            'collectionGenre' => $collectionGenreRepository->findAll(),
+            
         ]);
     }
 

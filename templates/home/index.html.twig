@@ -20,6 +20,8 @@
 			<a class="btn btn-success" href="{{ path('app_login') }}" role="button">Se Connecter</a>
 			<a class="btn btn-success" href="{{ path('app_register') }}" role="button">S'inscrire</a>
 		</div>
+		{% block _sidebarright %}{% endblock %}
+{% block _filter %}{% endblock %}
 	{% else %}
 		<p>
 			Bonjour

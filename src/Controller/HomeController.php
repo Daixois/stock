@@ -44,20 +44,10 @@ class HomeController extends AbstractController
             'users' => $users,
             'collections' => $collections,
             'genre' => $genreRepository->findAll(),
-        ]);
-    }
-
-    #[Route('/liste', name: 'home_liste_login')]
-    public function liste(MovieRepository $movieRepository, ApiTmdbService $apiTmdb, CollectionsRepository $collectionsRepository):Response
-    {
-
-        $collections = $collectionsRepository->findAll();
-        return $this->render('home/index.html.twig', [
-            'movie' => $movieRepository->findAll(),
             'home' => 'HomeController',
-            'collections' => $collections,
         ]);
     }
+
 
     #[Route('/research', name: 'home_research')]
     public function research(ApiTmdbService $apiTmdb): Response

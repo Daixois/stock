@@ -32,17 +32,20 @@ class RenderController extends AbstractController
 
         }
 
-    public function sidebarright(ApiTmdbService $apiTmdb): Response
+    public function sidebarright(ApiTmdbService $apiTmdb, CollectionsRepository $collectionsRepository): Response
     {
         $request = Request::createFromGlobals();
         $request->query->get('research');
         // $search= $_GET['research'];
         
         $searchMovie = $apiTmdb->searchApi($request);
-        
+        $user = $this->getUser();
+        $userCollection = $collectionsRepository->findBy(['User' =>$user]);
         return $this->render('partials/_sidebarright.html.twig', [
             'data' => $searchMovie["results"],
             'research' => $request,
+            'controller_name' => 'CollectionsController',
+            'collections' => $collectionsRepository->findAll(),
         ]);
     }
 
