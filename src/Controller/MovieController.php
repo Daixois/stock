@@ -15,6 +15,7 @@ use App\Service\ApiTmdbService;
 use App\Repository\UserRepository;
 use App\Repository\GenreRepository;
 use App\Repository\MovieRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -236,5 +237,14 @@ class MovieController extends AbstractController
     //     return $this->redirectToRoute('home');
     // }
     
-   
+    #[Route('/delete/{id}', name: 'movie_delete', methods: ['POST'])]
+    public function delete(Request $request, Movie $movie, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$movie->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($movie);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('movie_liste', [], Response::HTTP_SEE_OTHER);
+    }
 }

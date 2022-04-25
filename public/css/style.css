@@ -135,17 +135,28 @@ Solution peu academique mais faute de temps je m'en contente */
     bottom: 1em;
     left: 1em;
     font-size: smaller;
+    margin-bottom:1px !important;
 }
 
 .liens2{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     height: fit-content;
     position: absolute;
     bottom: 1em;
     right: 1em;
     font-size: smaller;
+    margin-bottom:1px !important;
 }
 
+.lienDelete{
+    margin-top:0;
+}
+
+#registration_submit{
+    margin-top: 2em;
+    color: red;
+
+}

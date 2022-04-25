@@ -3,7 +3,14 @@
 {% block title %}Hello Tom{% endblock %}
 
 {% block body %}
-
+	<div class ="addFilm">
+        <form id="researchForm" action="{{ path("movie_searchMovie")}}" method="get">
+            <div class="mb-4">
+                <input type="search" class="form-control" name="research" placeholder="Recherche un autre film à ajouter à ta collection">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2" value="Search">Recherche</button>
+        </form>
+    </div>
 	<div class="container">
 			<div class="grid">
 				{% for movie in data %}
