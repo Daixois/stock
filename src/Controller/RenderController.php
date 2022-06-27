@@ -69,11 +69,11 @@ class RenderController extends AbstractController
         
         $moviesSearch = $movieRepository->findSearchMovie($data);
 
-        
+        // dd($moviesSearch);
         return $this->render('movie/_filter-movie.html.twig', [
             'form' => $form->createView(),
             'movies' =>$moviesSearch,
-            'movie' => $movieRepository->findAll(),
+            
         ]);
     }
 }
