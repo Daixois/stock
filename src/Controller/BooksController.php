@@ -28,7 +28,7 @@ class BooksController extends AbstractController
     public function searchBook(ApiBookService $apiBook): Response
     {
         $search = $_GET['researchBook'];
-        dd($search);
+        // dd($search);
         // $request = Request::createFromGlobals();
         // $request->query->get('research');
         // dd($request);
