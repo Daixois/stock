@@ -13,8 +13,11 @@ class ApiBookService
 	public function __construct(HttpClientInterface $client)
 	{
 		$this->client = $client;
-		$this->language = "&language=fr-FR";
-		$this->apiKey = "?api_key=AIzaSyAFgIQBL-nPuBCfZhEGi8V7S_CSLG45owg" . $this->language ;
+		// $this->language = "&language=fr-FR";
+        // Avec langue en français
+		// $this->apiKey = "?api_key=AIzaSyAFgIQBL-nPuBCfZhEGi8V7S_CSLG45owg" . $this->language ;
+        // sans specificité langue
+        $this->apiKey = "?api_key=AIzaSyAFgIQBL-nPuBCfZhEGi8V7S_CSLG45owg";
 	}
 
     private function getApi(string $var)
