@@ -4,7 +4,8 @@
 
 {% block body %}
 	<div class ="addBook">
-        <form id="researchForm" action="{{ path("books_searchBook")}}" method="get">
+        {# <form id="researchForm" action="{{ path("books_searchBook")}}" method="get"> #}
+		<form id="researchForm" action="..." method="get">
             <div class="mb-4">
                 <input type="search" class="form-control" name="researchBook" placeholder="Recherche un autre livre à ajouter à ta collection">
             </div>
@@ -14,7 +15,7 @@
 	<div class="container">
 			<div class="grid">
 				{% for books in data %}
-					{% include "books/_card-movie.html.twig"%}
+					{% include "books/_card-book.html.twig"%}
 				{% endfor %}
 			</div>
 	</div>

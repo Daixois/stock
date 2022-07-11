@@ -35,7 +35,7 @@ class BooksController extends AbstractController
         $searchBook = $apiBook->searchBookApi($search);
         // dd($searchBook);
         return $this->render('books/search-book.html.twig', [
-            'data' => $searchBook['results'],
+            'data' => $searchBook,
             'researchBook' => $searchBook,
         ]);
     }

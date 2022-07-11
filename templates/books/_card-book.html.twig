@@ -1,0 +1,17 @@
+
+
+	<div class="card">
+  {# illustration #}
+     {# <img src="https://image.tmdb.org/t/p/w500/{{ book.poster_path }}" class="card-img-top h-75 d-inline-block p-3" alt=" {{ book.title }} "> #}
+     <div class="card-body">
+        <h5 class="card-title">{{ book.title }}</h5>
+        <p class="card-text">{{ book.description|length >100 ? book.description|slice(0, 250) ~ '[...]' : book.description}}</p>
+    </div>
+	<div class="list-group list-group-horizontal">	
+        	
+				{# <a class="btn btn-primary m-2"  href="{{ path('movie_addid', {id: movie.id}) }}" class="card-link" aria-current="true">Ajouter à la collection</a> #}
+			
+        {# <a class="btn btn-primary m-2" href="https://www.themoviedb.org/movie/{{ movie.tmdbId }}?language=fr" class="card-link">La Fiche Tmdb</a> #}
+        {# <a class="btn btn-primary btn-sm m-2" href="{{ path('movie_getdatabaseid', {id: movie.id}) }}" class="card-link">Voir la fiche du film</a> #}
+	</div>
+</div>

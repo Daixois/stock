@@ -33,7 +33,7 @@ class ApiBookService
 	
 	public function searchBookApi(string $var) 
 	{
-		return $this->getApi( $this->apiKey . "volumes?q=" . $var); 
+		return $this->getApi("volumes?q=" . $var); 
 	}
 
 }
